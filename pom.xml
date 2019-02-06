@@ -12,8 +12,8 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/joergschwabe/satpinpointing-experiments.git</connection>
-		<developerConnection>scm:git:git@github.com:satpinpointing/satpinpointing-experiments.git</developerConnection>
-		<url>https://github.com/satpinpointing/satpinpointing-experiments</url>
+		<developerConnection>scm:git:git@github.com:joergschwabe/satpinpointing-experiments.git</developerConnection>
+		<url>https://github.com/joergschwabe/satpinpointing-experiments</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -26,11 +26,11 @@
 	</licenses>
 
 	<organization>
-		<name>Live Ontologies Project</name>
-		<url>http://liveontologies.org</url>
+		<name>Github</name>
+		<url>http://github.com</url>
 	</organization>
 
-	<inceptionYear>2017</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -195,37 +195,6 @@
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
-			</plugin>
-			<plugin>
-				<!-- the plugin used to generate license headers -->
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>1.9</version>
-				<configuration>
-					<verbose>false</verbose>
-					<addSvnKeyWords>true</addSvnKeyWords>
-					<extraExtensions>
-						<g>java</g>
-						<jj>java</jj>
-					</extraExtensions>
-				</configuration>
-				<executions>
-					<execution>
-						<id>first</id>
-						<goals>
-							<goal>update-file-header</goal>
-							<goal>update-project-license</goal>
-						</goals>
-						<phase>package</phase>
-						<configuration>
-							<licenseName>apache_v2</licenseName>
-							<roots>
-								<root>src/main/java</root>
-								<root>src/test/java</root>
-							</roots>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<!-- executing java from shell scripts -->
