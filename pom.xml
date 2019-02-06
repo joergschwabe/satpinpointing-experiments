@@ -25,13 +25,6 @@
 		</license>
 	</licenses>
 
-	<organization>
-		<name>Github</name>
-		<url>http://github.com</url>
-	</organization>
-
-	<inceptionYear>2019</inceptionYear>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
