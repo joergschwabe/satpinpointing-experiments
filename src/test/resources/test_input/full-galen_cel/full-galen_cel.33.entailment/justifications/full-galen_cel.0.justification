@@ -1,0 +1,90 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_CuneateTubercle___http___www.co-ode.org_ontologies_galen_ComponentOfSpinalCord__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.33.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Column>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ColumnOfSpinalCord>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ComponentOfSpinalCord>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CuneateTubercle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DorsalWhiteColumn>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Myelencephalon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SoftTissueTubercle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SpinalCord>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#WhiteColumn>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#WhiteMatter>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#lateralSelection>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasMedialLateralSelector>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#specificallyPartitivelyContains>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#IsDivisionOf> (<http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+TransitiveObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> (<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf> (<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> (<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ColumnOfSpinalCord> (<http://www.co-ode.org/ontologies/galen#ColumnOfSpinalCord>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ColumnOfSpinalCord> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Column> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#SpinalCord>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#ComponentOfSpinalCord> (<http://www.co-ode.org/ontologies/galen#ComponentOfSpinalCord>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ComponentOfSpinalCord> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#SpinalCord>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#CuneateTubercle> (<http://www.co-ode.org/ontologies/galen#CuneateTubercle>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#CuneateTubercle> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasMedialLateralSelector> <http://www.co-ode.org/ontologies/galen#lateralSelection>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#DorsalWhiteColumn> (<http://www.co-ode.org/ontologies/galen#DorsalWhiteColumn>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#DorsalWhiteColumn> <http://www.co-ode.org/ontologies/galen#WhiteColumn>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SoftTissueTubercle> (<http://www.co-ode.org/ontologies/galen#SoftTissueTubercle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SoftTissueTubercle> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata> (<http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#SoftTissueTubercle> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#Myelencephalon>)))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#TubercleOfMedullaOblongata> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#DorsalWhiteColumn>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#WhiteColumn> (<http://www.co-ode.org/ontologies/galen#WhiteColumn>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#WhiteColumn> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ColumnOfSpinalCord> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#specificallyPartitivelyContains> <http://www.co-ode.org/ontologies/galen#WhiteMatter>)))
+
+
+)

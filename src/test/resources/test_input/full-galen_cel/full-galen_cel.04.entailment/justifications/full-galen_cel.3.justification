@@ -1,0 +1,42 @@
+Prefix(:=<Justification_4_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Gadolinium___http___www.co-ode.org_ontologies_galen_Phenomenon__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.04.entailment/justification3>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ElementalChemical>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Gadolinium>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Substance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ChemicalSubstance> (<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance> <http://www.co-ode.org/ontologies/galen#Substance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ElementalChemical> (<http://www.co-ode.org/ontologies/galen#ElementalChemical>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ElementalChemical> <http://www.co-ode.org/ontologies/galen#ChemicalSubstance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Gadolinium> (<http://www.co-ode.org/ontologies/galen#Gadolinium>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Gadolinium> <http://www.co-ode.org/ontologies/galen#ElementalChemical>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Substance> (<http://www.co-ode.org/ontologies/galen#Substance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Substance> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> (<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+
+)

@@ -1,0 +1,32 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0007058___http___www.geneontology.org_owl__GO_0000212__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.28.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0000212>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0007056>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0007058>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0051226>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0007056> (female meiotic spindle assembly (sensu Metazoa))
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0007056> <http://www.geneontology.org/owl/#GO_0051226>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0007058> (female meiosis II spindle assembly (sensu Metazoa))
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0007058> <http://www.geneontology.org/owl/#GO_0007056>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0051226> (meiotic spindle assembly)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0051226> <http://www.geneontology.org/owl/#GO_0000212>)
+
+
+)

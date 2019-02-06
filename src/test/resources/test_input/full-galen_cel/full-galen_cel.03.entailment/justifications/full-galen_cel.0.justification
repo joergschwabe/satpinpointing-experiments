@@ -1,0 +1,42 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_CapsulaNucleusLentiformis___http___www.co-ode.org_ontologies_galen_BodyStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.03.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CapsulaNucleusLentiformis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDNervousSystemPart>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyPart> (<http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyPart> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#CapsulaNucleusLentiformis> (<http://www.co-ode.org/ontologies/galen#CapsulaNucleusLentiformis>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#CapsulaNucleusLentiformis> <http://www.co-ode.org/ontologies/galen#NAMEDNervousSystemPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> <http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDNervousSystemPart> (<http://www.co-ode.org/ontologies/galen#NAMEDNervousSystemPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDNervousSystemPart> <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+
+)

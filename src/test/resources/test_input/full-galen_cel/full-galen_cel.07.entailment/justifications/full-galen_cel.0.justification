@@ -1,0 +1,60 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_AnteriorMidLeftHeartVentricle___http___www.co-ode.org_ontologies_galen_SubstanceOrPhysicalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.07.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AnteriorMidLeftHeartVentricle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyRegion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalRegion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LeftHeartVentricle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#anteriorSelection>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#middleSelection>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAnteriorPosteriorSelector>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUpperLowerSelector>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSolidDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificSolidDivisionOf>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AnteriorMidLeftHeartVentricle> (<http://www.co-ode.org/ontologies/galen#AnteriorMidLeftHeartVentricle>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#AnteriorMidLeftHeartVentricle> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#InternalRegion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAnteriorPosteriorSelector> <http://www.co-ode.org/ontologies/galen#anteriorSelection>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUpperLowerSelector> <http://www.co-ode.org/ontologies/galen#middleSelection>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificSolidDivisionOf> <http://www.co-ode.org/ontologies/galen#LeftHeartVentricle>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyRegion> (<http://www.co-ode.org/ontologies/galen#BodyRegion>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalRegion> (<http://www.co-ode.org/ontologies/galen#InternalRegion>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InternalRegion> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSolidDivisionOf> <http://www.co-ode.org/ontologies/galen#BodyStructure>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+
+)

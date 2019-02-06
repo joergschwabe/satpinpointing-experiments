@@ -1,0 +1,47 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_AmblyommaMaculatum___http___www.co-ode.org_ontologies_galen_Arthropoda__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.00.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Acarina>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Amblyomma>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AmblyommaMaculatum>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Arachnida>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Arthropoda>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Ixodidae>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Ixodoidea>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Acarina> (<http://www.co-ode.org/ontologies/galen#Acarina>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Acarina> <http://www.co-ode.org/ontologies/galen#Arachnida>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Amblyomma> (<http://www.co-ode.org/ontologies/galen#Amblyomma>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Amblyomma> <http://www.co-ode.org/ontologies/galen#Ixodidae>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#AmblyommaMaculatum> (<http://www.co-ode.org/ontologies/galen#AmblyommaMaculatum>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#AmblyommaMaculatum> <http://www.co-ode.org/ontologies/galen#Amblyomma>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Arachnida> (<http://www.co-ode.org/ontologies/galen#Arachnida>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Arachnida> <http://www.co-ode.org/ontologies/galen#Arthropoda>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Ixodidae> (<http://www.co-ode.org/ontologies/galen#Ixodidae>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Ixodidae> <http://www.co-ode.org/ontologies/galen#Ixodoidea>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Ixodoidea> (<http://www.co-ode.org/ontologies/galen#Ixodoidea>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Ixodoidea> <http://www.co-ode.org/ontologies/galen#Acarina>)
+
+
+)

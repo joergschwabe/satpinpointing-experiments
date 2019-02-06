@@ -1,0 +1,42 @@
+Prefix(:=<Justification_7_for_SubClassOf__http___www.geneontology.org_owl__GO_0006554___http___www.geneontology.org_owl__GO_0044237__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.30.entailment/justification06>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006554>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009063>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009068>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009308>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009310>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044237>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006554> (lysine catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006554> <http://www.geneontology.org/owl/#GO_0009068>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009063> (amino acid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009063> <http://www.geneontology.org/owl/#GO_0009310>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009068> (aspartate family amino acid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009068> <http://www.geneontology.org/owl/#GO_0009063>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009308> (amine metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009308> <http://www.geneontology.org/owl/#GO_0044237>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009310> (amine catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009310> <http://www.geneontology.org/owl/#GO_0009308>)
+
+
+)

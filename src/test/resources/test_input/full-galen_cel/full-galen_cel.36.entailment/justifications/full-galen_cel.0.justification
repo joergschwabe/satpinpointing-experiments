@@ -1,0 +1,115 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_RheumaticAorticValveFailure___http___www.co-ode.org_ontologies_galen_PathologicalGenericProcess__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.36.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Aorta>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AorticValve>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ControlOfFlow>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Effectiveness>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#FailureOfBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericControlProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#IntrinsicallyNormalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LeftHeartVentricle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MajorHeartValve>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDValve>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PathologicalGenericProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#RheumaticAorticValveFailure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#RheumaticFever>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Valve>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ValveInHeart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ineffective>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#normal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#pathological>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasEffectiveness>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isAlphaConnectionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isBetaPartitiveConnectionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isFunctionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificConsequenceOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf> (<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf> <http://www.co-ode.org/ontologies/galen#isFunctionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AorticValve> (<http://www.co-ode.org/ontologies/galen#AorticValve>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#AorticValve> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#MajorHeartValve> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isAlphaConnectionOf> <http://www.co-ode.org/ontologies/galen#Aorta>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isBetaPartitiveConnectionOf> <http://www.co-ode.org/ontologies/galen#LeftHeartVentricle>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#ControlOfFlow> (<http://www.co-ode.org/ontologies/galen#ControlOfFlow>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ControlOfFlow> <http://www.co-ode.org/ontologies/galen#GenericControlProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#FailureOfBodyStructure> (<http://www.co-ode.org/ontologies/galen#FailureOfBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#FailureOfBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasEffectiveness> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Effectiveness> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#ineffective>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isFunctionOf> <http://www.co-ode.org/ontologies/galen#IntrinsicallyNormalBodyStructure>)))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#FailureOfBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#normal>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericControlProcess> (<http://www.co-ode.org/ontologies/galen#GenericControlProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericControlProcess> <http://www.co-ode.org/ontologies/galen#GenericProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericInternalStructure> (<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericProcess> (<http://www.co-ode.org/ontologies/galen#GenericProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericProcess> <http://www.co-ode.org/ontologies/galen#GeneralisedProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#IntrinsicallyNormalBodyStructure> (<http://www.co-ode.org/ontologies/galen#IntrinsicallyNormalBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#IntrinsicallyNormalBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#normal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#MajorHeartValve> (<http://www.co-ode.org/ontologies/galen#MajorHeartValve>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MajorHeartValve> <http://www.co-ode.org/ontologies/galen#ValveInHeart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDValve> (<http://www.co-ode.org/ontologies/galen#NAMEDValve>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDValve> <http://www.co-ode.org/ontologies/galen#Valve>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PathologicalGenericProcess> (<http://www.co-ode.org/ontologies/galen#PathologicalGenericProcess>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PathologicalGenericProcess> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#GenericProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#RheumaticAorticValveFailure> (<http://www.co-ode.org/ontologies/galen#RheumaticAorticValveFailure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#RheumaticAorticValveFailure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ControlOfFlow> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasEffectiveness> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Effectiveness> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#ineffective>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificConsequenceOf> <http://www.co-ode.org/ontologies/galen#RheumaticFever>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf> <http://www.co-ode.org/ontologies/galen#AorticValve>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Valve> (<http://www.co-ode.org/ontologies/galen#Valve>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Valve> <http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ValveInHeart> (<http://www.co-ode.org/ontologies/galen#ValveInHeart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ValveInHeart> <http://www.co-ode.org/ontologies/galen#NAMEDValve>)
+
+
+)

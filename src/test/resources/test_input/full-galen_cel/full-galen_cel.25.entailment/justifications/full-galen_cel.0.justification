@@ -1,0 +1,32 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_SubcutaneousOedema___http___www.co-ode.org_ontologies_galen_PathologicalBodyStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.25.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Oedema>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OedemaProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubcutaneousLayer>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubcutaneousOedema>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Oedema> (<http://www.co-ode.org/ontologies/galen#Oedema>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Oedema> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> <http://www.co-ode.org/ontologies/galen#OedemaProcess>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubcutaneousOedema> (<http://www.co-ode.org/ontologies/galen#SubcutaneousOedema>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#SubcutaneousOedema> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Oedema> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation> <http://www.co-ode.org/ontologies/galen#SubcutaneousLayer>)))
+
+
+)

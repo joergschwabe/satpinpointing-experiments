@@ -1,0 +1,62 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0006676___http___www.geneontology.org_owl__GO_0009987__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.05.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006643>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006665>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006672>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006673>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006676>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009987>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044237>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044255>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046519>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050875>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006643> (membrane lipid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006643> <http://www.geneontology.org/owl/#GO_0044255>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006665> (sphingolipid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006665> <http://www.geneontology.org/owl/#GO_0006643>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006672> (ceramide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006672> <http://www.geneontology.org/owl/#GO_0046519>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006673> (inositolphosphoceramide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006673> <http://www.geneontology.org/owl/#GO_0006672>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006676> (mannosyl diphosphorylinositol ceramide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006676> <http://www.geneontology.org/owl/#GO_0006673>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044237> (cellular metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044237> <http://www.geneontology.org/owl/#GO_0050875>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044255> (cellular lipid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044255> <http://www.geneontology.org/owl/#GO_0044237>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0046519> (sphingoid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0046519> <http://www.geneontology.org/owl/#GO_0006665>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0050875> (cellular physiological process)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0050875> <http://www.geneontology.org/owl/#GO_0009987>)
+
+
+)

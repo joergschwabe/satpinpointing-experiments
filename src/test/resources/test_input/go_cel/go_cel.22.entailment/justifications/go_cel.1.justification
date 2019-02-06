@@ -1,0 +1,42 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0042987___http___www.geneontology.org_owl__GO_0044260__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.22.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006508>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006516>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042987>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044260>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044267>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0051603>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006508> (proteolysis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006508> <http://www.geneontology.org/owl/#GO_0044267>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006516> (glycoprotein catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006516> <http://www.geneontology.org/owl/#GO_0051603>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042987> (amyloid precursor protein catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042987> <http://www.geneontology.org/owl/#GO_0006516>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044267> (cellular protein metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044267> <http://www.geneontology.org/owl/#GO_0044260>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0051603> (proteolysis during cellular protein catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0051603> <http://www.geneontology.org/owl/#GO_0006508>)
+
+
+)

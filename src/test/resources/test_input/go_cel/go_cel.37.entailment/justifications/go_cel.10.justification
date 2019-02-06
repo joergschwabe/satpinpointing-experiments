@@ -1,0 +1,52 @@
+Prefix(:=<Justification_11_for_SubClassOf__http___www.geneontology.org_owl__GO_0018122___http___www.geneontology.org_owl__GO_0007582__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.37.entailment/justification10>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006464>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006471>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0007582>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008152>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0018122>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0019538>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044238>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044267>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006464> (protein modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006464> <http://www.geneontology.org/owl/#GO_0044267>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006471> (protein amino acid ADP-ribosylation)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006471> <http://www.geneontology.org/owl/#GO_0006464>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0008152> (metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008152> <http://www.geneontology.org/owl/#GO_0007582>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0018122> (peptidyl-asparagine ADP-ribosylation)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0018122> <http://www.geneontology.org/owl/#GO_0006471>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0019538> (protein metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0019538> <http://www.geneontology.org/owl/#GO_0044238>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044238> (primary metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044238> <http://www.geneontology.org/owl/#GO_0008152>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044267> (cellular protein metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044267> <http://www.geneontology.org/owl/#GO_0019538>)
+
+
+)

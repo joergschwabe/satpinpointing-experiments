@@ -1,0 +1,42 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0045407___http___www.geneontology.org_owl__GO_0009889__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.31.entailment/justification2>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009889>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009891>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0031328>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042108>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0045407>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0045727>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0009891> (positive regulation of biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009891> <http://www.geneontology.org/owl/#GO_0009889>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0031328> (positive regulation of cellular biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0031328> <http://www.geneontology.org/owl/#GO_0009891>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042108> (positive regulation of cytokine biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042108> <http://www.geneontology.org/owl/#GO_0045727>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0045407> (positive regulation of interleukin-5 biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0045407> <http://www.geneontology.org/owl/#GO_0042108>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0045727> (positive regulation of protein biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0045727> <http://www.geneontology.org/owl/#GO_0031328>)
+
+
+)

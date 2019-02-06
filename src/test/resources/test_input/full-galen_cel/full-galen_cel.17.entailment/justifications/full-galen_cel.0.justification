@@ -1,0 +1,40 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Trapezoid___http___www.co-ode.org_ontologies_galen_DistalCarpalBone__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.17.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CarpalBone>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DistalCarpalBone>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DistalCarpalRow>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Trapezoid>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> (<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#DistalCarpalBone> (<http://www.co-ode.org/ontologies/galen#DistalCarpalBone>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#DistalCarpalBone> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#CarpalBone> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#DistalCarpalRow>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Trapezoid> (<http://www.co-ode.org/ontologies/galen#Trapezoid>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Trapezoid> <http://www.co-ode.org/ontologies/galen#CarpalBone>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Trapezoid> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#DistalCarpalRow>))
+
+
+)

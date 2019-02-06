@@ -1,0 +1,27 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0008664___http___www.geneontology.org_owl__GO_0016886__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.19.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008452>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008664>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016886>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0008452> (RNA ligase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008452> <http://www.geneontology.org/owl/#GO_0016886>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0008664> (2'-5'-RNA ligase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008664> <http://www.geneontology.org/owl/#GO_0008452>)
+
+
+)

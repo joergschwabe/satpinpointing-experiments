@@ -1,0 +1,32 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0006813___http___www.geneontology.org_owl__GO_0006811__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.36.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006811>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006812>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006813>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015672>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006812> (cation transport)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006812> <http://www.geneontology.org/owl/#GO_0006811>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006813> (potassium ion transport)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006813> <http://www.geneontology.org/owl/#GO_0015672>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015672> (monovalent inorganic cation transport)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015672> <http://www.geneontology.org/owl/#GO_0006812>)
+
+
+)

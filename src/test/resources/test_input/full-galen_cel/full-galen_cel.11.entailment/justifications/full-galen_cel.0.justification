@@ -1,0 +1,70 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_GastricFundus___http___www.co-ode.org_ontologies_galen_BodySystemComponent__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.11.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AnatomicalSystem>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodySystem>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodySystemComponent>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DigestiveSystem>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GastricFundus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> (<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AnatomicalSystem> (<http://www.co-ode.org/ontologies/galen#AnatomicalSystem>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#AnatomicalSystem> <http://www.co-ode.org/ontologies/galen#BodySystem>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyPart> (<http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyPart> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodySystemComponent> (<http://www.co-ode.org/ontologies/galen#BodySystemComponent>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#BodySystemComponent> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#BodySystem>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#DigestiveSystem> (<http://www.co-ode.org/ontologies/galen#DigestiveSystem>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#DigestiveSystem> <http://www.co-ode.org/ontologies/galen#AnatomicalSystem>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GastricFundus> (<http://www.co-ode.org/ontologies/galen#GastricFundus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GastricFundus> <http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> <http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#DigestiveSystem>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+
+)

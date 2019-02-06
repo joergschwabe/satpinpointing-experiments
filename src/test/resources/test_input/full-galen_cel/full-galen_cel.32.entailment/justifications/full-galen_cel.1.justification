@@ -1,0 +1,85 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_RenalArtery___http___www.co-ode.org_ontologies_galen_BodyStructureByAbstractStatus__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.32.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AbstractStatus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BloodVessel>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BloodVesselOfSystemicCirculation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructureByAbstractStatus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MedicalStatus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDSystemicArtery>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NormalOrNonNormalStatus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#RenalArtery>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#normal>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#StatusAttribute>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus> (<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#StatusAttribute>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BloodVessel> (<http://www.co-ode.org/ontologies/galen#BloodVessel>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BloodVessel> <http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BloodVesselOfSystemicCirculation> (<http://www.co-ode.org/ontologies/galen#BloodVesselOfSystemicCirculation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BloodVesselOfSystemicCirculation> <http://www.co-ode.org/ontologies/galen#BloodVessel>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructureByAbstractStatus> (<http://www.co-ode.org/ontologies/galen#BodyStructureByAbstractStatus>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#BodyStructureByAbstractStatus> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#StatusAttribute> <http://www.co-ode.org/ontologies/galen#AbstractStatus>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasIntrinsicAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#normal>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericInternalStructure> (<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel> (<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel> <http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MedicalStatus> (<http://www.co-ode.org/ontologies/galen#MedicalStatus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MedicalStatus> <http://www.co-ode.org/ontologies/galen#AbstractStatus>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDSystemicArtery> (<http://www.co-ode.org/ontologies/galen#NAMEDSystemicArtery>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDSystemicArtery> <http://www.co-ode.org/ontologies/galen#BloodVesselOfSystemicCirculation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NormalOrNonNormalStatus> (<http://www.co-ode.org/ontologies/galen#NormalOrNonNormalStatus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NormalOrNonNormalStatus> <http://www.co-ode.org/ontologies/galen#MedicalStatus>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#RenalArtery> (<http://www.co-ode.org/ontologies/galen#RenalArtery>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#RenalArtery> <http://www.co-ode.org/ontologies/galen#NAMEDSystemicArtery>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#normal> (<http://www.co-ode.org/ontologies/galen#normal>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#normal> <http://www.co-ode.org/ontologies/galen#NormalOrNonNormalStatus>)
+
+
+)

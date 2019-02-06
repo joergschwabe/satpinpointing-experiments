@@ -1,0 +1,37 @@
+Prefix(:=<Justification_4_for_SubClassOf__http___www.geneontology.org_owl__GO_0045415___http___www.geneontology.org_owl__GO_0050776__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.16.entailment/justification3>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0001817>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042035>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042036>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0045415>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050776>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0001817> (regulation of cytokine production)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0001817> <http://www.geneontology.org/owl/#GO_0050776>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042035> (regulation of cytokine biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042035> <http://www.geneontology.org/owl/#GO_0001817>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042036> (negative regulation of cytokine biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042036> <http://www.geneontology.org/owl/#GO_0042035>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0045415> (negative regulation of interleukin-8 biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0045415> <http://www.geneontology.org/owl/#GO_0042036>)
+
+
+)

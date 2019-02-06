@@ -1,0 +1,68 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_VenaCavaValveProsthesis___http___www.co-ode.org_ontologies_galen_TopCategory__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.35.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Device>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DomainCategory>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Implantability>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InertSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InstallingProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TopCategory>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ValveOfInferiorVenaCava>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#VenaCavaValveProsthesis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#implantable>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasFunction>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasImplantability>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isActedOnBy>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isFunctionOf>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Device> (<http://www.co-ode.org/ontologies/galen#Device>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Device> <http://www.co-ode.org/ontologies/galen#InertSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#DomainCategory> (<http://www.co-ode.org/ontologies/galen#DomainCategory>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#DomainCategory> <http://www.co-ode.org/ontologies/galen#TopCategory>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#InertSolidStructure> (<http://www.co-ode.org/ontologies/galen#InertSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#InertSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Phenomenon> (<http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Phenomenon> <http://www.co-ode.org/ontologies/galen#DomainCategory>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> (<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#VenaCavaValveProsthesis> (<http://www.co-ode.org/ontologies/galen#VenaCavaValveProsthesis>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#VenaCavaValveProsthesis> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Device> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasFunction> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isFunctionOf> <http://www.co-ode.org/ontologies/galen#ValveOfInferiorVenaCava>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasImplantability> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Implantability> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#implantable>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isActedOnBy> <http://www.co-ode.org/ontologies/galen#InstallingProcess>)))
+
+
+)

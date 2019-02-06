@@ -1,0 +1,47 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_ColourState___http___www.co-ode.org_ontologies_galen_ModifierConcept__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.30.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Aspect>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ColourState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ModifierConcept>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MorphologyState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#State>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#StateOrQuantity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#StructuralState>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Aspect> (<http://www.co-ode.org/ontologies/galen#Aspect>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Aspect> <http://www.co-ode.org/ontologies/galen#ModifierConcept>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ColourState> (<http://www.co-ode.org/ontologies/galen#ColourState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ColourState> <http://www.co-ode.org/ontologies/galen#MorphologyState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MorphologyState> (<http://www.co-ode.org/ontologies/galen#MorphologyState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MorphologyState> <http://www.co-ode.org/ontologies/galen#StructuralState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#State> (<http://www.co-ode.org/ontologies/galen#State>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#State> <http://www.co-ode.org/ontologies/galen#StateOrQuantity>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#StateOrQuantity> (<http://www.co-ode.org/ontologies/galen#StateOrQuantity>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#StateOrQuantity> <http://www.co-ode.org/ontologies/galen#Aspect>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#StructuralState> (<http://www.co-ode.org/ontologies/galen#StructuralState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#StructuralState> <http://www.co-ode.org/ontologies/galen#State>)
+
+
+)

@@ -1,0 +1,42 @@
+Prefix(:=<Justification_4_for_SubClassOf__http___www.geneontology.org_owl__GO_0046673___http___www.geneontology.org_owl__GO_0050791__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.11.entailment/justification3>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043067>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043069>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046671>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046673>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050791>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0051244>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0043067> (regulation of programmed cell death)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0043067> <http://www.geneontology.org/owl/#GO_0051244>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0043069> (negative regulation of programmed cell death)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0043069> <http://www.geneontology.org/owl/#GO_0043067>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0046671> (negative regulation of retinal programmed cell death)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0046671> <http://www.geneontology.org/owl/#GO_0043069>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0046673> (negative regulation of retinal cell programmed cell death (sensu Endopterygota))
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0046673> <http://www.geneontology.org/owl/#GO_0046671>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0051244> (regulation of cellular physiological process)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0051244> <http://www.geneontology.org/owl/#GO_0050791>)
+
+
+)

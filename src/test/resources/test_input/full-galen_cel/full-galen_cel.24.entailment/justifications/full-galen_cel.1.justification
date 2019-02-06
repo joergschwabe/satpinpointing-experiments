@@ -1,0 +1,85 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_InfectionOfLowerRespiratoryTract___http___www.co-ode.org_ontologies_galen_Anonymous-631__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.24.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AcquiredPathologicalProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Anonymous-631>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InfectionLesion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InfectionOfLowerRespiratoryTract>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InfectionProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LowerRespiratoryTract>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDNonNormalProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#pathological>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#LocativeAttribute>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasIntrinsicPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isConsequenceOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isImmediateConsequenceOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> (<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> <http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isImmediateConsequenceOf> (<http://www.co-ode.org/ontologies/galen#isImmediateConsequenceOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isImmediateConsequenceOf> <http://www.co-ode.org/ontologies/galen#isConsequenceOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf> (<http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf> <http://www.co-ode.org/ontologies/galen#isImmediateConsequenceOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AcquiredPathologicalProcess> (<http://www.co-ode.org/ontologies/galen#AcquiredPathologicalProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#AcquiredPathologicalProcess> <http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Anonymous-631> (<http://www.co-ode.org/ontologies/galen#Anonymous-631>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Anonymous-631> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isConsequenceOf> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasIntrinsicPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InfectionLesion> (<http://www.co-ode.org/ontologies/galen#InfectionLesion>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InfectionLesion> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> <http://www.co-ode.org/ontologies/galen#InfectionProcess>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InfectionOfLowerRespiratoryTract> (<http://www.co-ode.org/ontologies/galen#InfectionOfLowerRespiratoryTract>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InfectionOfLowerRespiratoryTract> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#InfectionLesion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#LocativeAttribute> <http://www.co-ode.org/ontologies/galen#LowerRespiratoryTract>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InfectionProcess> (<http://www.co-ode.org/ontologies/galen#InfectionProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#InfectionProcess> <http://www.co-ode.org/ontologies/galen#AcquiredPathologicalProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDNonNormalProcess> (<http://www.co-ode.org/ontologies/galen#NAMEDNonNormalProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDNonNormalProcess> <http://www.co-ode.org/ontologies/galen#BodyProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess> (<http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess> <http://www.co-ode.org/ontologies/galen#NAMEDNonNormalProcess>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDPathologicalProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasIntrinsicPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> (<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))
+
+
+)

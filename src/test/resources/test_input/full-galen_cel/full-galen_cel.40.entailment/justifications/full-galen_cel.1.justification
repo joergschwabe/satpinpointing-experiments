@@ -1,0 +1,67 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Submucosa___http___www.co-ode.org_ontologies_galen_Phenomenon__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.40.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Membrane>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDMembrane>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Submucosa>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericInternalStructure> (<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Membrane> (<http://www.co-ode.org/ontologies/galen#Membrane>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Membrane> <http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDMembrane> (<http://www.co-ode.org/ontologies/galen#NAMEDMembrane>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDMembrane> <http://www.co-ode.org/ontologies/galen#Membrane>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Submucosa> (<http://www.co-ode.org/ontologies/galen#Submucosa>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Submucosa> <http://www.co-ode.org/ontologies/galen#NAMEDMembrane>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> (<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+
+)

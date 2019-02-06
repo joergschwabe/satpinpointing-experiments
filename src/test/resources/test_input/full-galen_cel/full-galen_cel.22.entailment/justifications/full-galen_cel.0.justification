@@ -1,0 +1,88 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_LowerGastrointestinalHaemorrhageSymptom___http___www.co-ode.org_ontologies_galen_CardiovascularSystemPhenomenon__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.22.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Bleeding>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BleedingSymptom>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CardiovascularSystem>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CardiovascularSystemPhenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HaemorrhageLesion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HemorrhagingProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LargeIntestine>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LowerGastrointestinalHaemorrhageSymptom>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SymptomRole>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#pathological>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#LocativeAttribute>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isCausallyLinkedTo>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#playsConsultationRole>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isCausallyLinkedTo> (<http://www.co-ode.org/ontologies/galen#isCausallyLinkedTo>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isCausallyLinkedTo> <http://www.co-ode.org/ontologies/galen#LocativeAttribute>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Bleeding> (<http://www.co-ode.org/ontologies/galen#Bleeding>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Bleeding> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> <http://www.co-ode.org/ontologies/galen#HemorrhagingProcess>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#BleedingSymptom> (<http://www.co-ode.org/ontologies/galen#BleedingSymptom>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#BleedingSymptom> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#HaemorrhageLesion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsConsultationRole> <http://www.co-ode.org/ontologies/galen#SymptomRole>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#CardiovascularSystemPhenomenon> (<http://www.co-ode.org/ontologies/galen#CardiovascularSystemPhenomenon>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#CardiovascularSystemPhenomenon> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Phenomenon> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#LocativeAttribute> <http://www.co-ode.org/ontologies/galen#CardiovascularSystem>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#HaemorrhageLesion> (<http://www.co-ode.org/ontologies/galen#HaemorrhageLesion>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#HaemorrhageLesion> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Bleeding> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#HaemorrhageLesion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isCausallyLinkedTo> <http://www.co-ode.org/ontologies/galen#CardiovascularSystem>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#LowerGastrointestinalHaemorrhageSymptom> (<http://www.co-ode.org/ontologies/galen#LowerGastrointestinalHaemorrhageSymptom>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#LowerGastrointestinalHaemorrhageSymptom> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BleedingSymptom> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation> <http://www.co-ode.org/ontologies/galen#LargeIntestine>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> (<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+
+)

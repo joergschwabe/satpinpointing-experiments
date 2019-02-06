@@ -1,0 +1,42 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_MentalExcitation___http___www.co-ode.org_ontologies_galen_Sensation__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.45.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#EnergyLevelSensation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ExcitationOrSedation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalSensation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MentalEnergyLevelSensation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MentalExcitation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Sensation>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#EnergyLevelSensation> (<http://www.co-ode.org/ontologies/galen#EnergyLevelSensation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#EnergyLevelSensation> <http://www.co-ode.org/ontologies/galen#InternalSensation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ExcitationOrSedation> (<http://www.co-ode.org/ontologies/galen#ExcitationOrSedation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ExcitationOrSedation> <http://www.co-ode.org/ontologies/galen#MentalEnergyLevelSensation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalSensation> (<http://www.co-ode.org/ontologies/galen#InternalSensation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#InternalSensation> <http://www.co-ode.org/ontologies/galen#Sensation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MentalEnergyLevelSensation> (<http://www.co-ode.org/ontologies/galen#MentalEnergyLevelSensation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MentalEnergyLevelSensation> <http://www.co-ode.org/ontologies/galen#EnergyLevelSensation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MentalExcitation> (<http://www.co-ode.org/ontologies/galen#MentalExcitation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MentalExcitation> <http://www.co-ode.org/ontologies/galen#ExcitationOrSedation>)
+
+
+)

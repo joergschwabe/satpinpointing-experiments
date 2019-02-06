@@ -1,0 +1,22 @@
+Prefix(:=<http://www.geneontology.org/owl//go_cel.26.entailment#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.26.entailment>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0048685>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050770>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0048685> (negative regulation of collateral sprouting of intact axon in response to injury)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0048685> <http://www.geneontology.org/owl/#GO_0050770>)
+
+
+)

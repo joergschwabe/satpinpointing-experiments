@@ -1,0 +1,47 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0046054___http___www.geneontology.org_owl__GO_0044238__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.38.entailment/justification2>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006139>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006163>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009117>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009151>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009170>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044238>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046054>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006139> (nucleobase, nucleoside, nucleotide and nucleic acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006139> <http://www.geneontology.org/owl/#GO_0044238>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006163> (purine nucleotide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006163> <http://www.geneontology.org/owl/#GO_0009117>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009117> (nucleotide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009117> <http://www.geneontology.org/owl/#GO_0006139>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009151> (purine deoxyribonucleotide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009151> <http://www.geneontology.org/owl/#GO_0006163>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009170> (purine deoxyribonucleoside monophosphate metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009170> <http://www.geneontology.org/owl/#GO_0009151>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0046054> (dGMP metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0046054> <http://www.geneontology.org/owl/#GO_0009170>)
+
+
+)

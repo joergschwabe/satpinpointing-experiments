@@ -1,0 +1,37 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0016574___http___www.geneontology.org_owl__GO_0019538__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.08.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006464>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016570>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016574>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0019538>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044267>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006464> (protein modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006464> <http://www.geneontology.org/owl/#GO_0044267>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0016570> (histone modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016570> <http://www.geneontology.org/owl/#GO_0006464>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0016574> (histone ubiquitination)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016574> <http://www.geneontology.org/owl/#GO_0016570>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044267> (cellular protein metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044267> <http://www.geneontology.org/owl/#GO_0019538>)
+
+
+)

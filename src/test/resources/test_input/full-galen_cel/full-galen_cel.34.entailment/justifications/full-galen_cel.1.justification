@@ -1,0 +1,75 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_CornealOpacity___http___www.co-ode.org_ontologies_galen_NonNormalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.34.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Cornea>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CornealOpacity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NonNormalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OpaqueStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PathologicalPhenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Transparency>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#nonNormal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#opaque>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#pathological>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbnormalityStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasTransparency>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#CornealOpacity> (<http://www.co-ode.org/ontologies/galen#CornealOpacity>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#CornealOpacity> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#OpaqueStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation> <http://www.co-ode.org/ontologies/galen#Cornea>)))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#CornealOpacity> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#NonNormalStructure> (<http://www.co-ode.org/ontologies/galen#NonNormalStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#NonNormalStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#nonNormal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OpaqueStructure> (<http://www.co-ode.org/ontologies/galen#OpaqueStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#OpaqueStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasTransparency> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Transparency> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#opaque>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PathologicalPhenomenon> (<http://www.co-ode.org/ontologies/galen#PathologicalPhenomenon>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PathologicalPhenomenon> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Phenomenon> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PathologicalPhenomenon> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#nonNormal>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> (<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+
+)

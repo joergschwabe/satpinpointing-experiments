@@ -1,0 +1,47 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0015657___http___www.geneontology.org_owl__GO_0005342__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.42.entailment/justification2>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005279>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005283>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005342>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005416>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015171>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015657>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046943>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0005279> (amino acid-polyamine transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005279> <http://www.geneontology.org/owl/#GO_0015171>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0005283> (sodium:amino acid symporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005283> <http://www.geneontology.org/owl/#GO_0005416>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0005416> (cation:amino acid symporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005416> <http://www.geneontology.org/owl/#GO_0005279>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015171> (amino acid transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015171> <http://www.geneontology.org/owl/#GO_0046943>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015657> (branched-chain amino acid:sodium symporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015657> <http://www.geneontology.org/owl/#GO_0005283>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0046943> (carboxylic acid transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0046943> <http://www.geneontology.org/owl/#GO_0005342>)
+
+
+)

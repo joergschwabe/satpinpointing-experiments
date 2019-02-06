@@ -1,0 +1,62 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_VibrioParahaemolyticus___http___www.co-ode.org_ontologies_galen_DomainCategory__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.39.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Bacterium>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Cell>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DomainCategory>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MicroscopicStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Vibrio>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#VibrioParahaemolyticus>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Bacterium> (<http://www.co-ode.org/ontologies/galen#Bacterium>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Bacterium> <http://www.co-ode.org/ontologies/galen#Cell>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Cell> (<http://www.co-ode.org/ontologies/galen#Cell>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Cell> <http://www.co-ode.org/ontologies/galen#MicroscopicStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GeneralisedStructure> (<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MicroscopicStructure> (<http://www.co-ode.org/ontologies/galen#MicroscopicStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MicroscopicStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Phenomenon> (<http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Phenomenon> <http://www.co-ode.org/ontologies/galen#DomainCategory>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Vibrio> (<http://www.co-ode.org/ontologies/galen#Vibrio>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Vibrio> <http://www.co-ode.org/ontologies/galen#Bacterium>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#VibrioParahaemolyticus> (<http://www.co-ode.org/ontologies/galen#VibrioParahaemolyticus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#VibrioParahaemolyticus> <http://www.co-ode.org/ontologies/galen#Vibrio>)
+
+
+)

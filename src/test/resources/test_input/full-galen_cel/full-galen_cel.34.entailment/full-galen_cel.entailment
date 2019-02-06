@@ -1,0 +1,22 @@
+Prefix(:=<http://www.co-ode.org/ontologies/galen/full-galen_cel.34.entailment#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.34.entailment>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CornealOpacity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NonNormalStructure>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#CornealOpacity> (<http://www.co-ode.org/ontologies/galen#CornealOpacity>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#CornealOpacity> <http://www.co-ode.org/ontologies/galen#NonNormalStructure>)
+
+
+)

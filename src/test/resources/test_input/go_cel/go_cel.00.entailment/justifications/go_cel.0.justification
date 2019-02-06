@@ -1,0 +1,27 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0047081___http___www.geneontology.org_owl__GO_0051213__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.00.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016708>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0047081>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0051213>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0016708> (oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, NAD or NADH as one donor, and incorporation of two atoms of oxygen into one donor)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016708> <http://www.geneontology.org/owl/#GO_0051213>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0047081> (3-hydroxy-2-methylpyridinecarboxylate dioxygenase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0047081> <http://www.geneontology.org/owl/#GO_0016708>)
+
+
+)

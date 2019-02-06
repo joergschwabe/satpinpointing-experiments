@@ -1,0 +1,37 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0015537___http___www.geneontology.org_owl__GO_0015932__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.12.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005337>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015211>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015537>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015553>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0015932>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0005337> (nucleoside transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005337> <http://www.geneontology.org/owl/#GO_0015932>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015211> (purine nucleoside transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015211> <http://www.geneontology.org/owl/#GO_0005337>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015537> (xanthosine permease activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015537> <http://www.geneontology.org/owl/#GO_0015553>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0015553> (xanthosine transporter activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0015553> <http://www.geneontology.org/owl/#GO_0015211>)
+
+
+)

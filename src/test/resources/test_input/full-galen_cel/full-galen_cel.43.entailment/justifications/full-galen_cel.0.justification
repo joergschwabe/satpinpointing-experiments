@@ -1,0 +1,103 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_ProximalPartOfRadius___http___www.co-ode.org_ontologies_galen_ComponentOfInternalAnatomicalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.43.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyRegion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Bone>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LongBone>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDSkeletalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ProximalPartOfRadius>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Radius>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SegmentOfRadius>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#internal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#proximalSelection>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasProximalDistalSelector>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> (<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> (<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyPart> (<http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyPart> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyRegion> (<http://www.co-ode.org/ontologies/galen#BodyRegion>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Bone> (<http://www.co-ode.org/ontologies/galen#Bone>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Bone> <http://www.co-ode.org/ontologies/galen#NAMEDSkeletalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure> (<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#InternalBodyStructure>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalBodyStructure> (<http://www.co-ode.org/ontologies/galen#InternalBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InternalBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility> <http://www.co-ode.org/ontologies/galen#internal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalLinearSegment> (<http://www.co-ode.org/ontologies/galen#InternalLinearSegment>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#BodyStructure>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#LongBone> (<http://www.co-ode.org/ontologies/galen#LongBone>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#LongBone> <http://www.co-ode.org/ontologies/galen#Bone>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> <http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility> <http://www.co-ode.org/ontologies/galen#internal>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDSkeletalStructure> (<http://www.co-ode.org/ontologies/galen#NAMEDSkeletalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDSkeletalStructure> <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ProximalPartOfRadius> (<http://www.co-ode.org/ontologies/galen#ProximalPartOfRadius>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ProximalPartOfRadius> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#SegmentOfRadius> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasProximalDistalSelector> <http://www.co-ode.org/ontologies/galen#proximalSelection>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Radius> (<http://www.co-ode.org/ontologies/galen#Radius>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Radius> <http://www.co-ode.org/ontologies/galen#LongBone>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SegmentOfRadius> (<http://www.co-ode.org/ontologies/galen#SegmentOfRadius>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#SegmentOfRadius> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#Radius>)))
+
+
+)

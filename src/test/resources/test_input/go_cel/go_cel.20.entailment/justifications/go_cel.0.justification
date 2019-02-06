@@ -1,0 +1,52 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0010041___http___www.geneontology.org_owl__GO_0008150__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.20.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008150>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009628>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0010035>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0010038>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0010039>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0010041>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042221>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050896>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0009628> (response to abiotic stimulus)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009628> <http://www.geneontology.org/owl/#GO_0050896>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0010035> (response to inorganic substance)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0010035> <http://www.geneontology.org/owl/#GO_0042221>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0010038> (response to metal ion)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0010038> <http://www.geneontology.org/owl/#GO_0010035>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0010039> (response to iron ion)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0010039> <http://www.geneontology.org/owl/#GO_0010038>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0010041> (response to iron(III) ion)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0010041> <http://www.geneontology.org/owl/#GO_0010039>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042221> (response to chemical stimulus)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042221> <http://www.geneontology.org/owl/#GO_0009628>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0050896> (response to stimulus)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0050896> <http://www.geneontology.org/owl/#GO_0008150>)
+
+
+)

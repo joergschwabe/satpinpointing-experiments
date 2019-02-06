@@ -1,0 +1,42 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0006035___http___www.geneontology.org_owl__GO_0043283__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.06.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005976>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006030>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006034>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006035>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043283>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044264>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0005976> (polysaccharide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005976> <http://www.geneontology.org/owl/#GO_0043283>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006030> (chitin metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006030> <http://www.geneontology.org/owl/#GO_0044264>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006034> (cuticle chitin metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006034> <http://www.geneontology.org/owl/#GO_0006030>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006035> (cuticle chitin biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006035> <http://www.geneontology.org/owl/#GO_0006034>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0044264> (cellular polysaccharide metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0044264> <http://www.geneontology.org/owl/#GO_0005976>)
+
+
+)

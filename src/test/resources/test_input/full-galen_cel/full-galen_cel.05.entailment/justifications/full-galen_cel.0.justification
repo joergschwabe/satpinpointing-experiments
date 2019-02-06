@@ -1,0 +1,33 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_OcularJaundice___http___www.co-ode.org_ontologies_galen_Colour__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.05.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Colour>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Hyperbilirubinaemia>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Jaundice>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OcularJaundice>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Sclera>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SurfaceBodyStructure>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isColourOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificConsequenceOf>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Jaundice> (<http://www.co-ode.org/ontologies/galen#Jaundice>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Jaundice> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Colour> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isColourOf> <http://www.co-ode.org/ontologies/galen#SurfaceBodyStructure>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificConsequenceOf> <http://www.co-ode.org/ontologies/galen#Hyperbilirubinaemia>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OcularJaundice> (<http://www.co-ode.org/ontologies/galen#OcularJaundice>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#OcularJaundice> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Jaundice> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isColourOf> <http://www.co-ode.org/ontologies/galen#Sclera>)))
+
+
+)

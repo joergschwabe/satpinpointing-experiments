@@ -1,0 +1,37 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0006035___http___www.geneontology.org_owl__GO_0043283__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.06.entailment/justification2>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0000271>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006031>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006035>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043283>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043284>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0000271> (polysaccharide biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0000271> <http://www.geneontology.org/owl/#GO_0043284>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006031> (chitin biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006031> <http://www.geneontology.org/owl/#GO_0000271>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006035> (cuticle chitin biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006035> <http://www.geneontology.org/owl/#GO_0006031>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0043284> (biopolymer biosynthesis)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0043284> <http://www.geneontology.org/owl/#GO_0043283>)
+
+
+)

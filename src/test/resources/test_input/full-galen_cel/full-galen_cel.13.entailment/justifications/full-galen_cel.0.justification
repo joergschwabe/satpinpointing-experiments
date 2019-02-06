@@ -1,0 +1,65 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_BedOfIndexFingerNail___http___www.co-ode.org_ontologies_galen_GeneralisedStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.13.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BedOfIndexFingerNail>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#IndexFingerNail>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#KeratinNailBed>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDSurfaceBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BedOfIndexFingerNail> (<http://www.co-ode.org/ontologies/galen#BedOfIndexFingerNail>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#BedOfIndexFingerNail> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#KeratinNailBed> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#IndexFingerNail>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyPart> (<http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyPart> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#KeratinNailBed> (<http://www.co-ode.org/ontologies/galen#KeratinNailBed>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#KeratinNailBed> <http://www.co-ode.org/ontologies/galen#NAMEDSurfaceBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> <http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDSurfaceBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDSurfaceBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDSurfaceBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+
+)

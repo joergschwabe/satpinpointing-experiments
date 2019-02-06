@@ -1,0 +1,45 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Diprophylline___http___www.co-ode.org_ontologies_galen_ActiveDrugIngredient__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.47.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ActiveDrugAdditiveRole>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ActiveDrugChemicalIngredient>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ActiveDrugIngredient>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Diprophylline>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDActiveDrugIngredient>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Substance>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#playsPhysiologicalRole>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ActiveDrugChemicalIngredient> (<http://www.co-ode.org/ontologies/galen#ActiveDrugChemicalIngredient>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ActiveDrugChemicalIngredient> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsPhysiologicalRole> <http://www.co-ode.org/ontologies/galen#ActiveDrugAdditiveRole>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#ActiveDrugIngredient> (<http://www.co-ode.org/ontologies/galen#ActiveDrugIngredient>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ActiveDrugIngredient> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Substance> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsPhysiologicalRole> <http://www.co-ode.org/ontologies/galen#ActiveDrugAdditiveRole>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#ChemicalSubstance> (<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance> <http://www.co-ode.org/ontologies/galen#Substance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Diprophylline> (<http://www.co-ode.org/ontologies/galen#Diprophylline>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Diprophylline> <http://www.co-ode.org/ontologies/galen#NAMEDActiveDrugIngredient>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDActiveDrugIngredient> (<http://www.co-ode.org/ontologies/galen#NAMEDActiveDrugIngredient>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDActiveDrugIngredient> <http://www.co-ode.org/ontologies/galen#ActiveDrugChemicalIngredient>)
+
+
+)

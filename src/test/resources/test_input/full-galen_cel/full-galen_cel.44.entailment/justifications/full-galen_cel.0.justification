@@ -1,0 +1,62 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_DuctusArteriosus___http___www.co-ode.org_ontologies_galen_PhysicalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.44.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BloodVessel>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BloodVesselOfFoetalCirculation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#DuctusArteriosus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BloodVessel> (<http://www.co-ode.org/ontologies/galen#BloodVessel>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BloodVessel> <http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BloodVesselOfFoetalCirculation> (<http://www.co-ode.org/ontologies/galen#BloodVesselOfFoetalCirculation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BloodVesselOfFoetalCirculation> <http://www.co-ode.org/ontologies/galen#BloodVessel>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#DuctusArteriosus> (<http://www.co-ode.org/ontologies/galen#DuctusArteriosus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#DuctusArteriosus> <http://www.co-ode.org/ontologies/galen#BloodVesselOfFoetalCirculation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericInternalStructure> (<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel> (<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#LymphOrBloodVessel> <http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+
+)

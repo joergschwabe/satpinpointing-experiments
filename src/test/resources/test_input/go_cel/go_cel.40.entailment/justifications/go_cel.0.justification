@@ -1,0 +1,37 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0031861___http___www.geneontology.org_owl__GO_0005488__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.40.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0001664>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005102>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005488>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0005515>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0031861>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0001664> (G-protein-coupled receptor binding)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0001664> <http://www.geneontology.org/owl/#GO_0005102>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0005102> (receptor binding)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005102> <http://www.geneontology.org/owl/#GO_0005515>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0005515> (protein binding)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0005515> <http://www.geneontology.org/owl/#GO_0005488>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0031861> (prolactin-releasing peptide receptor binding)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0031861> <http://www.geneontology.org/owl/#GO_0001664>)
+
+
+)

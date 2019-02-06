@@ -1,0 +1,47 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Hypothalamus___http___www.co-ode.org_ontologies_galen_SolidStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.08.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Gland>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Hypothalamus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDGland>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Gland> (<http://www.co-ode.org/ontologies/galen#Gland>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Gland> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Hypothalamus> (<http://www.co-ode.org/ontologies/galen#Hypothalamus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Hypothalamus> <http://www.co-ode.org/ontologies/galen#NAMEDGland>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDGland> (<http://www.co-ode.org/ontologies/galen#NAMEDGland>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDGland> <http://www.co-ode.org/ontologies/galen#Gland>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+
+)

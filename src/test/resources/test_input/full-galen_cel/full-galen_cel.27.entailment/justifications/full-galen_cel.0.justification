@@ -1,0 +1,75 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_AbnormalAffect___http___www.co-ode.org_ontologies_galen_PsychiatricSymptom__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.27.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AbnormalAffect>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AbstractStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Affect>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Phenomenon>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PsychiatricSymptom>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PsychologicalConstruct>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PsychologicalSystem>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PsychosocialConstruct>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Symptom>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SymptomRole>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#nonNormal>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#LocativeAttribute>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbnormalityStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isNonCausallyLinkedTo>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#playsConsultationRole>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isNonCausallyLinkedTo> (<http://www.co-ode.org/ontologies/galen#isNonCausallyLinkedTo>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isNonCausallyLinkedTo> <http://www.co-ode.org/ontologies/galen#LocativeAttribute>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AbnormalAffect> (<http://www.co-ode.org/ontologies/galen#AbnormalAffect>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#AbnormalAffect> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Affect> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbnormalityStatus> <http://www.co-ode.org/ontologies/galen#nonNormal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#AbstractStructure> (<http://www.co-ode.org/ontologies/galen#AbstractStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#AbstractStructure> <http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Affect> (<http://www.co-ode.org/ontologies/galen#Affect>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Affect> <http://www.co-ode.org/ontologies/galen#PsychologicalConstruct>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GeneralisedStructure> (<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure> <http://www.co-ode.org/ontologies/galen#Phenomenon>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PsychiatricSymptom> (<http://www.co-ode.org/ontologies/galen#PsychiatricSymptom>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PsychiatricSymptom> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Symptom> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#LocativeAttribute> <http://www.co-ode.org/ontologies/galen#PsychologicalSystem>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#PsychologicalConstruct> (<http://www.co-ode.org/ontologies/galen#PsychologicalConstruct>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PsychologicalConstruct> <http://www.co-ode.org/ontologies/galen#PsychosocialConstruct>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PsychologicalConstruct> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isNonCausallyLinkedTo> <http://www.co-ode.org/ontologies/galen#PsychologicalSystem>))
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PsychologicalConstruct> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsConsultationRole> <http://www.co-ode.org/ontologies/galen#SymptomRole>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#PsychosocialConstruct> (<http://www.co-ode.org/ontologies/galen#PsychosocialConstruct>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PsychosocialConstruct> <http://www.co-ode.org/ontologies/galen#AbstractStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Symptom> (<http://www.co-ode.org/ontologies/galen#Symptom>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Symptom> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Phenomenon> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsConsultationRole> <http://www.co-ode.org/ontologies/galen#SymptomRole>)))
+
+
+)

@@ -1,0 +1,42 @@
+Prefix(:=<Justification_4_for_SubClassOf__http___www.geneontology.org_owl__GO_0006039___http___www.geneontology.org_owl__GO_0006040__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.04.entailment/justification3>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006032>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006039>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006040>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006041>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006043>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006046>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006032> (chitin catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006032> <http://www.geneontology.org/owl/#GO_0006046>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006039> (cell wall chitin catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006039> <http://www.geneontology.org/owl/#GO_0006032>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006041> (glucosamine metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006041> <http://www.geneontology.org/owl/#GO_0006040>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006043> (glucosamine catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006043> <http://www.geneontology.org/owl/#GO_0006041>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006046> (N-acetylglucosamine catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006046> <http://www.geneontology.org/owl/#GO_0006043>)
+
+
+)

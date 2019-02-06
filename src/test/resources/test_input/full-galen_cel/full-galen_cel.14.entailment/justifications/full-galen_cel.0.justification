@@ -1,0 +1,58 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_SciaticForamen___http___www.co-ode.org_ontologies_galen_SolidStructureByTopology__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.14.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyConnection>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Foramen>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDForamen>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SciaticForamen>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructureByTopology>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Topology>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#tubular>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasTopology>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyConnection> (<http://www.co-ode.org/ontologies/galen#BodyConnection>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyConnection> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyConnection> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasTopology> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Topology> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#tubular>))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Foramen> (<http://www.co-ode.org/ontologies/galen#Foramen>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Foramen> <http://www.co-ode.org/ontologies/galen#BodyConnection>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDForamen> (<http://www.co-ode.org/ontologies/galen#NAMEDForamen>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDForamen> <http://www.co-ode.org/ontologies/galen#Foramen>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SciaticForamen> (<http://www.co-ode.org/ontologies/galen#SciaticForamen>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SciaticForamen> <http://www.co-ode.org/ontologies/galen#NAMEDForamen>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructureByTopology> (<http://www.co-ode.org/ontologies/galen#SolidStructureByTopology>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#SolidStructureByTopology> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasTopology> <http://www.co-ode.org/ontologies/galen#Topology>)))
+
+
+)

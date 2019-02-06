@@ -1,0 +1,47 @@
+Prefix(:=<Justification_5_for_SubClassOf__http___www.geneontology.org_owl__GO_0009066___http___www.geneontology.org_owl__GO_0008150__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.07.entailment/justification04>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006520>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006807>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0007582>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008150>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008152>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009066>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009308>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006520> (amino acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006520> <http://www.geneontology.org/owl/#GO_0009308>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006807> (nitrogen compound metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006807> <http://www.geneontology.org/owl/#GO_0008152>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0007582> (physiological process)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0007582> <http://www.geneontology.org/owl/#GO_0008150>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0008152> (metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008152> <http://www.geneontology.org/owl/#GO_0007582>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009066> (aspartate family amino acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009066> <http://www.geneontology.org/owl/#GO_0006520>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009308> (amine metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009308> <http://www.geneontology.org/owl/#GO_0006807>)
+
+
+)

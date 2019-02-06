@@ -1,0 +1,32 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0018957___http___www.geneontology.org_owl__GO_0044248__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.03.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0018957>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0042216>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0043451>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044248>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0018957> (phenanthrene catabolism via trans-9(S),10(S)-dihydrodiolphenanthrene)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0018957> <http://www.geneontology.org/owl/#GO_0042216>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0042216> (phenanthrene catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0042216> <http://www.geneontology.org/owl/#GO_0043451>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0043451> (alkene catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0043451> <http://www.geneontology.org/owl/#GO_0044248>)
+
+
+)

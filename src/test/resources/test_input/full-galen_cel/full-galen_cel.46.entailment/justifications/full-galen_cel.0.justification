@@ -1,0 +1,43 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_InflatablePenileProsthesis___http___www.co-ode.org_ontologies_galen_ImplantableDevice__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.46.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Device>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Implantability>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ImplantableDevice>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InflatablePenileProsthesis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InstallingProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PenileProsthesis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Penis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#implantable>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasFunction>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasImplantability>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isActedOnBy>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isFunctionOf>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ImplantableDevice> (<http://www.co-ode.org/ontologies/galen#ImplantableDevice>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ImplantableDevice> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Device> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasImplantability> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Implantability> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#implantable>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InflatablePenileProsthesis> (<http://www.co-ode.org/ontologies/galen#InflatablePenileProsthesis>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#InflatablePenileProsthesis> <http://www.co-ode.org/ontologies/galen#PenileProsthesis>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PenileProsthesis> (<http://www.co-ode.org/ontologies/galen#PenileProsthesis>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PenileProsthesis> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Device> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasFunction> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isFunctionOf> <http://www.co-ode.org/ontologies/galen#Penis>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasImplantability> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Implantability> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#implantable>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isActedOnBy> <http://www.co-ode.org/ontologies/galen#InstallingProcess>)))
+
+
+)

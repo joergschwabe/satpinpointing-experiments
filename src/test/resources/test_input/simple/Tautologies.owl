@@ -1,0 +1,17 @@
+Prefix( : = <http://example.org/> )
+Ontology(
+Annotation( :conclusion "SubClassOf(<http://example.org/C> <http://example.org/B>)" )
+
+# TODO: This does not catches the bug !!! Fix it !!!
+
+SubClassOf(:A1 :A2)
+SubClassOf(:A2 :A3)
+SubClassOf(:A3 :A4)
+
+SubClassOf(:C ObjectIntersectionOf(:A1 :D))
+
+SubClassOf(:C :A2)
+
+SubClassOf(:A4 :B)
+
+)

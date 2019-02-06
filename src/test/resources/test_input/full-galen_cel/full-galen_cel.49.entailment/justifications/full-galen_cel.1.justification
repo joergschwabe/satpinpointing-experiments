@@ -1,0 +1,97 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_SecondPartOfDuodenum___http___www.co-ode.org_ontologies_galen_ComponentOfInternalAnatomicalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.49.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyRegion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Duodenum>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SecondPartOfDuodenum>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SegmentOfDuodenum>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SmallIntestine>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#internal>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> (<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+TransitiveObjectProperty(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> (<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#isLinearDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyPart> (<http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyPart> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyRegion> (<http://www.co-ode.org/ontologies/galen#BodyRegion>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure> (<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ComponentOfInternalAnatomicalStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#InternalBodyStructure>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Duodenum> (<http://www.co-ode.org/ontologies/galen#Duodenum>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Duodenum> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#SmallIntestine>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalBodyStructure> (<http://www.co-ode.org/ontologies/galen#InternalBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InternalBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility> <http://www.co-ode.org/ontologies/galen#internal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#InternalLinearSegment> (<http://www.co-ode.org/ontologies/galen#InternalLinearSegment>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyRegion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#BodyStructure>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBodyPart> <http://www.co-ode.org/ontologies/galen#BodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> (<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> <http://www.co-ode.org/ontologies/galen#NAMEDBodyPart>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDInternalBodyPart> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSurfaceVisibility> <http://www.co-ode.org/ontologies/galen#internal>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#SecondPartOfDuodenum> (<http://www.co-ode.org/ontologies/galen#SecondPartOfDuodenum>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SecondPartOfDuodenum> <http://www.co-ode.org/ontologies/galen#SegmentOfDuodenum>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SegmentOfDuodenum> (<http://www.co-ode.org/ontologies/galen#SegmentOfDuodenum>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#SegmentOfDuodenum> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#InternalLinearSegment> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificLinearDivisionOf> <http://www.co-ode.org/ontologies/galen#Duodenum>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#SmallIntestine> (<http://www.co-ode.org/ontologies/galen#SmallIntestine>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SmallIntestine> <http://www.co-ode.org/ontologies/galen#NAMEDGITractBodyPart>)
+
+
+)

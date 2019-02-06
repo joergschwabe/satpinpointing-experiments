@@ -1,0 +1,52 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_EpithelialMorphology___http___www.co-ode.org_ontologies_galen_ModifierConcept__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.26.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Appearance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Aspect>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#EpithelialMorphology>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Feature>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HistologicalAppearance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ModifierConcept>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Morphology>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#StructuralFeature>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Appearance> (<http://www.co-ode.org/ontologies/galen#Appearance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Appearance> <http://www.co-ode.org/ontologies/galen#Morphology>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Aspect> (<http://www.co-ode.org/ontologies/galen#Aspect>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Aspect> <http://www.co-ode.org/ontologies/galen#ModifierConcept>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#EpithelialMorphology> (<http://www.co-ode.org/ontologies/galen#EpithelialMorphology>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#EpithelialMorphology> <http://www.co-ode.org/ontologies/galen#HistologicalAppearance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Feature> (<http://www.co-ode.org/ontologies/galen#Feature>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Feature> <http://www.co-ode.org/ontologies/galen#Aspect>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#HistologicalAppearance> (<http://www.co-ode.org/ontologies/galen#HistologicalAppearance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#HistologicalAppearance> <http://www.co-ode.org/ontologies/galen#Appearance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Morphology> (<http://www.co-ode.org/ontologies/galen#Morphology>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Morphology> <http://www.co-ode.org/ontologies/galen#StructuralFeature>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#StructuralFeature> (<http://www.co-ode.org/ontologies/galen#StructuralFeature>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#StructuralFeature> <http://www.co-ode.org/ontologies/galen#Feature>)
+
+
+)

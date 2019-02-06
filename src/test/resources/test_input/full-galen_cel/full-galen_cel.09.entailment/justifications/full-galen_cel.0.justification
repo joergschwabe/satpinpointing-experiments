@@ -1,0 +1,112 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_ScalenusMediusMuscle___http___www.co-ode.org_ontologies_galen_BodyStructureByFeature__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.09.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#AnatomicalShape>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Appearance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructureByFeature>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Feature>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Morphology>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Muscle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDMuscle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDStriatedMuscle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ScalenusMediusMuscle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ScalenusMuscle>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Shape>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#StructuralFeature>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#linear>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#InverseStructuralAppearanceModifier>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#InverseStructuralModifierAttribute>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasFeature>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasShape>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasShapeAnalagousTo>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#InverseStructuralAppearanceModifier> (<http://www.co-ode.org/ontologies/galen#InverseStructuralAppearanceModifier>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#InverseStructuralAppearanceModifier> <http://www.co-ode.org/ontologies/galen#InverseStructuralModifierAttribute>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#InverseStructuralModifierAttribute> (<http://www.co-ode.org/ontologies/galen#InverseStructuralModifierAttribute>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#InverseStructuralModifierAttribute> <http://www.co-ode.org/ontologies/galen#hasFeature>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#hasShape> (<http://www.co-ode.org/ontologies/galen#hasShape>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#hasShape> <http://www.co-ode.org/ontologies/galen#InverseStructuralAppearanceModifier>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#hasShapeAnalagousTo> (<http://www.co-ode.org/ontologies/galen#hasShapeAnalagousTo>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#hasShapeAnalagousTo> <http://www.co-ode.org/ontologies/galen#hasShape>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#AnatomicalShape> (<http://www.co-ode.org/ontologies/galen#AnatomicalShape>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#AnatomicalShape> <http://www.co-ode.org/ontologies/galen#Shape>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Appearance> (<http://www.co-ode.org/ontologies/galen#Appearance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Appearance> <http://www.co-ode.org/ontologies/galen#Morphology>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructureByFeature> (<http://www.co-ode.org/ontologies/galen#BodyStructureByFeature>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#BodyStructureByFeature> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasFeature> <http://www.co-ode.org/ontologies/galen#Feature>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericBodyStructure> (<http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericBodyStructure> <http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericInternalStructure> (<http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericInternalStructure> <http://www.co-ode.org/ontologies/galen#GenericBodyStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Morphology> (<http://www.co-ode.org/ontologies/galen#Morphology>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Morphology> <http://www.co-ode.org/ontologies/galen#StructuralFeature>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Muscle> (<http://www.co-ode.org/ontologies/galen#Muscle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Muscle> <http://www.co-ode.org/ontologies/galen#GenericInternalStructure>)
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Muscle> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasShapeAnalagousTo> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#AnatomicalShape> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#linear>))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDMuscle> (<http://www.co-ode.org/ontologies/galen#NAMEDMuscle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDMuscle> <http://www.co-ode.org/ontologies/galen#Muscle>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDStriatedMuscle> (<http://www.co-ode.org/ontologies/galen#NAMEDStriatedMuscle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDStriatedMuscle> <http://www.co-ode.org/ontologies/galen#NAMEDMuscle>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ScalenusMediusMuscle> (<http://www.co-ode.org/ontologies/galen#ScalenusMediusMuscle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ScalenusMediusMuscle> <http://www.co-ode.org/ontologies/galen#ScalenusMuscle>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ScalenusMuscle> (<http://www.co-ode.org/ontologies/galen#ScalenusMuscle>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ScalenusMuscle> <http://www.co-ode.org/ontologies/galen#NAMEDStriatedMuscle>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Shape> (<http://www.co-ode.org/ontologies/galen#Shape>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Shape> <http://www.co-ode.org/ontologies/galen#Appearance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#StructuralFeature> (<http://www.co-ode.org/ontologies/galen#StructuralFeature>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#StructuralFeature> <http://www.co-ode.org/ontologies/galen#Feature>)
+
+
+)

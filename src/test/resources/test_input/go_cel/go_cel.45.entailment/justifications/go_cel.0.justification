@@ -1,0 +1,27 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0000215___http___www.geneontology.org_owl__GO_0016740__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.45.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0000215>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008665>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016740>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0000215> (tRNA 2'-phosphotransferase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0000215> <http://www.geneontology.org/owl/#GO_0008665>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0008665> (2'-phosphotransferase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008665> <http://www.geneontology.org/owl/#GO_0016740>)
+
+
+)

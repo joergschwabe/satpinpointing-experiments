@@ -1,0 +1,37 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.geneontology.org_owl__GO_0019928___http___www.geneontology.org_owl__GO_0044267__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.21.entailment/justification1>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006464>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0018193>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0018198>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0019928>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044267>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006464> (protein modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006464> <http://www.geneontology.org/owl/#GO_0044267>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0018193> (peptidyl-amino acid modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0018193> <http://www.geneontology.org/owl/#GO_0006464>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0018198> (peptidyl-cysteine modification)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0018198> <http://www.geneontology.org/owl/#GO_0018193>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0019928> (peptide cross-linking via 3-(S-L-cysteinyl)-L-aspartic acid)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0019928> <http://www.geneontology.org/owl/#GO_0018198>)
+
+
+)

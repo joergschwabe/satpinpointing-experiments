@@ -1,0 +1,32 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_acute___http___www.co-ode.org_ontologies_galen_ProcessState__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.18.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ChronicityState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ProcessState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TemporalState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#acute>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ChronicityState> (<http://www.co-ode.org/ontologies/galen#ChronicityState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ChronicityState> <http://www.co-ode.org/ontologies/galen#TemporalState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#TemporalState> (<http://www.co-ode.org/ontologies/galen#TemporalState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#TemporalState> <http://www.co-ode.org/ontologies/galen#ProcessState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#acute> (<http://www.co-ode.org/ontologies/galen#acute>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#acute> <http://www.co-ode.org/ontologies/galen#ChronicityState>)
+
+
+)

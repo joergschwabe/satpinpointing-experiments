@@ -1,0 +1,47 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0006554___http___www.geneontology.org_owl__GO_0044237__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.30.entailment/justification02>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006082>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006520>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006554>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009066>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0009068>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0019752>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0044237>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006082> (organic acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006082> <http://www.geneontology.org/owl/#GO_0044237>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006520> (amino acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006520> <http://www.geneontology.org/owl/#GO_0019752>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0006554> (lysine catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006554> <http://www.geneontology.org/owl/#GO_0009068>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009066> (aspartate family amino acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009066> <http://www.geneontology.org/owl/#GO_0006520>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0009068> (aspartate family amino acid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0009068> <http://www.geneontology.org/owl/#GO_0009066>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0019752> (carboxylic acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0019752> <http://www.geneontology.org/owl/#GO_0006082>)
+
+
+)

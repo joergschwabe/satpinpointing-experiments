@@ -1,0 +1,70 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_FailureOfCellUptakeOfBloodGlucoseDueToCellInsulinResistance___http___www.co-ode.org_ontologies_galen_Anonymous-306__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.21.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Absorption>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ActiveAbsorption>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Anonymous-306>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#CellGlucoseUptake>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Effectiveness>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#FailureOfCellUptakeOfBloodGlucoseDueToCellInsulinResistance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GenericProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Glucose>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Insulin>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Sensitivity>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TissueCell>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Transport>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ineffective>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#presence>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#resistant>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#actsSpecificallyOn>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasEffectiveness>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSensitivity>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isExposedTo>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isPresenceAbsenceOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isWithReferenceTo>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Absorption> (<http://www.co-ode.org/ontologies/galen#Absorption>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Absorption> <http://www.co-ode.org/ontologies/galen#Transport>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ActiveAbsorption> (<http://www.co-ode.org/ontologies/galen#ActiveAbsorption>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ActiveAbsorption> <http://www.co-ode.org/ontologies/galen#Absorption>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Anonymous-306> (<http://www.co-ode.org/ontologies/galen#Anonymous-306>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Anonymous-306> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#GeneralisedProcess> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasEffectiveness> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Effectiveness> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#ineffective>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#CellGlucoseUptake> (<http://www.co-ode.org/ontologies/galen#CellGlucoseUptake>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#CellGlucoseUptake> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ActiveAbsorption> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#actsSpecificallyOn> <http://www.co-ode.org/ontologies/galen#Glucose>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificFunctionOf> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#TissueCell> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isExposedTo> <http://www.co-ode.org/ontologies/galen#Insulin>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#FailureOfCellUptakeOfBloodGlucoseDueToCellInsulinResistance> (<http://www.co-ode.org/ontologies/galen#FailureOfCellUptakeOfBloodGlucoseDueToCellInsulinResistance>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#FailureOfCellUptakeOfBloodGlucoseDueToCellInsulinResistance> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#CellGlucoseUptake> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasEffectiveness> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Effectiveness> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#ineffective>))) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificImmediateConsequenceOf> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#TissueCell> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSensitivity> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Sensitivity> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#resistant>) ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isWithReferenceTo> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#presence> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isPresenceAbsenceOf> <http://www.co-ode.org/ontologies/galen#Insulin>)))))))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#GenericProcess> (<http://www.co-ode.org/ontologies/galen#GenericProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#GenericProcess> <http://www.co-ode.org/ontologies/galen#GeneralisedProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Transport> (<http://www.co-ode.org/ontologies/galen#Transport>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Transport> <http://www.co-ode.org/ontologies/galen#GenericProcess>)
+
+
+)

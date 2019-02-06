@@ -1,0 +1,27 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0017176___http___www.geneontology.org_owl__GO_0008194__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.41.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008194>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008375>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0017176>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0008375> (acetylglucosaminyltransferase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008375> <http://www.geneontology.org/owl/#GO_0008194>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0017176> (phosphatidylinositol N-acetylglucosaminyltransferase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0017176> <http://www.geneontology.org/owl/#GO_0008375>)
+
+
+)

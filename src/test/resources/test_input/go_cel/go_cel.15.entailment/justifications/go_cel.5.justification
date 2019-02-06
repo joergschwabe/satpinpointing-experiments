@@ -1,0 +1,47 @@
+Prefix(:=<Justification_6_for_SubClassOf__http___www.geneontology.org_owl__GO_0007068___http___www.geneontology.org_owl__GO_0051244__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.15.entailment/justification5>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0006355>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0007068>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0019219>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0031323>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0045449>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0045892>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0051244>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0006355> (regulation of transcription, DNA-dependent)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0006355> <http://www.geneontology.org/owl/#GO_0045449>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0007068> (negative regulation of transcription, mitotic)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0007068> <http://www.geneontology.org/owl/#GO_0045892>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0019219> (regulation of nucleobase, nucleoside, nucleotide and nucleic acid metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0019219> <http://www.geneontology.org/owl/#GO_0031323>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0031323> (regulation of cellular metabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0031323> <http://www.geneontology.org/owl/#GO_0051244>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0045449> (regulation of transcription)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0045449> <http://www.geneontology.org/owl/#GO_0019219>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0045892> (negative regulation of transcription, DNA-dependent)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0045892> <http://www.geneontology.org/owl/#GO_0006355>)
+
+
+)

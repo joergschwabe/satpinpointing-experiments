@@ -1,0 +1,78 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_ComponentOfConjunctiva___http___www.co-ode.org_ontologies_galen_ComponentOfHeadOrNeck__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.12.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ComponentOfConjunctiva>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ComponentOfHeadOrNeck>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Conjunctiva>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Eye>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Eyeball>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Face>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Head>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HeadOrNeck>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSpecificSurfaceDivisionOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isSurfaceDivisionOf>))
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#IsDivisionOf> (<http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+TransitiveObjectProperty(<http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSpecificSurfaceDivisionOf> (<http://www.co-ode.org/ontologies/galen#isSpecificSurfaceDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSpecificSurfaceDivisionOf> <http://www.co-ode.org/ontologies/galen#isSurfaceDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> (<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+# Object Property: <http://www.co-ode.org/ontologies/galen#isSurfaceDivisionOf> (<http://www.co-ode.org/ontologies/galen#isSurfaceDivisionOf>)
+
+SubObjectPropertyOf(<http://www.co-ode.org/ontologies/galen#isSurfaceDivisionOf> <http://www.co-ode.org/ontologies/galen#IsDivisionOf>)
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ComponentOfConjunctiva> (<http://www.co-ode.org/ontologies/galen#ComponentOfConjunctiva>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ComponentOfConjunctiva> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#Conjunctiva>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#ComponentOfHeadOrNeck> (<http://www.co-ode.org/ontologies/galen#ComponentOfHeadOrNeck>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#ComponentOfHeadOrNeck> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#IsDivisionOf> <http://www.co-ode.org/ontologies/galen#HeadOrNeck>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Conjunctiva> (<http://www.co-ode.org/ontologies/galen#Conjunctiva>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Conjunctiva> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#Eyeball>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Eye> (<http://www.co-ode.org/ontologies/galen#Eye>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Eye> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isSpecificSurfaceDivisionOf> <http://www.co-ode.org/ontologies/galen#Face>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Eyeball> (<http://www.co-ode.org/ontologies/galen#Eyeball>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Eyeball> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#Eye>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Face> (<http://www.co-ode.org/ontologies/galen#Face>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Face> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isStructuralComponentOf> <http://www.co-ode.org/ontologies/galen#Head>))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Head> (<http://www.co-ode.org/ontologies/galen#Head>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Head> <http://www.co-ode.org/ontologies/galen#HeadOrNeck>)
+
+
+)

@@ -1,0 +1,66 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Neuralgia___http___www.co-ode.org_ontologies_galen_SpecificProcess__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.10.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BiologicalProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Displacement>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ExternalStimulusSensation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDBrainProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NAMEDPhysiologicalProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NerveDistribution>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Neuralgia>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Pain>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PainLocalisation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PainSignal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Sensation>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SpecificProcess>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#actsOn>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedDisplacement>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isActedOnBy>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#isDisplacementTo>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BiologicalProcess> (<http://www.co-ode.org/ontologies/galen#BiologicalProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BiologicalProcess> <http://www.co-ode.org/ontologies/galen#SpecificProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyProcess> (<http://www.co-ode.org/ontologies/galen#BodyProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyProcess> <http://www.co-ode.org/ontologies/galen#BiologicalProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ExternalStimulusSensation> (<http://www.co-ode.org/ontologies/galen#ExternalStimulusSensation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ExternalStimulusSensation> <http://www.co-ode.org/ontologies/galen#Sensation>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDBrainProcess> (<http://www.co-ode.org/ontologies/galen#NAMEDBrainProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDBrainProcess> <http://www.co-ode.org/ontologies/galen#NAMEDPhysiologicalProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NAMEDPhysiologicalProcess> (<http://www.co-ode.org/ontologies/galen#NAMEDPhysiologicalProcess>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NAMEDPhysiologicalProcess> <http://www.co-ode.org/ontologies/galen#BodyProcess>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Neuralgia> (<http://www.co-ode.org/ontologies/galen#Neuralgia>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Neuralgia> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Pain> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isActedOnBy> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#PainLocalisation> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedDisplacement> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Displacement> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#isDisplacementTo> <http://www.co-ode.org/ontologies/galen#NerveDistribution>)))))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Pain> (<http://www.co-ode.org/ontologies/galen#Pain>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#Pain> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ExternalStimulusSensation> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#actsOn> <http://www.co-ode.org/ontologies/galen#PainSignal>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Sensation> (<http://www.co-ode.org/ontologies/galen#Sensation>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Sensation> <http://www.co-ode.org/ontologies/galen#NAMEDBrainProcess>)
+
+
+)

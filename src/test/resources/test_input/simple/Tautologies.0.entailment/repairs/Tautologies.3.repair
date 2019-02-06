@@ -1,0 +1,9 @@
+Prefix( : = <http://example.org/> )
+Ontology(
+Annotation( :conclusion "SubClassOf(<http://example.org/C> <http://example.org/B>)" )
+
+SubClassOf(:C ObjectIntersectionOf(:A1 :D))
+
+SubClassOf(:C :A2)
+
+)

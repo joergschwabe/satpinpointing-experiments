@@ -1,0 +1,37 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.geneontology.org_owl__GO_0016124___http___www.geneontology.org_owl__GO_0046247__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.46.entailment/justification0>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016110>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016115>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016118>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0016124>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0046247>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0016110> (tetraterpenoid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016110> <http://www.geneontology.org/owl/#GO_0016115>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0016115> (terpenoid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016115> <http://www.geneontology.org/owl/#GO_0046247>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0016118> (carotenoid catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016118> <http://www.geneontology.org/owl/#GO_0016110>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0016124> (xanthophyll catabolism)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0016124> <http://www.geneontology.org/owl/#GO_0016118>)
+
+
+)

@@ -1,0 +1,117 @@
+Prefix(:=<Justification_2_for_SubClassOf__http___www.co-ode.org_ontologies_galen_FemalePhenotypePerson___http___www.co-ode.org_ontologies_galen_GeneralisedStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.41.entailment/justification1>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Animal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Anthropoid>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Chordata>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Eukaryota>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Eutheria>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#FemalePhenotypePerson>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#GeneralisedStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Hominidae>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Human>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Mammal>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Metazoa>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MultiCellularEukaryota>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#NonArthropod>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Opisthokonts>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Organism>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhenotypicalSex>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Primate>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Vertebrate>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#femaleSex>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPhenotypicalSex>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#Animal> (<http://www.co-ode.org/ontologies/galen#Animal>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Animal> <http://www.co-ode.org/ontologies/galen#Opisthokonts>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Anthropoid> (<http://www.co-ode.org/ontologies/galen#Anthropoid>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Anthropoid> <http://www.co-ode.org/ontologies/galen#Primate>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Chordata> (<http://www.co-ode.org/ontologies/galen#Chordata>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Chordata> <http://www.co-ode.org/ontologies/galen#NonArthropod>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Eukaryota> (<http://www.co-ode.org/ontologies/galen#Eukaryota>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Eukaryota> <http://www.co-ode.org/ontologies/galen#Organism>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Eutheria> (<http://www.co-ode.org/ontologies/galen#Eutheria>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Eutheria> <http://www.co-ode.org/ontologies/galen#Mammal>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#FemalePhenotypePerson> (<http://www.co-ode.org/ontologies/galen#FemalePhenotypePerson>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#FemalePhenotypePerson> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#Human> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPhenotypicalSex> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#PhenotypicalSex> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasAbsoluteState> <http://www.co-ode.org/ontologies/galen#femaleSex>)))))
+
+# Class: <http://www.co-ode.org/ontologies/galen#Hominidae> (<http://www.co-ode.org/ontologies/galen#Hominidae>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Hominidae> <http://www.co-ode.org/ontologies/galen#Anthropoid>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Human> (<http://www.co-ode.org/ontologies/galen#Human>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Human> <http://www.co-ode.org/ontologies/galen#Hominidae>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Mammal> (<http://www.co-ode.org/ontologies/galen#Mammal>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Mammal> <http://www.co-ode.org/ontologies/galen#Vertebrate>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Metazoa> (<http://www.co-ode.org/ontologies/galen#Metazoa>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Metazoa> <http://www.co-ode.org/ontologies/galen#Animal>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#MultiCellularEukaryota> (<http://www.co-ode.org/ontologies/galen#MultiCellularEukaryota>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#MultiCellularEukaryota> <http://www.co-ode.org/ontologies/galen#Eukaryota>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#NonArthropod> (<http://www.co-ode.org/ontologies/galen#NonArthropod>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#NonArthropod> <http://www.co-ode.org/ontologies/galen#Metazoa>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Opisthokonts> (<http://www.co-ode.org/ontologies/galen#Opisthokonts>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Opisthokonts> <http://www.co-ode.org/ontologies/galen#MultiCellularEukaryota>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Organism> (<http://www.co-ode.org/ontologies/galen#Organism>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Organism> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#GeneralisedStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Primate> (<http://www.co-ode.org/ontologies/galen#Primate>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Primate> <http://www.co-ode.org/ontologies/galen#Eutheria>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Vertebrate> (<http://www.co-ode.org/ontologies/galen#Vertebrate>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Vertebrate> <http://www.co-ode.org/ontologies/galen#Chordata>)
+
+
+)

@@ -1,0 +1,64 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_Callus___http___www.co-ode.org_ontologies_galen_SubstanceOrPhysicalStructure__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.23.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#BodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Callus>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HyperkeratoticSkinLesion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HypertrophicLesion>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#HypertrophicProcess>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#PhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SolidStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#StratumCorneumEpidermis>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#pathological>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#BodyStructure> (<http://www.co-ode.org/ontologies/galen#BodyStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#Callus> (<http://www.co-ode.org/ontologies/galen#Callus>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#Callus> <http://www.co-ode.org/ontologies/galen#HyperkeratoticSkinLesion>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#HyperkeratoticSkinLesion> (<http://www.co-ode.org/ontologies/galen#HyperkeratoticSkinLesion>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#HyperkeratoticSkinLesion> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#HypertrophicLesion> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasSpecificLocation> <http://www.co-ode.org/ontologies/galen#StratumCorneumEpidermis>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#HypertrophicLesion> (<http://www.co-ode.org/ontologies/galen#HypertrophicLesion>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#HypertrophicLesion> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasUniqueAssociatedProcess> <http://www.co-ode.org/ontologies/galen#HypertrophicProcess>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> (<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#OrganicSolidStructure> <http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> (<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#PathologicalBodyStructure> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#BodyStructure> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasPathologicalStatus> <http://www.co-ode.org/ontologies/galen#pathological>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#PhysicalStructure> (<http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#PhysicalStructure> <http://www.co-ode.org/ontologies/galen#SubstanceOrPhysicalStructure>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#SolidStructure> (<http://www.co-ode.org/ontologies/galen#SolidStructure>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#SolidStructure> <http://www.co-ode.org/ontologies/galen#PhysicalStructure>)
+
+
+)

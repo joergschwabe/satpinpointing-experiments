@@ -1,0 +1,37 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_TaxaneChemicalAsDrug___http___www.co-ode.org_ontologies_galen_Substance__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.29.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ActiveDrugAdditiveRole>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#Substance>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TaxaneChemical>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TaxaneChemicalAsDrug>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#TaxaneGroup>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#hasChemicalSubgroup>))
+Declaration(ObjectProperty(<http://www.co-ode.org/ontologies/galen#playsPhysiologicalRole>))
+
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ChemicalSubstance> (<http://www.co-ode.org/ontologies/galen#ChemicalSubstance>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance> <http://www.co-ode.org/ontologies/galen#Substance>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#TaxaneChemical> (<http://www.co-ode.org/ontologies/galen#TaxaneChemical>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#TaxaneChemical> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#ChemicalSubstance> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#hasChemicalSubgroup> <http://www.co-ode.org/ontologies/galen#TaxaneGroup>)))
+
+# Class: <http://www.co-ode.org/ontologies/galen#TaxaneChemicalAsDrug> (<http://www.co-ode.org/ontologies/galen#TaxaneChemicalAsDrug>)
+
+EquivalentClasses(<http://www.co-ode.org/ontologies/galen#TaxaneChemicalAsDrug> ObjectIntersectionOf(<http://www.co-ode.org/ontologies/galen#TaxaneChemical> ObjectSomeValuesFrom(<http://www.co-ode.org/ontologies/galen#playsPhysiologicalRole> <http://www.co-ode.org/ontologies/galen#ActiveDrugAdditiveRole>)))
+
+
+)

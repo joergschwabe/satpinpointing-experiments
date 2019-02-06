@@ -1,0 +1,37 @@
+Prefix(:=<Justification_3_for_SubClassOf__http___www.geneontology.org_owl__GO_0050425___http___www.geneontology.org_owl__GO_0008233__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.geneontology.org/owl//go_cel.24.entailment/justification2>
+
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0004180>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0004181>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008233>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0008238>))
+Declaration(Class(<http://www.geneontology.org/owl/#GO_0050425>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.geneontology.org/owl/#GO_0004180> (carboxypeptidase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0004180> <http://www.geneontology.org/owl/#GO_0008238>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0004181> (metallocarboxypeptidase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0004181> <http://www.geneontology.org/owl/#GO_0004180>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0008238> (exopeptidase activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0008238> <http://www.geneontology.org/owl/#GO_0008233>)
+
+# Class: <http://www.geneontology.org/owl/#GO_0050425> (carboxypeptidase B activity)
+
+SubClassOf(<http://www.geneontology.org/owl/#GO_0050425> <http://www.geneontology.org/owl/#GO_0004181>)
+
+
+)

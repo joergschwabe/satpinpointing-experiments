@@ -1,0 +1,32 @@
+Prefix(:=<Justification_1_for_SubClassOf__http___www.co-ode.org_ontologies_galen_constricted___http___www.co-ode.org_ontologies_galen_MorphologyState__#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.co-ode.org/ontologies/galen/full-galen_cel.06.entailment/justification0>
+
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ChangeInShapeState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#MorphologyState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#ShapeState>))
+Declaration(Class(<http://www.co-ode.org/ontologies/galen#constricted>))
+############################
+#   Classes
+############################
+
+# Class: <http://www.co-ode.org/ontologies/galen#ChangeInShapeState> (<http://www.co-ode.org/ontologies/galen#ChangeInShapeState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ChangeInShapeState> <http://www.co-ode.org/ontologies/galen#ShapeState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#ShapeState> (<http://www.co-ode.org/ontologies/galen#ShapeState>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#ShapeState> <http://www.co-ode.org/ontologies/galen#MorphologyState>)
+
+# Class: <http://www.co-ode.org/ontologies/galen#constricted> (<http://www.co-ode.org/ontologies/galen#constricted>)
+
+SubClassOf(<http://www.co-ode.org/ontologies/galen#constricted> <http://www.co-ode.org/ontologies/galen#ChangeInShapeState>)
+
+
+)
