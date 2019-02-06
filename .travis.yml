@@ -10,5 +10,5 @@ script: mvn test -Dassembly.skipAssembly=true -B
 after_success:
   - test "$DEPLOY" = true -a "$TRAVIS_PULL_REQUEST" = false 
     && mvn source:jar deploy --settings .travis-settings.xml -DskipTests=true -B
-    && curl -LO --retry 3 https://raw.github.com/satpinpointing/plume-lib/master/bin/trigger-travis.sh
+    && curl -LO --retry 3 https://raw.github.com/liveontologies/plume-lib/master/bin/trigger-travis.sh
     && sh trigger-travis.sh joergschwabe docker-satpinpointing-experiments $TRAVIS_ACCESS_TOKEN "Triggered by build of $TRAVIS_REPO_SLUG"
