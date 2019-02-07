@@ -1,27 +1,5 @@
 package org.satpinpointing;
 
-/*-
- * #%L
- * Axiom Pinpointing Experiments
- * $Id:$
- * $HeadURL:$
- * %%
- * Copyright (C) 2017 - 2019 Live Ontologies Project
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,8 +24,6 @@ import com.google.common.primitives.Ints;
  */
 public class SatClauseHandler<I extends Inference<?>, A> {
 
-	private ISolver solver = SolverFactory.newDefault();
-
 	public SatClauseHandler() {
 	}
 
@@ -57,6 +33,8 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 	}
 
 	public class InfToSatTranslator {
+		
+		private ISolver solver;
 
 		private IdProvider<A, I> idProvider;
 		private Listener<A> listener_;
@@ -70,6 +48,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 			this.listener_ = listener;
 			this.infDeriv = infDeriv;
 			this.queryId = queryId;
+			this.solver = SolverFactory.newDefault();
 		}
 
 		public void translateQuery() throws ContradictionException {
@@ -83,13 +62,6 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 
 			// FA -> F1
 			clause.push(-inference.getConclusion());
-			int infId = idProvider.getNextId();
-			clause.push(infId);
-			solver.addClause(clause);
-
-			// F1 -> L1
-			clause.clear();
-			clause.push(-infId);
 			for (Integer premise : inference.getPremises()) {
 				clause.push(premise);
 			}
@@ -99,22 +71,19 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 
 		public void compute() throws TimeoutException, ContradictionException {
 			Set<Integer> repair;
-			Set<Integer> minRepairInt;
 			Set<A> minRepair;
 			axiomIds = idProvider.getAxiomIds();
 
 			while (solver.isSatisfiable()) {
-				int[] list = solver.findModel();
-				List<Integer> listInt = Ints.asList(list);
+				int[] list = solver.model();
 
-				repair = translateModelToRepair(listInt);
+				repair = translateModelToRepair(Ints.asList(list));
 
-				minRepairInt = computeMinimalRepair(repair);
-//				minRepair = repair;
+				repair = computeMinimalRepair(repair);
 
-				pushAxiomToSolver(minRepairInt);
+				pushAxiomToSolver(repair);
 
-				minRepair = translateToAxioms(minRepairInt);
+				minRepair = translateToAxioms(repair);
 				
 				listener_.newMinimalSubset(minRepair);
 			}

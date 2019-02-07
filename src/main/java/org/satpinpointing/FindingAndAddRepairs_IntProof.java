@@ -22,35 +22,29 @@ package org.satpinpointing;
  * #L%
  */
 
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 
+import org.liveontologies.puli.Inference;
+import org.liveontologies.puli.Proof;
+import org.liveontologies.puli.Proofs;
+import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator.Listener;
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVecInt;
 import org.sat4j.specs.TimeoutException;
-import org.slf4j.LoggerFactory;
-import org.liveontologies.puli.Inference;
-import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.liveontologies.puli.Proof;
-import org.liveontologies.puli.Proofs;
-import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator.Listener;
 
 /**
  * 
  * @author Jörg Schwabe
  *
- * @param <A>
- *            the type of axioms used by the inferences
+ * @param <A> the type of axioms used by the inferences
  */
 public class FindingAndAddRepairs_IntProof<I extends Inference<?>, A> {
 
@@ -194,7 +188,7 @@ public class FindingAndAddRepairs_IntProof<I extends Inference<?>, A> {
 
 		final Proof<I> proof = new FilteredProof(minRepair);
 		for (A axiom : repair) {
-			
+
 			minRepair.remove(axiom);
 
 			if (Proofs.isDerivable(proof, query)) {
@@ -253,5 +247,3 @@ public class FindingAndAddRepairs_IntProof<I extends Inference<?>, A> {
 	}
 
 }
-
-
