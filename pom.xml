@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -106,13 +107,18 @@
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.10.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.ow2.sat4j</groupId>
 			<artifactId>org.ow2.sat4j.pb</artifactId>
 			<version>2.3.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.logicng</groupId>
+			<artifactId>logicng</artifactId>
+			<version>1.4.1</version>
+		</dependency>
 	</dependencies>
 
 	<distributionManagement>
@@ -121,7 +127,7 @@
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
- 
+
 	<build>
 		<plugins>
 			<plugin>
@@ -133,8 +139,8 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<!-- Makes information about the GIT repository available
-					during the build. -->
+				<!-- Makes information about the GIT repository available during the 
+					build. -->
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
 				<version>2.2.3</version>
@@ -160,10 +166,9 @@
 							<mainClass>org.satpinpointing.RunJustificationExperiments</mainClass>
 						</manifest>
 					</archive>
-<!--					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
--->					<descriptors>
+					<!-- <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
+						</descriptorRefs> -->
+					<descriptors>
 						<descriptor>${basedir}/src/assembly/jar-with-dependencies.xml</descriptor>
 					</descriptors>
 				</configuration>

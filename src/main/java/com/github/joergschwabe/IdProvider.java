@@ -56,10 +56,6 @@ public class IdProvider<A, I> {
 		return result;
 	}
 
-	int getNextId() {
-		return nextId_++;
-	}
-
 	Set<Integer> getAxiomIds() {
 		return axiomIds_.inverse().keySet();
 	}
