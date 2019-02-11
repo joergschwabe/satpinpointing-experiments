@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAIN_CLASS=org.satpinpointing.RunJustificationExperiments
+MAIN_CLASS=com.github.joergschwabe.RunJustificationExperiments
 
 POM="$(dirname "$(cd "$(dirname "$0")" && pwd)")/pom.xml"
 

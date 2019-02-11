@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAIN_CLASS=org.satpinpointing.DirectSatEncodingUsingElkCsvQuery
+MAIN_CLASS=com.github.joergschwabe.DirectSatEncodingUsingElkCsvQuery
 
 POM="$(dirname "$(cd "$(dirname "$0")" && pwd)")/pom.xml"
 
