@@ -1,6 +1,0 @@
-Prefix( : = <http://example.org/> )
-Ontology(
-
-SubClassOf(:A2 :A3)
-
-)
