@@ -95,7 +95,6 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 
 		public void compute() throws TimeoutException, ParserException, ContradictionException {
 			Set<Integer> repair;
-			Set<A> minRepair;
 			axiomIds = idProvider.getAxiomIds();
 
 			while (miniSat.sat() == Tristate.TRUE) {
@@ -107,7 +106,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 
 				pushAxiomToSolver(repair);
 
-				minRepair = translateToAxioms(repair);
+				Set<A> minRepair = translateToAxioms(repair);
 				
 				listener_.newMinimalSubset(minRepair);
 			}
