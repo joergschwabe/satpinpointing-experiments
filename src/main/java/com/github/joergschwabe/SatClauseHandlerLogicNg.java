@@ -94,19 +94,20 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 		}
 
 		public void compute() throws TimeoutException, ParserException, ContradictionException {
-			Set<Integer> repair;
+			Set<Integer> repair_int;
+			Set<A> minRepair;
 			axiomIds = idProvider.getAxiomIds();
 
 			while (miniSat.sat() == Tristate.TRUE) {
 				Assignment model = miniSat.model();
 				
-				repair = translateModelToRepair(model);
+				repair_int = translateModelToRepair(model);
 
-				repair = computeMinimalRepair(repair);
+				repair_int = computeMinimalRepair(repair_int);
 
-				pushAxiomToSolver(repair);
+				pushAxiomToSolver(repair_int);
 
-				Set<A> minRepair = translateToAxioms(repair);
+				minRepair = translateToAxioms(repair_int);
 				
 				listener_.newMinimalSubset(minRepair);
 			}
@@ -123,9 +124,9 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 		private Set<Integer> translateModelToRepair(Assignment model) throws ContradictionException {
 			Set<Integer> repair = new HashSet<>();
 			
-			List<Variable> posLit = model.positiveLiterals();
+			List<Variable> posLiterals = model.positiveLiterals();
 
-			for(Variable var : posLit) {
+			for(Variable var : posLiterals) {
 				int varInt = Integer.parseInt(var.toString());
 				if (axiomIds.contains(varInt)) {
 					repair.add(varInt);

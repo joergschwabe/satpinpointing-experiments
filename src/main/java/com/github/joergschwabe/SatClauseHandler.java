@@ -70,37 +70,37 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		}
 
 		public void compute() throws TimeoutException, ContradictionException {
-			Set<Integer> repair;
-			Set<Integer> minRepairInt;
+			Set<Integer> repair_int;
+			Set<A> minRepair;
 			axiomIds = idProvider.getAxiomIds();
 
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
 
-				repair = translateModelToRepair(Ints.asList(list));
+				repair_int = translateModelToRepair(list);
 
-				minRepairInt = computeMinimalRepair(repair);
+				repair_int = computeMinimalRepair(repair_int);
 
-				Set<A> minRepair = translateToAxioms(minRepairInt);
+				pushAxiomToSolver(repair_int);
+
+				minRepair = translateToAxioms(repair_int);
 				
 				listener_.newMinimalSubset(minRepair);
-				
-				pushAxiomToSolver(minRepairInt);
 			}
 		}
 
-		private Set<A> translateToAxioms(Set<Integer> minRepairInt) {
+		private Set<A> translateToAxioms(Set<Integer> repair) {
 			Set<A> minRepair = new HashSet<>();
-			for (Integer axiomId : minRepairInt) {
+			for (Integer axiomId : repair) {
 				minRepair.add(idProvider.getAxiomFromId(axiomId));
 			}
 			return minRepair;
 		}
 
-		private Set<Integer> translateModelToRepair(List<Integer> listInt) throws ContradictionException {
+		private Set<Integer> translateModelToRepair(int[] list) throws ContradictionException {
 			Set<Integer> repair = new HashSet<>();
 
-			for (Integer modelId : listInt) {
+			for (Integer modelId : list) {
 				if (modelId > 0 && axiomIds.contains(modelId)) {
 					repair.add(modelId);
 				}
