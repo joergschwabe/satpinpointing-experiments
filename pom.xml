@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>net.sourceforge.owlapi</groupId>
 			<artifactId>owlapi-distribution</artifactId>
-			<version>5.1.4</version>
+			<version>5.1.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.semanticweb.elk</groupId>
