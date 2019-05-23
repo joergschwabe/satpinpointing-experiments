@@ -12,8 +12,6 @@ import org.liveontologies.puli.pinpointing.InterruptMonitor;
 import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
-import org.logicng.io.parsers.ParserException;
-import org.sat4j.specs.ContradictionException;
 
 import com.google.common.base.Preconditions;
 
@@ -50,7 +48,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerLogicNg<I, A>.InfToSatTranslator infToSatTranslator_;
+		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
 
 		Enumerator(final Object query) {
 			this.query = query;
@@ -66,26 +64,24 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 			try {
 				IdProvider<A, I> idProvider = new IdProvider<>();
 
-				Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider,
-						query);
-
-				int queryId = idProvider.getConclusionId(query);
-
-				SatClauseHandlerLogicNg<I, A> satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>();
-
 				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
 						.getTranslatedProofGetInferences(idProvider);
 
 				InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(
 						translatedProofGetInferences);
 
-				infToSatTranslator_ = satClauseHandler_.getInfToSatTranslator(idProvider, listener, infDeriv, queryId);
+				int queryId = idProvider.getConclusionId(query);
+
+				satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider, listener, infDeriv, queryId);
+
+				Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider,
+						query);
 
 				Proofs.unfoldRecursively(translatedProof, queryId, this);
 
-				infToSatTranslator_.translateQuery();
+				satClauseHandler_.translateQuery();
 
-				infToSatTranslator_.compute();
+				satClauseHandler_.compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -95,7 +91,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 		public void produce(Inference<? extends Integer> inference) {
 			// translate the inference to SAT
 			try {
-				infToSatTranslator_.addInfToSolver(inference);
+				satClauseHandler_.addInfToSolver(inference);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

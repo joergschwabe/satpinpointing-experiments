@@ -1,7 +1,6 @@
 package com.github.joergschwabe;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -14,8 +13,6 @@ import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVecInt;
 import org.sat4j.specs.TimeoutException;
 
-import com.google.common.primitives.Ints;
-
 /**
  * 
  * @author Jörg Schwabe
@@ -24,121 +21,109 @@ import com.google.common.primitives.Ints;
  */
 public class SatClauseHandler<I extends Inference<?>, A> {
 
-	public SatClauseHandler() {
+	private ISolver solver;
+
+	private IdProvider<A, I> idProvider;
+	private Listener<A> listener_;
+	private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
+	private int queryId;
+
+	public SatClauseHandler(IdProvider<A, I> idProvider, Listener<A> listener,
+			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
+		this.idProvider = idProvider;
+		this.listener_ = listener;
+		this.infDeriv = infDeriv;
+		this.queryId = queryId;
+		this.solver = SolverFactory.newDefault();
 	}
 
-	public SatClauseHandler<I, A>.InfToSatTranslator getInfToSatTranslator(IdProvider<A, I> idProvider,
-			Listener<A> listener, InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
-		return new InfToSatTranslator(idProvider, listener, infDeriv, queryId);
+	public void translateQuery() throws ContradictionException {
+		IVecInt clause = new VecInt();
+		clause.push(queryId);
+		solver.addClause(clause);
 	}
 
-	public class InfToSatTranslator {
-		
-		private ISolver solver;
+	public void addInfToSolver(Inference<? extends Integer> inference) throws ContradictionException {
+		IVecInt clause = new VecInt();
 
-		private IdProvider<A, I> idProvider;
-		private Listener<A> listener_;
-		private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
-		private int queryId;
-		private Set<Integer> axiomIds;
-
-		public InfToSatTranslator(IdProvider<A, I> idProvider2, Listener<A> listener,
-				InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
-			this.idProvider = idProvider2;
-			this.listener_ = listener;
-			this.infDeriv = infDeriv;
-			this.queryId = queryId;
-			this.solver = SolverFactory.newDefault();
+		// FA -> F1
+		clause.push(-inference.getConclusion());
+		for (Integer premise : inference.getPremises()) {
+			clause.push(premise);
 		}
 
-		public void translateQuery() throws ContradictionException {
-			IVecInt clause = new VecInt();
-			clause.push(queryId);
-			solver.addClause(clause);
+		solver.addClause(clause);
+	}
+
+	public void compute() throws TimeoutException, ContradictionException {
+		Set<Integer> repair_int;
+		Set<A> minRepair;
+
+		while (solver.isSatisfiable()) {
+			int[] list = solver.model();
+
+			repair_int = translateModelToRepair(list);
+
+			repair_int = computeMinimalRepair(repair_int);
+
+			pushRepairToSolver(repair_int);
+
+			minRepair = translateToAxioms(repair_int);
+
+			listener_.newMinimalSubset(minRepair);
 		}
+	}
 
-		public void addInfToSolver(Inference<? extends Integer> inference) throws ContradictionException {
-			IVecInt clause = new VecInt();
-
-			// FA -> F1
-			clause.push(-inference.getConclusion());
-			for (Integer premise : inference.getPremises()) {
-				clause.push(premise);
-			}
-
-			solver.addClause(clause);
+	private Set<A> translateToAxioms(Set<Integer> repair) {
+		Set<A> minRepair = new HashSet<>();
+		for (Integer axiomId : repair) {
+			minRepair.add(idProvider.getAxiomFromId(axiomId));
 		}
+		return minRepair;
+	}
 
-		public void compute() throws TimeoutException, ContradictionException {
-			Set<Integer> repair_int;
-			Set<A> minRepair;
-			axiomIds = idProvider.getAxiomIds();
+	private Set<Integer> translateModelToRepair(int[] list) throws ContradictionException {
+		Set<Integer> repair = new HashSet<>();
+		Set<Integer> axiomIds = idProvider.getAxiomIds();
 
-			while (solver.isSatisfiable()) {
-				int[] list = solver.model();
-
-				repair_int = translateModelToRepair(list);
-
-				repair_int = computeMinimalRepair(repair_int);
-
-				pushAxiomToSolver(repair_int);
-
-				minRepair = translateToAxioms(repair_int);
-				
-				listener_.newMinimalSubset(minRepair);
+		for (Integer modelId : list) {
+			if (modelId > 0 && axiomIds.contains(modelId)) {
+				repair.add(modelId);
 			}
 		}
+		return repair;
+	}
 
-		private Set<A> translateToAxioms(Set<Integer> repair) {
-			Set<A> minRepair = new HashSet<>();
-			for (Integer axiomId : repair) {
-				minRepair.add(idProvider.getAxiomFromId(axiomId));
-			}
-			return minRepair;
+	private void pushRepairToSolver(Set<Integer> minRepair) throws ContradictionException {
+		IVecInt clause = new VecInt();
+
+		for (Integer axiomId : minRepair) {
+			clause.push(-axiomId);
 		}
 
-		private Set<Integer> translateModelToRepair(int[] list) throws ContradictionException {
-			Set<Integer> repair = new HashSet<>();
+		solver.addClause(clause);
+	}
 
-			for (Integer modelId : list) {
-				if (modelId > 0 && axiomIds.contains(modelId)) {
-					repair.add(modelId);
-				}
-			}
-			return repair;
+	private Set<Integer> computeMinimalRepair(Set<Integer> repair) {
+		Set<Integer> minRepair = new HashSet<Integer>();
+
+		for (Integer axiomId : repair) {
+			infDeriv.block(axiomId);
 		}
 
-		private void pushAxiomToSolver(Set<Integer> minRepair) throws ContradictionException {
-			IVecInt clause = new VecInt();
+		for (Integer axiomId : repair) {
+			infDeriv.unblock(axiomId);
 
-			for (Integer axiomId : minRepair) {
-				clause.push(-axiomId);
-			}
-
-			solver.addClause(clause);
-		}
-
-		private Set<Integer> computeMinimalRepair(Set<Integer> repair) {
-			Set<Integer> minRepair = new HashSet<Integer>();
-
-			for (Integer axiomId : repair) {
+			if (infDeriv.isDerivable(queryId)) {
+				minRepair.add(axiomId);
 				infDeriv.block(axiomId);
 			}
-
-			for (Integer axiomId : repair) {
-				infDeriv.unblock(axiomId);
-				
-				if (infDeriv.isDerivable(queryId)) {
-					minRepair.add(axiomId);
-					infDeriv.block(axiomId);
-				}
-			}
-			
-			for (Integer axiomId : minRepair) {
-				infDeriv.unblock(axiomId);
-			}
-
-			return minRepair;
 		}
+
+		for (Integer axiomId : minRepair) {
+			infDeriv.unblock(axiomId);
+		}
+
+		return minRepair;
 	}
 }

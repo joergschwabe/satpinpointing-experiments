@@ -82,7 +82,7 @@ public class IntegerProofTranslator<C, I extends Inference<? extends C>, A> {
 				translatedPremises.add(idProvider_.getConclusionId(premise));
 			}
 			for (A axiom : justifier_.getJustification(inference)) {
-				translatedPremises.add(idProvider_.getAxiomId(axiom));
+				translatedPremises.add(idProvider_.getJustificationId(axiom));
 			}
 			int translatedConclusion = idProvider_.getConclusionId(conclusion);
 			Collection<Inference<Integer>> currentInferences = inferences_.get(translatedConclusion);
@@ -104,7 +104,7 @@ public class IntegerProofTranslator<C, I extends Inference<? extends C>, A> {
 	public Proof<Inference<? extends Integer>> getTranslatedProofGetInferences(IdProvider<A, I> idProvider) {
 		return new TranslatedProof2(idProvider);
 	}
-	
+
 	class TranslatedProof2 implements Proof<Inference<? extends Integer>> {
 
 		protected IdProvider<A, I> idProvider_;

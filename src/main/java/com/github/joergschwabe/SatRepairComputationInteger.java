@@ -24,7 +24,8 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A> extends MinimalSubsetsFromProofs<C, I, A> {
+public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
+		extends MinimalSubsetsFromProofs<C, I, A> {
 
 	private static final SatRepairComputationInteger.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
@@ -48,9 +49,9 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandler<I, A>.InfToSatTranslator infToSatTranslator_;
+		private SatClauseHandler<I, A> satClauseHandler_;
 
-		Enumerator(final Object query) { 
+		Enumerator(final Object query) {
 			this.query = query;
 		}
 
@@ -64,25 +65,24 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 			try {
 				IdProvider<A, I> idProvider = new IdProvider<>();
 
-				Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider,
-						query);
+				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
+						.getTranslatedProofGetInferences(idProvider);
+
+				InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(
+						translatedProofGetInferences);
 
 				int queryId = idProvider.getConclusionId(query);
 
-				SatClauseHandler<I, A> satClauseHandler_ = new SatClauseHandler<I, A>();
+				satClauseHandler_ = new SatClauseHandler<I, A>(idProvider, listener, infDeriv, queryId);
 
-				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_.getTranslatedProofGetInferences(idProvider);
-
-				InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(translatedProofGetInferences);
-
-				infToSatTranslator_ = satClauseHandler_.getInfToSatTranslator(idProvider, listener, infDeriv,
-						queryId);
+				Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider,
+						query);
 
 				Proofs.unfoldRecursively(translatedProof, queryId, this);
 
-				infToSatTranslator_.translateQuery();
+				satClauseHandler_.translateQuery();
 
-				infToSatTranslator_.compute();
+				satClauseHandler_.compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -92,7 +92,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 		public void produce(Inference<? extends Integer> inference) {
 			// translate the inference to SAT
 			try {
-				infToSatTranslator_.addInfToSolver(inference);
+				satClauseHandler_.addInfToSolver(inference);
 			} catch (ContradictionException e) {
 				e.printStackTrace();
 			}
