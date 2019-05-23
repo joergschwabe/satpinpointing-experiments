@@ -57,6 +57,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 
 	public void compute() throws TimeoutException, ContradictionException {
 		Set<Integer> repair_int;
+		Set<Integer> minRepair_int;
 		Set<A> minRepair;
 
 		while (solver.isSatisfiable()) {
@@ -64,11 +65,11 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 
 			repair_int = translateModelToRepair(list);
 
-			repair_int = computeMinimalRepair(repair_int);
+			minRepair_int = computeMinimalRepair(repair_int);
 
-			pushRepairToSolver(repair_int);
+			pushRepairToSolver(minRepair_int);
 
-			minRepair = translateToAxioms(repair_int);
+			minRepair = translateToAxioms(minRepair_int);
 
 			listener_.newMinimalSubset(minRepair);
 		}
