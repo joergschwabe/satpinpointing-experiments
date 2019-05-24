@@ -29,7 +29,6 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 
 	private static final SatRepairComputationInteger.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
-	private final IntegerProofTranslator<C, I, A> proofTranslator_;
 
 	@SuppressWarnings("unchecked")
 	public static <C, I extends Inference<? extends C>, A> MinimalSubsetsFromProofs.Factory<C, I, A> getFactory() {
@@ -39,7 +38,6 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 	private SatRepairComputationInteger(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
-		this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(proof, justifier);
 	}
 
 	public MinimalSubsetEnumerator<A> newEnumerator(final Object query) {
@@ -50,6 +48,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 
 		private final Object query;
 		private SatClauseHandler<I, A> satClauseHandler_;
+		private IntegerProofTranslator<C, I, A> proofTranslator_;
 
 		Enumerator(final Object query) {
 			this.query = query;
@@ -65,6 +64,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 			try {
 				IdProvider<A, I> idProvider = new IdProvider<>();
 
+				this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(getProof(), getInferenceJustifier());
 				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
 						.getTranslatedProofGetInferences(idProvider);
 
@@ -116,6 +116,9 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 				final InterruptMonitor monitor) {
 			return new SatRepairComputationInteger<C, I, A>(proof, justifier, monitor);
 		}
+		
+		
+
 
 	}
 
