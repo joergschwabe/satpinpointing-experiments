@@ -28,7 +28,6 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 
 	private static final SatRepairComputationIntegerLogicNg.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
-	private final IntegerProofTranslator<C, I, A> proofTranslator_;
 
 	@SuppressWarnings("unchecked")
 	public static <C, I extends Inference<? extends C>, A> MinimalSubsetsFromProofs.Factory<C, I, A> getFactory() {
@@ -38,7 +37,6 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 	private SatRepairComputationIntegerLogicNg(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
-		this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(proof, justifier);
 	}
 
 	public MinimalSubsetEnumerator<A> newEnumerator(final Object query) {
@@ -49,6 +47,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 
 		private final Object query;
 		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
+		private IntegerProofTranslator<C, I, A> proofTranslator_;
 
 		Enumerator(final Object query) {
 			this.query = query;
@@ -64,6 +63,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 			try {
 				IdProvider<A, I> idProvider = new IdProvider<>();
 
+				this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(getProof(), getInferenceJustifier());
 				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
 						.getTranslatedProofGetInferences(idProvider);
 
