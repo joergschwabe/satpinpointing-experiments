@@ -116,9 +116,6 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 				final InterruptMonitor monitor) {
 			return new SatRepairComputationInteger<C, I, A>(proof, justifier, monitor);
 		}
-		
-		
-
 
 	}
 
