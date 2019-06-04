@@ -45,10 +45,13 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
+
 		private final Object query;
 		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
-
+		private Listener<A> listener_;
+		private IdProvider<A, I> idProvider_;
+		
 		Enumerator(final Object query) {
 			this.query = query;
 		}
@@ -59,26 +62,27 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 
 		public void enumerate(Listener<A> listener) {
 			Preconditions.checkNotNull(listener);
+			this.listener_ = listener;
+			
+			idProvider_ = new IdProvider<>();
+
+			this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(getProof(), getInferenceJustifier());
+			Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
+					.getTranslatedProofGetInferences(idProvider_);
+
+			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(
+					translatedProofGetInferences);
+
+			int queryId_ = idProvider_.getConclusionId(query);
+
+			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, listener_, infDeriv, queryId_);
+
+			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
+					query);
+
+			Proofs.unfoldRecursively(translatedProof, queryId_, this);
 
 			try {
-				IdProvider<A, I> idProvider = new IdProvider<>();
-
-				this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(getProof(), getInferenceJustifier());
-				Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
-						.getTranslatedProofGetInferences(idProvider);
-
-				InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(
-						translatedProofGetInferences);
-
-				int queryId = idProvider.getConclusionId(query);
-
-				satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider, listener, infDeriv, queryId);
-
-				Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider,
-						query);
-
-				Proofs.unfoldRecursively(translatedProof, queryId, this);
-
 				satClauseHandler_.translateQuery();
 
 				satClauseHandler_.compute();
@@ -86,7 +90,6 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 				throw new RuntimeException(e);
 			}
 		}
-
 		@Override
 		public void produce(Inference<? extends Integer> inference) {
 			// translate the inference to SAT
