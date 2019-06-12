@@ -342,9 +342,7 @@ public class RunJustificationExperiments {
 				worker.start();
 				// wait for timeout
 				try {
-					worker.join(timeOutMillis > 0
-							? timeOutMillis + TIMEOUT_DELAY_MILLIS
-							: 0);
+					worker.join(0);
 				} catch (final InterruptedException e) {
 					LOGGER_.warn("Waiting for the worker thread interruptet!",
 							e);

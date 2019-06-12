@@ -68,7 +68,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 
 			this.proofTranslator_ = new IntegerProofTranslator<C, I, A>(getProof(), getInferenceJustifier());
 			Proof<Inference<? extends Integer>> translatedProofGetInferences = proofTranslator_
-					.getTranslatedProofGetInferences(idProvider_);
+					.getTranslatedProofDiv(idProvider_);
 
 			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv = new InferenceDerivabilityChecker<Object, Inference<?>>(
 					translatedProofGetInferences);

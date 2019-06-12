@@ -101,15 +101,15 @@ public class IntegerProofTranslator<C, I extends Inference<? extends C>, A> {
 
 	}
 
-	public Proof<Inference<? extends Integer>> getTranslatedProofGetInferences(IdProvider<A, I> idProvider) {
-		return new TranslatedProof2(idProvider);
+	public Proof<Inference<? extends Integer>> getTranslatedProofDiv(IdProvider<A, I> idProvider) {
+		return new TranslatedProofDiv(idProvider);
 	}
 
-	class TranslatedProof2 implements Proof<Inference<? extends Integer>> {
+	class TranslatedProofDiv implements Proof<Inference<? extends Integer>> {
 
 		protected IdProvider<A, I> idProvider_;
 
-		TranslatedProof2(IdProvider<A, I> idProvider) {
+		TranslatedProofDiv(IdProvider<A, I> idProvider) {
 			this.idProvider_ = idProvider;
 		}
 
