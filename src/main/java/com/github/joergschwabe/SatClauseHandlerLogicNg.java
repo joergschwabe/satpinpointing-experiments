@@ -72,9 +72,9 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 
 		List<Variable> posLiterals = model.positiveLiterals();
 
+		Set<Integer> axiomIds = idProvider.getAxiomIds();
 		for (Variable var : posLiterals) {
 			int varInt = Integer.parseInt(var.toString());
-			Set<Integer> axiomIds = idProvider.getAxiomIds();
 			if (axiomIds.contains(varInt)) {
 				repair.add(varInt);
 			}
