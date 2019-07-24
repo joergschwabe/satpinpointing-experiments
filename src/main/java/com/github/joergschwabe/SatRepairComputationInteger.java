@@ -13,6 +13,8 @@ import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
 import org.sat4j.specs.ContradictionException;
+import org.sat4j.specs.ISolver;
+import org.sat4j.specs.TimeoutException;
 
 import com.google.common.base.Preconditions;
 
@@ -75,7 +77,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandler<I, A>(idProvider_, listener_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandler<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -85,10 +87,38 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 			try {
 				satClauseHandler_.translateQuery();
 
-				satClauseHandler_.compute();
+				compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
+		}
+
+		private void compute() throws ContradictionException, TimeoutException {
+			Set<Integer> repair_int;
+			Set<Integer> minRepair_int;
+			Set<A> minRepair;
+
+			ISolver solver = satClauseHandler_.getSolver();
+
+			while (solver.isSatisfiable()) {
+				int[] list = solver.model();
+
+				repair_int = satClauseHandler_.translateModelToRepair(list);
+
+				minRepair_int = satClauseHandler_.computeMinimalRepair(repair_int);
+
+				satClauseHandler_.pushRepairToSolver(minRepair_int);
+
+				minRepair = satClauseHandler_.translateToAxioms(minRepair_int);
+
+				listener_.newMinimalSubset(minRepair);
+
+				if (isInterrupted()) {
+					break;
+				}
+			}
+
+			
 		}
 
 		@Override

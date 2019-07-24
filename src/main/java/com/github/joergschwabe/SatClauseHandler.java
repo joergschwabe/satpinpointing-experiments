@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator.Listener;
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
@@ -24,14 +23,11 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 	private ISolver solver;
 
 	private IdProvider<A, I> idProvider;
-	private Listener<A> listener_;
 	private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
 	private int queryId;
 
-	public SatClauseHandler(IdProvider<A, I> idProvider, Listener<A> listener,
-			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
+	public SatClauseHandler(IdProvider<A, I> idProvider, InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
 		this.idProvider = idProvider;
-		this.listener_ = listener;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;
 		this.solver = SolverFactory.newDefault();
@@ -55,27 +51,11 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		solver.addClause(clause);
 	}
 
-	public void compute() throws TimeoutException, ContradictionException {
-		Set<Integer> repair_int;
-		Set<Integer> minRepair_int;
-		Set<A> minRepair;
-
-		while (solver.isSatisfiable()) {
-			int[] list = solver.model();
-
-			repair_int = translateModelToRepair(list);
-
-			minRepair_int = computeMinimalRepair(repair_int);
-
-			pushRepairToSolver(minRepair_int);
-
-			minRepair = translateToAxioms(minRepair_int);
-
-			listener_.newMinimalSubset(minRepair);
-		}
+	public ISolver getSolver() throws TimeoutException, ContradictionException {
+		return solver;
 	}
 
-	private Set<A> translateToAxioms(Set<Integer> repair) {
+	Set<A> translateToAxioms(Set<Integer> repair) {
 		Set<A> minRepair = new HashSet<>();
 		for (Integer axiomId : repair) {
 			minRepair.add(idProvider.getAxiomFromId(axiomId));
@@ -83,7 +63,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		return minRepair;
 	}
 
-	private Set<Integer> translateModelToRepair(int[] list) throws ContradictionException {
+	Set<Integer> translateModelToRepair(int[] list) throws ContradictionException {
 		Set<Integer> repair = new HashSet<>();
 		Set<Integer> axiomIds = idProvider.getAxiomIds();
 
@@ -95,7 +75,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		return repair;
 	}
 
-	private void pushRepairToSolver(Set<Integer> minRepair) throws ContradictionException {
+	void pushRepairToSolver(Set<Integer> minRepair) throws ContradictionException {
 		IVecInt clause = new VecInt();
 
 		for (Integer axiomId : minRepair) {
@@ -105,7 +85,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		solver.addClause(clause);
 	}
 
-	private Set<Integer> computeMinimalRepair(Set<Integer> repair) {
+	Set<Integer> computeMinimalRepair(Set<Integer> repair) {
 		Set<Integer> minRepair = new HashSet<Integer>();
 
 		for (Integer axiomId : repair) {
