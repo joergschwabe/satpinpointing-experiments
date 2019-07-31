@@ -17,7 +17,6 @@ import org.logicng.datastructures.Tristate;
 import org.logicng.io.parsers.ParserException;
 import org.logicng.solvers.SATSolver;
 import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.TimeoutException;
 
 import com.google.common.base.Preconditions;
 
@@ -29,10 +28,10 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends C>, A>
+public class SatRepairComputationLogicNg<C, I extends Inference<? extends C>, A>
 		extends MinimalSubsetsFromProofs<C, I, A> {
 
-	private static final SatRepairComputationIntegerLogicNg.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
+	private static final SatRepairComputationLogicNg.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
 
 	@SuppressWarnings("unchecked")
@@ -40,7 +39,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 		return (Factory<C, I, A>) FACTORY_;
 	}
 
-	private SatRepairComputationIntegerLogicNg(final Proof<? extends I> proof,
+	private SatRepairComputationLogicNg(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
 	}
@@ -148,7 +147,7 @@ public class SatRepairComputationIntegerLogicNg<C, I extends Inference<? extends
 		public MinimalSubsetEnumerator.Factory<C, A> create(final Proof<? extends I> proof,
 				final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier,
 				final InterruptMonitor monitor) {
-			return new SatRepairComputationIntegerLogicNg<C, I, A>(proof, justifier, monitor);
+			return new SatRepairComputationLogicNg<C, I, A>(proof, justifier, monitor);
 		}
 
 	}

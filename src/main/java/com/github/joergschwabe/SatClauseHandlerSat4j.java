@@ -18,7 +18,7 @@ import org.sat4j.specs.TimeoutException;
  *
  * @param <Object> the type of axioms used by the inferences
  */
-public class SatClauseHandler<I extends Inference<?>, A> {
+public class SatClauseHandlerSat4j<I extends Inference<?>, A> {
 
 	private ISolver solver;
 
@@ -26,7 +26,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 	private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
 	private int queryId;
 
-	public SatClauseHandler(IdProvider<A, I> idProvider, InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
+	public SatClauseHandlerSat4j(IdProvider<A, I> idProvider, InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId) {
 		this.idProvider = idProvider;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;

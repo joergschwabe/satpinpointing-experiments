@@ -26,10 +26,10 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
+public class SatRepairComputationSat4j<C, I extends Inference<? extends C>, A>
 		extends MinimalSubsetsFromProofs<C, I, A> {
 
-	private static final SatRepairComputationInteger.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
+	private static final SatRepairComputationSat4j.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
 
 	@SuppressWarnings("unchecked")
@@ -37,7 +37,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 		return (Factory<C, I, A>) FACTORY_;
 	}
 
-	private SatRepairComputationInteger(final Proof<? extends I> proof,
+	private SatRepairComputationSat4j(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
 	}
@@ -49,7 +49,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandler<I, A> satClauseHandler_;
+		private SatClauseHandlerSat4j<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -77,7 +77,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandler<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerSat4j<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -147,7 +147,7 @@ public class SatRepairComputationInteger<C, I extends Inference<? extends C>, A>
 		public MinimalSubsetEnumerator.Factory<C, A> create(final Proof<? extends I> proof,
 				final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier,
 				final InterruptMonitor monitor) {
-			return new SatRepairComputationInteger<C, I, A>(proof, justifier, monitor);
+			return new SatRepairComputationSat4j<C, I, A>(proof, justifier, monitor);
 		}
 
 	}
