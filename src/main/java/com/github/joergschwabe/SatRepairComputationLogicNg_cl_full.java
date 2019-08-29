@@ -28,10 +28,10 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationLogicNg_cleaneling_full<C, I extends Inference<? extends C>, A>
+public class SatRepairComputationLogicNg_cl_full<C, I extends Inference<? extends C>, A>
 		extends MinimalSubsetsFromProofs<C, I, A> {
 
-	private static final SatRepairComputationLogicNg_cleaneling_full.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
+	private static final SatRepairComputationLogicNg_cl_full.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
 
 	@SuppressWarnings("unchecked")
@@ -39,7 +39,7 @@ public class SatRepairComputationLogicNg_cleaneling_full<C, I extends Inference<
 		return (Factory<C, I, A>) FACTORY_;
 	}
 
-	private SatRepairComputationLogicNg_cleaneling_full(final Proof<? extends I> proof,
+	private SatRepairComputationLogicNg_cl_full(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
 	}
@@ -51,7 +51,7 @@ public class SatRepairComputationLogicNg_cleaneling_full<C, I extends Inference<
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerLogicNg_cleaneling_full<I, A> satClauseHandler_;
+		private SatClauseHandlerLogicNg_cl_full<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -79,7 +79,7 @@ public class SatRepairComputationLogicNg_cleaneling_full<C, I extends Inference<
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerLogicNg_cleaneling_full<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerLogicNg_cl_full<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -146,7 +146,7 @@ public class SatRepairComputationLogicNg_cleaneling_full<C, I extends Inference<
 		public MinimalSubsetEnumerator.Factory<C, A> create(final Proof<? extends I> proof,
 				final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier,
 				final InterruptMonitor monitor) {
-			return new SatRepairComputationLogicNg_cleaneling_full<C, I, A>(proof, justifier, monitor);
+			return new SatRepairComputationLogicNg_cl_full<C, I, A>(proof, justifier, monitor);
 		}
 
 	}
