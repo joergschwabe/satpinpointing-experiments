@@ -30,7 +30,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> {
 		this.idProvider = idProvider;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;
-		this.solver = SolverFactory.newDefault();
+		this.solver = SolverFactory.newBest17();
 	}
 
 	public void translateQuery() throws ContradictionException {
