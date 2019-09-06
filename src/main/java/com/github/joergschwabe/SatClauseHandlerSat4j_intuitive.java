@@ -30,7 +30,7 @@ public class SatClauseHandlerSat4j_intuitive<I extends Inference<?>, A> {
 		this.idProvider = idProvider;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;
-		this.solver = SolverFactory.newBest17();
+		this.solver = SolverFactory.newDefault();
 	}
 
 	public ISolver getSolver() throws TimeoutException, ContradictionException {
