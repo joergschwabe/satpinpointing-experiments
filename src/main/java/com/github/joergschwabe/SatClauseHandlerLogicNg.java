@@ -12,7 +12,6 @@ import org.logicng.formulas.FormulaFactory;
 import org.logicng.formulas.Variable;
 import org.logicng.io.parsers.ParserException;
 import org.logicng.io.parsers.PropositionalParser;
-import org.logicng.solvers.CleaneLing;
 import org.logicng.solvers.MiniSat;
 import org.logicng.solvers.SATSolver;
 import org.sat4j.specs.ContradictionException;
@@ -38,7 +37,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> {
 		this.queryId = queryId;
 		f = new FormulaFactory();
 		p = new PropositionalParser(f);
-		miniSat = CleaneLing.minimalistic(f);
+		miniSat = MiniSat.miniSat(f);
 	}
 
 	public void translateQuery() throws ParserException {
