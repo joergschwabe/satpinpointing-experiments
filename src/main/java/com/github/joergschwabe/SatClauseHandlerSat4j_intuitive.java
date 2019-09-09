@@ -66,10 +66,10 @@ public class SatClauseHandlerSat4j_intuitive<I extends Inference<?>, A> {
 		solver.addClause(clause);
 	}
 
-	void pushJustificationToSolver(Set<Integer> minJustification) throws ContradictionException {
+	void pushJustificationToSolver(Set<Integer> justification) throws ContradictionException {
 		IVecInt clause = new VecInt();
 
-		for (Integer axiomId : minJustification) {
+		for (Integer axiomId : justification) {
 			clause.push(-axiomId);
 		}
 		solver.addClause(clause);
