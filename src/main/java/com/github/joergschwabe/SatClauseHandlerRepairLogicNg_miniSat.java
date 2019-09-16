@@ -22,7 +22,7 @@ import org.sat4j.specs.ContradictionException;
  *
  * @param <Object> the type of axioms used by the inferences
  */
-public class SatClauseHandlerLogicNg_cleaneling_min<I extends Inference<?>, A> {
+public class SatClauseHandlerRepairLogicNg_miniSat<I extends Inference<?>, A> {
 
 	private IdProvider<A, I> idProvider;
 	private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
@@ -31,13 +31,13 @@ public class SatClauseHandlerLogicNg_cleaneling_min<I extends Inference<?>, A> {
 	private PropositionalParser p;
 	private SATSolver miniSat;
 
-	public SatClauseHandlerLogicNg_cleaneling_min(IdProvider<A, I> idProvider,	InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId) {
+	public SatClauseHandlerRepairLogicNg_miniSat(IdProvider<A, I> idProvider,	InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId) {
 		this.idProvider = idProvider;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;
 		f = new FormulaFactory();
 		p = new PropositionalParser(f);
-		miniSat = MiniSat.glucose(f);
+		miniSat = MiniSat.miniSat(f);
 	}
 
 	public void translateQuery() throws ParserException {

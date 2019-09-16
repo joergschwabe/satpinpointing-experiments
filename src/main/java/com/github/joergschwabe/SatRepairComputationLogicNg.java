@@ -52,7 +52,7 @@ public class SatRepairComputationLogicNg<C, I extends Inference<? extends C>, A>
 
 
 		private final Object query;
-		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
+		private SatClauseHandlerRepairLogicNg<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -80,7 +80,7 @@ public class SatRepairComputationLogicNg<C, I extends Inference<? extends C>, A>
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerRepairLogicNg<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);

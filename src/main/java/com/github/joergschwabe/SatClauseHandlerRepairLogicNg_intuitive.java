@@ -24,7 +24,7 @@ import org.sat4j.specs.IVecInt;
  *
  * @param <Object> the type of axioms used by the inferences
  */
-public class SatClauseHandlerLogicNg_intuitive<I extends Inference<?>, A> {
+public class SatClauseHandlerRepairLogicNg_intuitive<I extends Inference<?>, A> {
 
 	private IdProvider<A, I> idProvider;
 	private InferenceDerivabilityChecker<Object, Inference<?>> infDeriv;
@@ -33,7 +33,7 @@ public class SatClauseHandlerLogicNg_intuitive<I extends Inference<?>, A> {
 	private PropositionalParser p;
 	private SATSolver miniSat;
 
-	public SatClauseHandlerLogicNg_intuitive(IdProvider<A, I> idProvider,	InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId) {
+	public SatClauseHandlerRepairLogicNg_intuitive(IdProvider<A, I> idProvider,	InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId) {
 		this.idProvider = idProvider;
 		this.infDeriv = infDeriv;
 		this.queryId = queryId;

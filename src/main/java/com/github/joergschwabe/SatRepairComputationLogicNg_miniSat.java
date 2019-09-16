@@ -51,7 +51,7 @@ public class SatRepairComputationLogicNg_miniSat<C, I extends Inference<? extend
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerLogicNg_miniSat<I, A> satClauseHandler_;
+		private SatClauseHandlerRepairLogicNg_miniSat<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -79,7 +79,7 @@ public class SatRepairComputationLogicNg_miniSat<C, I extends Inference<? extend
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerLogicNg_miniSat<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerRepairLogicNg_miniSat<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);

@@ -49,7 +49,7 @@ public class SatRepairComputationSat4j_miniLearningHeap<C, I extends Inference<?
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerSat4j_miniLearningHeap<I, A> satClauseHandler_;
+		private SatClauseHandlerRepairSat4j_miniLearningHeap<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -77,7 +77,7 @@ public class SatRepairComputationSat4j_miniLearningHeap<C, I extends Inference<?
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerSat4j_miniLearningHeap<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerRepairSat4j_miniLearningHeap<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);

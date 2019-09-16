@@ -49,7 +49,7 @@ public class SatRepairComputationSat4j_glucose<C, I extends Inference<? extends 
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerSat4j_glucose<I, A> satClauseHandler_;
+		private SatClauseHandlerRepairSat4j_glucose<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -77,7 +77,7 @@ public class SatRepairComputationSat4j_glucose<C, I extends Inference<? extends 
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerSat4j_glucose<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerRepairSat4j_glucose<I, A>(idProvider_, infDeriv, queryId_);
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
