@@ -30,11 +30,8 @@ import org.junit.runners.Parameterized.Parameters;
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 
-import com.github.joergschwabe.SatRepairComputationSat4j;
-
 @RunWith(Parameterized.class)
-public class SatRepairSat4jTest<C, I extends Inference<? extends C>, A>
-		extends BaseEnumeratorTest<C, I, A> {
+public class SatRepairSat4jTest<C, I extends Inference<? extends C>, A> extends BaseEnumeratorTest<C, I, A> {
 
 	public static final String TEST_INPUT_SUBPKG = "input.repairs";
 

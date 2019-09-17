@@ -31,13 +31,13 @@ import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 
 @RunWith(Parameterized.class)
-public class SatRepairLogicNgTest<C, I extends Inference<? extends C>, A> extends BaseEnumeratorTest<C, I, A> {
+public class SatRepairLogicNg_cleaneling_minTest<C, I extends Inference<? extends C>, A> extends BaseEnumeratorTest<C, I, A> {
 
 	public static final String TEST_INPUT_SUBPKG = "input.repairs";
 
 	public static List<MinimalSubsetsFromProofs.Factory<?, ?, ?>> getRepairEnumeratorFactories() {
 		final List<MinimalSubsetsFromProofs.Factory<?, ?, ?>> factories = new ArrayList<MinimalSubsetsFromProofs.Factory<?, ?, ?>>();
-		factories.add(SatRepairComputationLogicNg_miniSat.getFactory());
+		factories.add(SatRepairComputationLogicNg_cleaneling_min.getFactory());
 		return factories;
 	}
 
