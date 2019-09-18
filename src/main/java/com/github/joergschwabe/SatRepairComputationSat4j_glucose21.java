@@ -12,6 +12,7 @@ import org.liveontologies.puli.pinpointing.InterruptMonitor;
 import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
+import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.ISolver;
 import org.sat4j.specs.TimeoutException;
@@ -49,7 +50,7 @@ public class SatRepairComputationSat4j_glucose21<C, I extends Inference<? extend
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerRepairSat4j_glucose21<I, A> satClauseHandler_;
+		private SatClauseHandlerSat4j<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -77,7 +78,7 @@ public class SatRepairComputationSat4j_glucose21<C, I extends Inference<? extend
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerRepairSat4j_glucose21<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerSat4j<I, A>(idProvider_, infDeriv, queryId_, SolverFactory.newGlucose21());
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -103,11 +104,11 @@ public class SatRepairComputationSat4j_glucose21<C, I extends Inference<? extend
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
 
-				repair_int = satClauseHandler_.translateModelToRepair(list);
+				repair_int = satClauseHandler_.getPositiveOntologieAxioms(list);
 
 				minRepair_int = satClauseHandler_.computeMinimalRepair(repair_int);
 
-				satClauseHandler_.pushRepairToSolver(minRepair_int);
+				satClauseHandler_.pushNegClauseToSolver(minRepair_int);
 
 				minRepair = satClauseHandler_.translateToAxioms(minRepair_int);
 

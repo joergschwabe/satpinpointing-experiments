@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -16,7 +17,7 @@ import org.logicng.datastructures.Assignment;
 import org.logicng.datastructures.Tristate;
 import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
-import org.logicng.solvers.CleaneLing;
+import org.logicng.solvers.MiniSat;
 import org.logicng.solvers.SATSolver;
 import org.sat4j.specs.ContradictionException;
 
@@ -30,10 +31,10 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<? extends C>, A>
+public class SatJustificationComputationLogicNg<C, I extends Inference<? extends C>, A>
 		extends MinimalSubsetsFromProofs<C, I, A> {
 
-	private static final SatRepairComputationLogicNg_cleaneling_min.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
+	private static final SatJustificationComputationLogicNg.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
 
 	@SuppressWarnings("unchecked")
@@ -41,7 +42,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 		return (Factory<C, I, A>) FACTORY_;
 	}
 
-	private SatRepairComputationLogicNg_cleaneling_min(final Proof<? extends I> proof,
+	private SatJustificationComputationLogicNg(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
 	}
@@ -51,6 +52,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 	}
 
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
+
 
 		private final Object query;
 		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
@@ -81,7 +83,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, infDeriv, queryId_, CleaneLing.minimalistic(new FormulaFactory()));
+			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, infDeriv, queryId_, MiniSat.miniSat(new FormulaFactory()));
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -90,6 +92,8 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 
 			try {
 				satClauseHandler_.translateQuery();
+
+				satClauseHandler_.addConclusionInferences();
 
 				compute();
 			} catch (Exception e) {
@@ -100,21 +104,26 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 		private void compute() throws ContradictionException, ParserException {
 			SATSolver solver = satClauseHandler_.getSolver();
 			
-			Set<Integer> repair_int;
-			Set<A> minRepair;
+			Set<Integer> axiomSet;
+			Set<A> justification;
 
 			while (solver.sat() == Tristate.TRUE) {
 				Assignment model = solver.model();
 
-				repair_int = satClauseHandler_.getPositiveOntologieAxioms(model);
+				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(model);
 
-				repair_int = satClauseHandler_.computeMinimalRepair(repair_int);
+				axiomSet = satClauseHandler_.computeJustification(axiomSet);
 
-				satClauseHandler_.pushNegClauseToSolver(repair_int);
+				if(axiomSet.isEmpty()) {
+					listener_.newMinimalSubset(new HashSet<A>());
+					break;
+				}
 
-				minRepair = satClauseHandler_.translateToAxioms(repair_int);
+				satClauseHandler_.pushNegClauseToSolver(axiomSet);
 
-				listener_.newMinimalSubset(minRepair);
+				justification = satClauseHandler_.translateToAxioms(axiomSet);
+
+				listener_.newMinimalSubset(justification);
 
 				if (isInterrupted()) {
 					break;
@@ -127,6 +136,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 			// translate the inference to SAT
 			try {
 				satClauseHandler_.addInfToSolver(inference);
+				idProvider_.addConclusionInference(inference);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -148,7 +158,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 		public MinimalSubsetEnumerator.Factory<C, A> create(final Proof<? extends I> proof,
 				final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier,
 				final InterruptMonitor monitor) {
-			return new SatRepairComputationLogicNg_cleaneling_min<C, I, A>(proof, justifier, monitor);
+			return new SatJustificationComputationLogicNg<C, I, A>(proof, justifier, monitor);
 		}
 
 	}

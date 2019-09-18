@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -27,10 +28,10 @@ import com.google.common.base.Preconditions;
  * @param <I> the type of inferences used in the proof
  * @param <A> the type of axioms used by the inferences
  */
-public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, A>
+public class SatJustificationComputationSat4j<C, I extends Inference<? extends C>, A>
 		extends MinimalSubsetsFromProofs<C, I, A> {
 
-	private static final SatRepairComputationSat4j_SAT.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
+	private static final SatJustificationComputationSat4j.Factory<?, ?, ?> FACTORY_ = new Factory<Object, Inference<?>, Object>();
 
 
 	@SuppressWarnings("unchecked")
@@ -38,7 +39,7 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 		return (Factory<C, I, A>) FACTORY_;
 	}
 
-	private SatRepairComputationSat4j_SAT(final Proof<? extends I> proof,
+	private SatJustificationComputationSat4j(final Proof<? extends I> proof,
 			final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier, final InterruptMonitor monitor) {
 		super(proof, justifier, monitor);
 	}
@@ -78,7 +79,7 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerSat4j<I, A>(idProvider_, infDeriv, queryId_, SolverFactory.newSAT());
+			satClauseHandler_ = new SatClauseHandlerSat4j<I, A>(idProvider_, infDeriv, queryId_, SolverFactory.newDefault());
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -88,6 +89,8 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 			try {
 				satClauseHandler_.translateQuery();
 
+				satClauseHandler_.addConclusionInferences();
+
 				compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
@@ -95,31 +98,33 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 		}
 
 		private void compute() throws ContradictionException, TimeoutException {
-			Set<Integer> repair_int;
-			Set<Integer> minRepair_int;
-			Set<A> minRepair;
-
 			ISolver solver = satClauseHandler_.getSolver();
+
+			Set<Integer> axiomSet;
+			Set<A> justification;
 
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
 
-				repair_int = satClauseHandler_.getPositiveOntologieAxioms(list);
+				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(list);
 
-				minRepair_int = satClauseHandler_.computeMinimalRepair(repair_int);
+				axiomSet = satClauseHandler_.computeJustification(axiomSet); 
 
-				satClauseHandler_.pushNegClauseToSolver(minRepair_int);
+				if(axiomSet.isEmpty()) {
+					listener_.newMinimalSubset(new HashSet<A>());
+					break;
+				}
 
-				minRepair = satClauseHandler_.translateToAxioms(minRepair_int);
+				satClauseHandler_.pushNegClauseToSolver(axiomSet);
 
-				listener_.newMinimalSubset(minRepair);
+				justification = satClauseHandler_.translateToAxioms(axiomSet);
+
+				listener_.newMinimalSubset(justification);
 
 				if (isInterrupted()) {
 					break;
 				}
 			}
-
-			
 		}
 
 		@Override
@@ -127,6 +132,7 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 			// translate the inference to SAT
 			try {
 				satClauseHandler_.addInfToSolver(inference);
+				idProvider_.addConclusionInference(inference);
 			} catch (ContradictionException e) {
 				e.printStackTrace();
 			}
@@ -148,7 +154,7 @@ public class SatRepairComputationSat4j_SAT<C, I extends Inference<? extends C>, 
 		public MinimalSubsetEnumerator.Factory<C, A> create(final Proof<? extends I> proof,
 				final InferenceJustifier<? super I, ? extends Set<? extends A>> justifier,
 				final InterruptMonitor monitor) {
-			return new SatRepairComputationSat4j_SAT<C, I, A>(proof, justifier, monitor);
+			return new SatJustificationComputationSat4j<C, I, A>(proof, justifier, monitor);
 		}
 
 	}

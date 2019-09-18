@@ -14,7 +14,9 @@ import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
 import org.logicng.datastructures.Assignment;
 import org.logicng.datastructures.Tristate;
+import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
+import org.logicng.solvers.MiniSat;
 import org.logicng.solvers.SATSolver;
 import org.sat4j.specs.ContradictionException;
 
@@ -51,7 +53,7 @@ public class SatRepairComputationLogicNg_miniCard<C, I extends Inference<? exten
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerRepairLogicNg_miniCard<I, A> satClauseHandler_;
+		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -79,7 +81,7 @@ public class SatRepairComputationLogicNg_miniCard<C, I extends Inference<? exten
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerRepairLogicNg_miniCard<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, infDeriv, queryId_, MiniSat.miniCard(new FormulaFactory()));
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -104,11 +106,11 @@ public class SatRepairComputationLogicNg_miniCard<C, I extends Inference<? exten
 			while (solver.sat() == Tristate.TRUE) {
 				Assignment model = solver.model();
 
-				repair_int = satClauseHandler_.translateModelToRepair(model);
+				repair_int = satClauseHandler_.getPositiveOntologieAxioms(model);
 
 				repair_int = satClauseHandler_.computeMinimalRepair(repair_int);
 
-				satClauseHandler_.pushAxiomToSolver(repair_int);
+				satClauseHandler_.pushNegClauseToSolver(repair_int);
 
 				minRepair = satClauseHandler_.translateToAxioms(repair_int);
 

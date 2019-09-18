@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -12,6 +13,7 @@ import org.liveontologies.puli.pinpointing.InterruptMonitor;
 import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
+import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.ISolver;
 import org.sat4j.specs.TimeoutException;
@@ -49,7 +51,7 @@ public class SatRepairComputationSat4j_intuitive<C, I extends Inference<? extend
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerRepairSat4j_intuitive<I, A> satClauseHandler_;
+		private SatClauseHandlerSat4j<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -77,7 +79,7 @@ public class SatRepairComputationSat4j_intuitive<C, I extends Inference<? extend
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerRepairSat4j_intuitive<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerSat4j<I, A>(idProvider_, infDeriv, queryId_, SolverFactory.newDefault());
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -105,18 +107,21 @@ public class SatRepairComputationSat4j_intuitive<C, I extends Inference<? extend
 				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(list);
 
 				if(satClauseHandler_.isQueryDerivable(axiomSet)) {
-					minJust_int = satClauseHandler_.computeMinimalJustification(axiomSet);
+					minJust_int = satClauseHandler_.computeJustification(axiomSet);
 
 					try {
-						satClauseHandler_.pushJustificationToSolver(minJust_int);
+						satClauseHandler_.pushNegClauseToSolver(minJust_int);
 					} catch (ContradictionException e) {
 						break;
 					}					
 				} else {
-					minRepair_int = satClauseHandler_.computeMinimalRepair(axiomSet);
+					Set<Integer> axiomSetAll = new HashSet<Integer>(idProvider_.getAxiomIds());
+					axiomSetAll.removeAll(axiomSet);
+
+					minRepair_int = satClauseHandler_.computeMinimalRepair(axiomSetAll);
 
 					try {
-						satClauseHandler_.pushRepairToSolver(minRepair_int);
+						satClauseHandler_.pushPosClauseToSolver(minRepair_int);
 					} catch (ContradictionException e) {
 						minRepair = satClauseHandler_.translateToAxioms(minRepair_int);
 
@@ -130,7 +135,6 @@ public class SatRepairComputationSat4j_intuitive<C, I extends Inference<? extend
 					listener_.newMinimalSubset(minRepair);
 				}
 
-
 				if (isInterrupted()) {
 					break;
 				}
@@ -141,12 +145,6 @@ public class SatRepairComputationSat4j_intuitive<C, I extends Inference<? extend
 
 		@Override
 		public void produce(Inference<? extends Integer> inference) {
-			// translate the inference to SAT
-//			try {
-//				satClauseHandler_.addInfToSolver(inference);
-//			} catch (ContradictionException e) {
-//				e.printStackTrace();
-//			}
 		}
 	}
 

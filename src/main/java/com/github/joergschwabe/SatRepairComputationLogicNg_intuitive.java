@@ -14,11 +14,11 @@ import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
 import org.logicng.datastructures.Assignment;
 import org.logicng.datastructures.Tristate;
+import org.logicng.formulas.FormulaFactory;
 import org.logicng.io.parsers.ParserException;
+import org.logicng.solvers.MiniSat;
 import org.logicng.solvers.SATSolver;
 import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.ISolver;
-import org.sat4j.specs.TimeoutException;
 
 import com.google.common.base.Preconditions;
 
@@ -54,7 +54,7 @@ public class SatRepairComputationLogicNg_intuitive<C, I extends Inference<? exte
 
 
 		private final Object query;
-		private SatClauseHandlerRepairLogicNg_intuitive<I, A> satClauseHandler_;
+		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -82,7 +82,7 @@ public class SatRepairComputationLogicNg_intuitive<C, I extends Inference<? exte
 
 			int queryId_ = idProvider_.getConclusionId(query);
 
-			satClauseHandler_ = new SatClauseHandlerRepairLogicNg_intuitive<I, A>(idProvider_, infDeriv, queryId_);
+			satClauseHandler_ = new SatClauseHandlerLogicNg<I, A>(idProvider_, infDeriv, queryId_, MiniSat.miniSat(new FormulaFactory()));
 
 			Proof<Inference<? extends Integer>> translatedProof = proofTranslator_.getTranslatedProof(idProvider_,
 					query);
@@ -115,15 +115,11 @@ public class SatRepairComputationLogicNg_intuitive<C, I extends Inference<? exte
 				if(satClauseHandler_.isQueryDerivable(axiomSet)) {
 					minJust_int = satClauseHandler_.computeJustification(axiomSet);
 
-					try {
-						satClauseHandler_.pushJustificationToSolver(minJust_int);
-					} catch (ContradictionException e) {
-						break;
-					}					
+					satClauseHandler_.pushNegClauseToSolver(minJust_int);
 				} else {
 					minRepair_int = satClauseHandler_.computeMinimalRepair(axiomSet);
 
-					satClauseHandler_.pushRepairToSolver(minRepair_int);
+					satClauseHandler_.pushPosClauseToSolver(minRepair_int);
 					
 					minRepair = satClauseHandler_.translateToAxioms(minRepair_int);
 
