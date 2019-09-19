@@ -135,7 +135,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 		public void produce(Inference<? extends Integer> inference) {
 			// translate the inference to SAT
 			try {
-				satClauseHandler_.addInfToSolver(inference);
+				satClauseHandler_.addInfImplicationToSolver(inference);
 				idProvider_.addConclusionInference(inference);
 			} catch (Exception e) {
 				e.printStackTrace();

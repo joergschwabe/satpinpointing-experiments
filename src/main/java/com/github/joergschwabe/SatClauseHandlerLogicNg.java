@@ -73,6 +73,21 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		this.solver.add(formula);
 	}
 
+	public void addInfImplicationToSolver(Inference<? extends Integer> inference) throws ParserException {
+		if(inference.getPremises().isEmpty()) {
+			return;
+		}
+
+		String formulaString = "";
+		for (Integer premise : inference.getPremises()) {
+			formulaString = formulaString + " & " + premise;
+		}
+
+		formulaString = " | ("+formulaString.substring(3)+")";
+		Formula formula = p.parse("~"+idProvider.getInferenceId(inference) + formulaString);
+		solver.add(formula);
+	}
+
 	void pushNegClauseToSolver(Set<Integer> minRepair) throws ParserException {
 		String formulaString = "";
 		for (Integer axiomId : minRepair) {

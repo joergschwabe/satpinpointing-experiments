@@ -52,6 +52,22 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		solver.addClause(clause);
 	}
 
+	public void addInfImplicationToSolver(Inference<? extends Integer> inference) throws ContradictionException {
+		if(inference.getPremises().isEmpty()) {
+			return;
+		}
+
+		Integer inferenceId = idProvider.getInferenceId(inference);
+
+		// FA -> F1
+		for (Integer premise : inference.getPremises()) {			
+			IVecInt clause = new VecInt();
+			clause.push(-inferenceId);
+			clause.push(premise);
+			solver.addClause(clause);
+		}
+	}
+
 	void pushNegClauseToSolver(Set<Integer> axiomSet) throws ContradictionException {
 		IVecInt clause = new VecInt();
 

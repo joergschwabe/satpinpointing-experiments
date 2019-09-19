@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -117,7 +118,10 @@ public class SatRepairComputationLogicNg_intuitive<C, I extends Inference<? exte
 
 					satClauseHandler_.pushNegClauseToSolver(minJust_int);
 				} else {
-					minRepair_int = satClauseHandler_.computeMinimalRepair(axiomSet);
+					Set<Integer> axiomSetAll = new HashSet<Integer>(idProvider_.getAxiomIds());
+					axiomSetAll.removeAll(axiomSet);
+					
+					minRepair_int = satClauseHandler_.computeMinimalRepair(axiomSetAll);
 
 					satClauseHandler_.pushPosClauseToSolver(minRepair_int);
 					
@@ -136,12 +140,6 @@ public class SatRepairComputationLogicNg_intuitive<C, I extends Inference<? exte
 
 		@Override
 		public void produce(Inference<? extends Integer> inference) {
-			// translate the inference to SAT
-//			try {
-//				satClauseHandler_.addInfToSolver(inference);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
 		}
 	}
 

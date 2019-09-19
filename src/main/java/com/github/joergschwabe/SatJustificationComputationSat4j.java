@@ -131,7 +131,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 		public void produce(Inference<? extends Integer> inference) {
 			// translate the inference to SAT
 			try {
-				satClauseHandler_.addInfToSolver(inference);
+				satClauseHandler_.addInfImplicationToSolver(inference);
 				idProvider_.addConclusionInference(inference);
 			} catch (ContradictionException e) {
 				e.printStackTrace();
