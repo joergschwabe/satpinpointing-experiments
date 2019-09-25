@@ -96,7 +96,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<C, Inference<? extends Integer>, A> cycleComputator = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
+				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
 				Set<List<Inference<? extends Integer>>> cycles = cycleComputator.getCycles(queryId_);
 				satClauseHandler_.addCycleClauses(cycles);
 

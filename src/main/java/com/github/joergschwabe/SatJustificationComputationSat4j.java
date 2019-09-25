@@ -92,8 +92,8 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<C, Inference<? extends Integer>, A> cycle2 = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
-				Set<List<Inference<? extends Integer>>> cycles = cycle2.getCycles(queryId_);
+				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
+				Set<List<Inference<? extends Integer>>> cycles = cycleComputator.getCycles(queryId_);
 				satClauseHandler_.addCycleClauses(cycles);
 				
 				compute();

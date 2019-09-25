@@ -36,14 +36,10 @@ import org.liveontologies.puli.Proof;
 /**
  * @author Jörg Schwabe
  *
- * @param <C>
- *            the type of conclusions in inferences
  * @param <I>
  *            the type of the inferences returned by the proof
- * @param <A>
- *            the type of the axioms in the justification of inferences
  */
-public class CycleComputator<C, I extends Inference<?>, A> {
+public class CycleComputator<I extends Inference<?>> {
 
 	/**
 	 * the set of inferences from which the proofs are formed
@@ -66,16 +62,24 @@ public class CycleComputator<C, I extends Inference<?>, A> {
 	private final Set<Object> printed_ = new HashSet<Object>();
 
 	/**
-	 * accumulates the printed conclusions to avoid repetitions
+	 * the conclusions of considered path
 	 */
 	private final List<Object> conclusionPath_ = new ArrayList<Object>();
 
+	/**
+	 * the inferences of considered path
+	 */
 	private final List<I> inferencePath_ = new ArrayList<I>();
 
+	/**
+	 * contains all axioms of the ontology
+	 */
 	private final Set<Integer> axiomSet;
 
-	private Set<List<I>> cycles;
-
+	/**
+	 * contains all computed cycles
+	 */
+	private final Set<List<I>> cycles_ = new HashSet<>();
 
 	protected CycleComputator(final Proof<? extends I> proof, Set<Integer> axiomSet) {
 		this.proof = proof;
@@ -83,10 +87,9 @@ public class CycleComputator<C, I extends Inference<?>, A> {
 	}
 
 	public Set<List<I>> getCycles(Object conclusion) throws IOException {
-		cycles = new HashSet<>();
 		process(conclusion);
 		process();
-		return cycles;
+		return cycles_;
 	}
 
 	private boolean process(Object conclusion) throws IOException {
@@ -106,12 +109,12 @@ public class CycleComputator<C, I extends Inference<?>, A> {
 			}
 			// else
 			if (infIter.hasNext()) {
-				I inf = infIter.next();
-				if(inf.getPremises().isEmpty()) {
+				I nextInf = infIter.next();
+				if(nextInf.getPremises().isEmpty()) {
 					continue;
 				}
-				conclusionStack_.push(getConclusions(inf).iterator());
-				inferencePath_.add(inf);
+				conclusionStack_.push(getConclusions(nextInf).iterator());
+				inferencePath_.add(nextInf);
 			} else {
 				if(conclusionPath_.size() > 0) {
 					conclusionPath_.remove(conclusionPath_.size()-1);
@@ -126,24 +129,24 @@ public class CycleComputator<C, I extends Inference<?>, A> {
 			// else
 			for (;;) {
 				if (conclIter.hasNext()) {
-					Object next = conclIter.next();
-					conclusionPath_.add(next);
-					// else
-					if (process(next)) {
+					Object nextConclusion = conclIter.next();
+					conclusionPath_.add(nextConclusion);
+					if (process(nextConclusion)) {
 						break;
 					}
-					if(conclusionPath_.subList(0, conclusionPath_.size()-1).contains(next)) {
-						int firstIndex = conclusionPath_.indexOf(next);
+					// else
+					if(conclusionPath_.subList(0, conclusionPath_.size()-1).contains(nextConclusion)) {
+						int firstIndex = conclusionPath_.indexOf(nextConclusion);
 						ArrayList<I> infCycle = new ArrayList<>();
 						infCycle.addAll(inferencePath_.subList(firstIndex+1, inferencePath_.size()));
-						cycles.add(infCycle);
+						cycles_.add(infCycle);
 					}
-					if(conclusionPath_.size()-1 > 0) {
+					if(conclusionPath_.size() > 0) {
 						conclusionPath_.remove(conclusionPath_.size()-1);
 					}
 					continue;
 				}
-				if(inferencePath_.size()-1 > 0) {
+				if(inferencePath_.size() > 0) {
 					inferencePath_.remove(inferencePath_.size()-1);
 				}
 				conclusionStack_.pop();
