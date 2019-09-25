@@ -1,6 +1,7 @@
 package com.github.joergschwabe;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -89,8 +90,12 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 			try {
 				satClauseHandler_.translateQuery();
 
-				satClauseHandler_.addConclusionInferences();
+				satClauseHandler_.addConclusionInferencesClauses();
 
+				CycleComputator<C, Inference<? extends Integer>, A> cycle2 = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
+				Set<List<Inference<? extends Integer>>> cycles = cycle2.getCycles(queryId_);
+				satClauseHandler_.addCycleClauses(cycles);
+				
 				compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
@@ -102,7 +107,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 
 			Set<Integer> axiomSet;
 			Set<A> justification;
-
+			
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
 

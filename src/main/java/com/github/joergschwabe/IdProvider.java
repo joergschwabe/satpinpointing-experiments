@@ -68,6 +68,7 @@ public class IdProvider<A, I> {
 	}
 
 	Set<Integer> getInferenceIds(Object conclusion) { 
-		return inferenceConclusionIds_.get(conclusion);
+		HashSet<Integer> inferenceIds = inferenceConclusionIds_.get(conclusion);
+		return inferenceIds != null ? inferenceIds : new HashSet<Integer>();
 	}
 }

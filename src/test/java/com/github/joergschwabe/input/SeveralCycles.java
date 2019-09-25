@@ -23,7 +23,7 @@ package com.github.joergschwabe.input;
 
 import com.github.joergschwabe.ProofAndJustifierBuilder;
 
-public abstract class ComplexCycle
+public abstract class SeveralCycles
 		extends BaseEnumeratorTestInput<String, Integer> {
 
 	private static ProofAndJustifierBuilder<String, Integer> getBuilder() {
@@ -31,19 +31,28 @@ public abstract class ComplexCycle
 		final ProofAndJustifierBuilder<String, Integer> builder = new ProofAndJustifierBuilder<String, Integer>();
 
 		builder.conclusion("A").premise("B").axiom(1).add();
-		builder.conclusion("A").premise("C").axiom(2).add();
+		builder.conclusion("A").premise("C").axiom(1).add();
 		builder.conclusion("B").premise("C").axiom(3).add();
 		builder.conclusion("C").premise("D").axiom(4).add();
-		builder.conclusion("D").premise("B").axiom(5).add();
-		builder.conclusion("D").axiom(6).axiom(7).add();
-		builder.conclusion("A").premise("E").axiom(8).add();
+		builder.conclusion("D").premise("E").axiom(5).add();
+		builder.conclusion("E").premise("F").axiom(6).add();
+		builder.conclusion("F").premise("C").axiom(7).add();
+		builder.conclusion("F").premise("K").premise("L").premise("G").axiom(8).add();
+		builder.conclusion("G").premise("E").axiom(9).add();
+		builder.conclusion("B").premise("I").axiom(12).add();
+		builder.conclusion("I").premise("J").premise("K").axiom(13).add();
+		builder.conclusion("J").premise("B").axiom(13).add();
+		builder.conclusion("D").premise("C").axiom(8).axiom(9).add();
+		builder.conclusion("G").axiom(10).axiom(11).add();
 		builder.conclusion("E").axiom(1).axiom(9).add();
-		builder.conclusion("B").axiom(8).axiom(9).add();
+		builder.conclusion("C").axiom(8).axiom(9).add();
+		builder.conclusion("K").add();
+		builder.conclusion("L").add();
 
 		return builder;
 	}
 
-	public ComplexCycle() {
+	public SeveralCycles() {
 		super(getBuilder());
 	}
 

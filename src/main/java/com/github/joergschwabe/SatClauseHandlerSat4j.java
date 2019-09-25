@@ -1,10 +1,10 @@
 package com.github.joergschwabe;
 
+import java.util.List;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.logicng.formulas.Formula;
 import org.logicng.io.parsers.ParserException;
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.ContradictionException;
@@ -86,7 +86,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		solver.addClause(clause);
 	}
 
-	public void addConclusionInferences() throws ParserException, ContradictionException {
+	public void addConclusionInferencesClauses() throws ParserException, ContradictionException {
 		for (Integer conclusionId : idProvider.getConclusionIds()) {
 			IVecInt clause = new VecInt();
 			clause.push(-conclusionId);
@@ -95,6 +95,17 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 			}
 
 			solver.addClause(clause);
+		}
+	}
+
+	public void addCycleClauses(Set<List<Inference<? extends Integer>>> cycles) throws ContradictionException {
+		for (List<Inference<? extends Integer>> cycle : cycles) {
+			IVecInt clause = new VecInt();
+			for(Inference<? extends Integer> inf : cycle) {
+				int infId = idProvider.getInferenceId(inf);
+				clause.push(-infId);
+			}
+			solver.addClause(clause);			
 		}
 	}
 }

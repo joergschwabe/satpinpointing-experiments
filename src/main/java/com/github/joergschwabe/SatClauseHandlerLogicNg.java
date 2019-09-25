@@ -37,7 +37,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		f = new FormulaFactory();
 		p = new PropositionalParser(f);
 	}
-	
+
 	public SATSolver getSolver() throws ContradictionException {
 		return this.solver;
 	}
@@ -107,16 +107,28 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		this.solver.add(formula);
 	}
 
-	public void addConclusionInferences() throws ParserException {
+	public void addConclusionInferencesClauses() throws ParserException {
 		String formulaString ="";
 		for (Integer conclusionId : idProvider.getConclusionIds()) {
 			formulaString = "~" + conclusionId;
 			for(Integer inferenceId : idProvider.getInferenceIds(conclusionId)) {
-				formulaString = formulaString + " | " + inferenceId;
+				formulaString += " | " + inferenceId;
 			}
 			
 			Formula formula = p.parse(formulaString);
 			this.solver.add(formula);
 		}
+	}
+
+	public void addCycleClauses(Set<List<Inference<? extends Integer>>> cycles) throws ParserException {
+		for (List<Inference<? extends Integer>> cycle : cycles) {
+			String formulaString ="";
+			for(Inference<? extends Integer> inf : cycle) {
+				int infId = idProvider.getInferenceId(inf);
+				formulaString += " | ~" + infId;
+			}
+			Formula formula = p.parse(formulaString.substring(3));
+			this.solver.add(formula);
+		}		
 	}
 }

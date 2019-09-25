@@ -1,6 +1,7 @@
 package com.github.joergschwabe;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -93,7 +94,11 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 			try {
 				satClauseHandler_.translateQuery();
 
-				satClauseHandler_.addConclusionInferences();
+				satClauseHandler_.addConclusionInferencesClauses();
+
+				CycleComputator<C, Inference<? extends Integer>, A> cycleComputator = new CycleComputator<>(translatedProof, idProvider_.getAxiomIds());
+				Set<List<Inference<? extends Integer>>> cycles = cycleComputator.getCycles(queryId_);
+				satClauseHandler_.addCycleClauses(cycles);
 
 				compute();
 			} catch (Exception e) {
