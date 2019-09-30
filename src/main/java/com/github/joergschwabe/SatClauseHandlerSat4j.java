@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,18 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 	
 	public ISolver getSolver() throws TimeoutException, ContradictionException {
 		return solver;
+	}
+
+	public Set<Integer> getPositiveOntologieAxioms(int[] list) throws ContradictionException {
+		Set<Integer> axiomSet = new HashSet<>();
+		Set<Integer> axiomIds = idProvider.getAxiomIds();
+
+		for (Integer modelId : list) {
+			if (modelId > 0 && axiomIds.contains(modelId)) {
+				axiomSet.add(modelId);
+			}
+		}
+		return axiomSet;
 	}
 
 	public void translateQuery() throws ContradictionException {

@@ -59,12 +59,7 @@ public class CycleComputator<I extends Inference<?>> {
 	/**
 	 * accumulates the printed conclusions to avoid repetitions
 	 */
-	private final Set<Object> printed_ = new HashSet<Object>();
-
-	/**
-	 * the conclusions of considered path
-	 */
-	private final List<Object> conclusionPath_ = new ArrayList<Object>();
+	private final Set<Object> visited_ = new HashSet<Object>();
 
 	/**
 	 * the inferences of considered path
@@ -87,17 +82,9 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	public Set<List<I>> getCycles(Object conclusion) throws IOException {
-		process(conclusion);
+		inferenceStack_.push(proof.getInferences(conclusion).iterator());
 		process();
 		return cycles_;
-	}
-
-	private boolean process(Object conclusion) throws IOException {
-		boolean newConclusion = printed_.add(conclusion);
-		if (newConclusion) {
-			inferenceStack_.push(proof.getInferences(conclusion).iterator());
-		}
-		return newConclusion;
 	}
 
 	private void process() throws IOException {
@@ -110,48 +97,44 @@ public class CycleComputator<I extends Inference<?>> {
 			// else
 			if (infIter.hasNext()) {
 				I nextInf = infIter.next();
-				if(nextInf.getPremises().isEmpty()) {
-					continue;
-				}
-				conclusionStack_.push(getConclusions(nextInf).iterator());
-				inferencePath_.add(nextInf);
-			} else {
-				if(conclusionPath_.size() > 0) {
-					conclusionPath_.remove(conclusionPath_.size()-1);
-				}
-				inferenceStack_.pop();
-			}
-			// processing conclusions
-			Iterator<?> conclIter = conclusionStack_.peek();
-			if (conclIter == null) {
-				return;
-			}
-			// else
-			for (;;) {
-				if (conclIter.hasNext()) {
-					Object nextConclusion = conclIter.next();
-					conclusionPath_.add(nextConclusion);
-					if (process(nextConclusion)) {
-						break;
-					}
-					// else
-					if(conclusionPath_.subList(0, conclusionPath_.size()-1).contains(nextConclusion)) {
-						int firstIndex = conclusionPath_.indexOf(nextConclusion);
+				
+				if(!visited_.add(nextInf)) {
+					if(inferencePath_.contains(nextInf)) {
+						int firstIndex = inferencePath_.indexOf(nextInf);
 						ArrayList<I> infCycle = new ArrayList<>();
-						infCycle.addAll(inferencePath_.subList(firstIndex+1, inferencePath_.size()));
+						infCycle.addAll(inferencePath_.subList(firstIndex, inferencePath_.size()));
 						cycles_.add(infCycle);
 					}
-					if(conclusionPath_.size() > 0) {
-						conclusionPath_.remove(conclusionPath_.size()-1);
-					}
 					continue;
 				}
+
+				// processing conclusions
+				List<?> conclusions = getConclusions(nextInf);
+				if(conclusions.isEmpty()) {
+					continue;
+				}
+
+				inferencePath_.add(nextInf);
+				conclusionStack_.push(conclusions.iterator());
+
+				Iterator<?> conclIter = conclusionStack_.peek();
+				if (conclIter == null) {
+					return;
+				}
+				// else
+				if (conclIter.hasNext()) {
+					Object nextConclusion = conclIter.next();
+					inferenceStack_.push(proof.getInferences(nextConclusion).iterator());
+					continue;
+				}
+
+				conclusionStack_.pop();
+				
+			} else {
 				if(inferencePath_.size() > 0) {
 					inferencePath_.remove(inferencePath_.size()-1);
 				}
-				conclusionStack_.pop();
-				
-				break;
+				inferenceStack_.pop();
 			}
 		}
 	}

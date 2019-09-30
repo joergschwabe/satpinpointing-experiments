@@ -27,7 +27,7 @@ import java.util.Set;
 import com.github.joergschwabe.input.SeveralCycles;
 import com.google.common.collect.ImmutableSet;
 
-public class ThreeCyclesJustifications extends SeveralCycles {
+public class SeveralCyclesJustifications extends SeveralCycles {
 
 	@Override
 	public Collection<? extends Set<? extends Integer>> getExpectedResult() {

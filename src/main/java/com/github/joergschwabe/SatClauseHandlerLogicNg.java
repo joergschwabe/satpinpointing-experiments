@@ -47,7 +47,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		solver.add(formula);
 	}
 
-	Set<Integer> getPositiveOntologieAxioms(Assignment model) throws ContradictionException {
+	public Set<Integer> getPositiveOntologieAxioms(Assignment model) throws ContradictionException {
 		Set<Integer> axiomSet = new HashSet<>();
 
 		List<Variable> posLiterals = model.positiveLiterals();
@@ -88,9 +88,9 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		solver.add(formula);
 	}
 
-	void pushNegClauseToSolver(Set<Integer> minRepair) throws ParserException {
+	void pushNegClauseToSolver(Set<Integer> axiomSet) throws ParserException {
 		String formulaString = "";
-		for (Integer axiomId : minRepair) {
+		for (Integer axiomId : axiomSet) {
 			formulaString = formulaString + " | ~" + axiomId;
 		}
 
@@ -98,9 +98,9 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		this.solver.add(formula);
 	}
 
-	void pushPosClauseToSolver(Set<Integer> minRepair) throws ParserException {
+	void pushPosClauseToSolver(Set<Integer> axiomSet) throws ParserException {
 		String formulaString = "";
-		for (Integer axiomId : minRepair) {
+		for (Integer axiomId : axiomSet) {
 			formulaString = formulaString + " | " + axiomId;
 		}
 		Formula formula = p.parse(formulaString.substring(3));

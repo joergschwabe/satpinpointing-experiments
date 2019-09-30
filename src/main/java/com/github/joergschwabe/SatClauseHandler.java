@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.sat4j.specs.ContradictionException;
 
 /**
  * 
@@ -31,18 +30,6 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 			translated_axiomSet.add(idProvider.getAxiomFromId(axiomId));
 		}
 		return translated_axiomSet;
-	}
-
-	Set<Integer> getPositiveOntologieAxioms(int[] list) throws ContradictionException {
-		Set<Integer> axiomSet = new HashSet<>();
-		Set<Integer> axiomIds = idProvider.getAxiomIds();
-
-		for (Integer modelId : list) {
-			if (modelId > 0 && axiomIds.contains(modelId)) {
-				axiomSet.add(modelId);
-			}
-		}
-		return axiomSet;
 	}
 
 	Set<Integer> computeMinimalRepair(Set<Integer> repair) {
