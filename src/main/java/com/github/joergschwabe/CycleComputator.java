@@ -114,26 +114,27 @@ public class CycleComputator<I extends Inference<?>> {
 
 			Set<Object> premises = getPremises(nextInf);
 
-			// check if one premise of nextInf was already visited
-			if(checkAlreadyVisited(premises)) {
-				continue;
-			}
+			for (Object premise : premises) {
 
-			inferencePath_.push(nextInf);
+				// check if the premise was already visited
+				if(visited_.contains(premise)) {
+					continue;
+				}
 
-			if(premises.contains(start)) {
-				cycles_.add(new ArrayList<I>(inferencePath_));
-				foundCycle = true;
-			} else {	
-				for (Object premise : premises) {
+				inferencePath_.push(nextInf);
+
+				if(premises.contains(start)) {
+					cycles_.add(new ArrayList<I>(inferencePath_));
+					foundCycle = true;
+				} else {	
 					if (!blocked.contains(premise)) {
 						inferenceStack_.push(proof.getInferences(premise).iterator());
 						boolean gotCycle = findCycles(start, premise);
 						foundCycle = gotCycle || foundCycle;
 					}
 				}
+				inferencePath_.pop();
 			}
-			inferencePath_.pop();
 		}
 
 		inferenceStack_.pop();
@@ -162,15 +163,6 @@ public class CycleComputator<I extends Inference<?>> {
 				}
 			}
 		}
-	}
-
-	private boolean checkAlreadyVisited(Set<Object> premises) {
-		Set<Object> premiseSet = new HashSet<Object>(premises);
-		premiseSet.retainAll(visited_);
-		if(premiseSet.size()>0) {
-			return true;
-		}
-		return false;
 	}
 
 	private void unblock(Object axiom) {
