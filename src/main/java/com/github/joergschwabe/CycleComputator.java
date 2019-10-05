@@ -58,8 +58,14 @@ public class CycleComputator<I extends Inference<?>> {
 	 */
 	private final Deque<Object> conclusionStack_ = new LinkedList<>();
 	
+	/**
+	 * contains all blocked axioms
+	 */
 	private Set<Object> blocked = new HashSet<>();
 
+	/**
+	 * contains a map for used for unblocking
+	 */
 	private final Map<Object, Set<Object>> blockedMap_ = new HashMap<>();
 
 	/**
