@@ -67,7 +67,7 @@ public class CycleComputator<I extends Inference<?>> {
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private final Map<Object, Set<Object>> blockedMap_ = new HashMap<>();
+	private Map<Object, Set<Object>> blockedMap_;
 
 	/**
 	 * contains all visited conclusions
@@ -101,6 +101,7 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	public Set<Collection<I>> getCycles(Object conclusion) throws IOException {
+		blockedMap_ =  new HashMap<>(conclusionSet.size());
 		for (Iterator<Integer> iterator = conclusionSet.iterator(); iterator.hasNext();) {
 			Object concl = iterator.next();
 			inferenceStack_.push(proof.getInferences(concl).iterator());
