@@ -23,6 +23,7 @@ package com.github.joergschwabe;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -91,7 +92,7 @@ public class CycleComputator<I extends Inference<?>> {
 	/**
 	 * contains all computed cycles
 	 */
-	private final Set<List<I>> cycles_ = new HashSet<>();
+	private Set<Collection<I>> cycles_ = new HashSet<>();
 
 	protected CycleComputator(final Proof<? extends I> proof, Set<Integer> axiomSet, Set<Integer> conclusionSet) {
 		this.proof = proof;
@@ -99,7 +100,7 @@ public class CycleComputator<I extends Inference<?>> {
 		this.conclusionSet = conclusionSet;
 	}
 
-	public Set<List<I>> getCycles(Object conclusion) throws IOException {
+	public Set<Collection<I>> getCycles(Object conclusion) throws IOException {
 		for (Iterator<Integer> iterator = conclusionSet.iterator(); iterator.hasNext();) {
 			Object concl = iterator.next();
 			inferenceStack_.push(proof.getInferences(concl).iterator());
@@ -129,8 +130,8 @@ public class CycleComputator<I extends Inference<?>> {
 
 				inferencePath_.push(nextInf);
 
-				if(premises.contains(start)) {
-					cycles_.add(new ArrayList<I>(inferencePath_));
+				if(premise == start) {
+					cycles_.add(new HashSet<I>(inferencePath_));
 					foundCycle = true;
 				} else {	
 					if (!blocked.contains(premise)) {

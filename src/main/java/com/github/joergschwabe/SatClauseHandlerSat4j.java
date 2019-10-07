@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -111,8 +112,8 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		}
 	}
 
-	public void addCycleClauses(Set<List<Inference<? extends Integer>>> cycles) throws ContradictionException {
-		for (List<Inference<? extends Integer>> cycle : cycles) {
+	public void addCycleClauses(Set<Collection<Inference<? extends Integer>>> cycles) throws ContradictionException {
+		for (Collection<Inference<? extends Integer>> cycle : cycles) {
 			IVecInt clause = new VecInt();
 			for(Inference<? extends Integer> inf : cycle) {
 				int infId = idProvider.getInferenceId(inf);

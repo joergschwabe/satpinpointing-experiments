@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -120,8 +121,8 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		}
 	}
 
-	public void addCycleClauses(Set<List<Inference<? extends Integer>>> cycles) throws ParserException {
-		for (List<Inference<? extends Integer>> cycle : cycles) {
+	public void addCycleClauses(Set<Collection<Inference<? extends Integer>>> cycles) throws ParserException {
+		for (Collection<Inference<? extends Integer>> cycle : cycles) {
 			String formulaString ="";
 			for(Inference<? extends Integer> inf : cycle) {
 				int infId = idProvider.getInferenceId(inf);

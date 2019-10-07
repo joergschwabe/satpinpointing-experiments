@@ -1,5 +1,6 @@
 package com.github.joergschwabe;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -97,7 +98,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 				satClauseHandler_.addConclusionInferencesClauses();
 
 				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<Inference<? extends Integer>>(translatedProof, idProvider_.getAxiomIds(), idProvider_.getConclusionIds());
-				Set<List<Inference<? extends Integer>>> cycles = cycleComputator.getCycles(queryId_);
+				Set<Collection<Inference<? extends Integer>>> cycles = cycleComputator.getCycles(queryId_);
 				satClauseHandler_.addCycleClauses(cycles);
 
 				compute();
