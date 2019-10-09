@@ -80,38 +80,25 @@ public class CycleComputator<I extends Inference<?>> {
 	private final Deque<I> inferencePath_ = new LinkedList<I>();
 
 	/**
-	 * contains all axioms of the ontology
-	 */
-	private final Set<Integer> axiomSet;
-	
-	/**
 	 * contains all computed cycles
 	 */
 	private Set<Collection<I>> cycles_ = new HashSet<>();
 
-	private List<Object> actualSccList = new ArrayList<>();
+	private List<Integer> consideredSCC;
 
-	protected CycleComputator(final Proof<? extends I> proof, Set<Integer> axiomSet) {
+	protected CycleComputator(final Proof<? extends I> proof) {
 		this.proof = proof;
-		this.axiomSet = axiomSet;
 	}
 
-	public Set<Collection<I>> getCycles(Object conclusion) throws IOException {
-		StronglyConnectedComponents<Object> sccs = StronglyConnectedComponentsComputation.computeComponents(proof, conclusion);
-		for (Iterator<List<Object>> iterator = sccs.getComponents().iterator(); iterator.hasNext();) {
-			actualSccList = iterator.next();
-			if(actualSccList.size() == 1) {
-				continue;
-			}
-			blockedMap_ = new HashMap<>(actualSccList.size());
-			for (Iterator<Object> it2 = actualSccList.iterator(); it2.hasNext();) {
-				Object concl = it2.next();				
-				inferenceStack_.push(proof.getInferences(concl).iterator());
-				blocked.clear();
-				blockedMap_.clear();
-				findCycles(concl, concl);
-				visited_.add(concl);			
-			}
+	public Set<Collection<I>> getCycles(List<Integer> consideredSCC) throws IOException {
+		this.consideredSCC = consideredSCC;
+		blockedMap_ = new HashMap<>(consideredSCC.size());
+		for (Object concl : consideredSCC) {
+			inferenceStack_.push(proof.getInferences(concl).iterator());
+			blocked.clear();
+			blockedMap_.clear();
+			findCycles(concl, concl);
+			visited_.add(concl);			
 		}
 		return cycles_;
 	}
@@ -123,9 +110,7 @@ public class CycleComputator<I extends Inference<?>> {
 		for (Iterator<? extends I> iterator = inferenceStack_.peek(); iterator.hasNext();) {
 			I nextInf = iterator.next();
 
-			Set<Object> premises = getPremises(nextInf);
-
-			for (Object premise : premises) {
+			for (Object premise : getPremises(nextInf)) {
 
 				// check if the premise was already visited
 				if(visited_.contains(premise)) {
@@ -161,8 +146,7 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	private void addToBlockedMap(Object current) {
-		for (Iterator<? extends I> iterator = proof.getInferences(current).iterator(); iterator.hasNext();) {
-			I nextInf = iterator.next();
+		for (I nextInf : proof.getInferences(current)) {
 			for (Object premise : getPremises(nextInf)) {
 				Set<Object> blockedSet = blockedMap_.get(premise);
 				if(blockedSet == null) {
@@ -180,10 +164,9 @@ public class CycleComputator<I extends Inference<?>> {
 		blocked.remove(axiom);
 		Set<Object> blockedSet = blockedMap_.get(axiom);
 		if(blockedSet != null) {
+			blockedSet.retainAll(blocked);
 			for (Object premise : blockedSet) {
-				if(blocked.contains(premise)) {
-					unblock(premise);
-				}
+				unblock(premise);
 			}
 		}
 		blockedMap_.remove(axiom);
@@ -191,8 +174,7 @@ public class CycleComputator<I extends Inference<?>> {
 
 	private Set<Object> getPremises(I inf) {
 		Set<Object> premises = new HashSet<Object>(inf.getPremises());
-		premises.removeAll(axiomSet);
-		premises.retainAll(actualSccList);
+		premises.retainAll(consideredSCC);
 		return premises;
 	}
 
