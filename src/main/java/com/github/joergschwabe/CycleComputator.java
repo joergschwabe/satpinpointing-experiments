@@ -172,8 +172,13 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	private Set<Object> getPremises(I inf) {
-		Set<Object> premises = new HashSet<Object>(consideredSCC);
-		premises.retainAll(inf.getPremises());
+		Set<Object> premises = new HashSet<Object>();
+		for(Object premise : inf.getPremises()) {
+			if(consideredSCC.contains(premise)) {
+				premises.add(premise);
+			}
+			premises.retainAll(inf.getPremises());
+		}
 		return premises;
 	}
 
