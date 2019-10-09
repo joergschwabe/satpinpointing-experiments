@@ -22,7 +22,6 @@
 package com.github.joergschwabe;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
