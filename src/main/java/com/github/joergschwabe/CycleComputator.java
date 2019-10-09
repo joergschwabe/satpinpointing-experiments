@@ -85,30 +85,33 @@ public class CycleComputator<I extends Inference<?>> {
 	private final Set<Integer> axiomSet;
 	
 	/**
-	 * contains all conclusionIds of the proof
-	 */
-	private Set<Integer> conclusionSet;
-
-	/**
 	 * contains all computed cycles
 	 */
 	private Set<Collection<I>> cycles_ = new HashSet<>();
 
-	protected CycleComputator(final Proof<? extends I> proof, Set<Integer> axiomSet, Set<Integer> conclusionSet) {
+	private List<Object> actualSccList = new ArrayList<>();
+
+	protected CycleComputator(final Proof<? extends I> proof, Set<Integer> axiomSet) {
 		this.proof = proof;
 		this.axiomSet = axiomSet;
-		this.conclusionSet = conclusionSet;
 	}
 
 	public Set<Collection<I>> getCycles(Object conclusion) throws IOException {
-		blockedMap_ =  new HashMap<>(conclusionSet.size());
-		for (Iterator<Integer> iterator = conclusionSet.iterator(); iterator.hasNext();) {
-			Object concl = iterator.next();
-			inferenceStack_.push(proof.getInferences(concl).iterator());
-			blocked.clear();
-			blockedMap_.clear();
-			findCycles(concl, concl);
-			visited_.add(concl);			
+		StronglyConnectedComponents<Object> sccs = StronglyConnectedComponentsComputation.computeComponents(proof, conclusion);
+		for (Iterator<List<Object>> iterator = sccs.getComponents().iterator(); iterator.hasNext();) {
+			actualSccList = iterator.next();
+			if(actualSccList.size() == 1) {
+				continue;
+			}
+			blockedMap_ = new HashMap<>(actualSccList.size());
+			for (Iterator<Object> it2 = actualSccList.iterator(); it2.hasNext();) {
+				Object concl = it2.next();				
+				inferenceStack_.push(proof.getInferences(concl).iterator());
+				blocked.clear();
+				blockedMap_.clear();
+				findCycles(concl, concl);
+				visited_.add(concl);			
+			}
 		}
 		return cycles_;
 	}
@@ -187,12 +190,9 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	private Set<Object> getPremises(I inf) {
-		Set<Object> premises = new HashSet<Object>();
-		for(Object elem : inf.getPremises()) {
-			if(!axiomSet.contains(elem)) {
-				premises.add(elem);
-			}
-		}
+		Set<Object> premises = new HashSet<Object>(inf.getPremises());
+		premises.removeAll(axiomSet);
+		premises.retainAll(actualSccList);
 		return premises;
 	}
 
