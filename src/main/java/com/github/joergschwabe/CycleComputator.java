@@ -59,6 +59,11 @@ public class CycleComputator<I extends Inference<?>> {
 	private final Deque<Object> conclusionStack_ = new LinkedList<>();
 	
 	/**
+	 * contains the blocked axioms
+	 */
+	private final Deque<Iterator<Object>> blockedStack_ = new LinkedList<Iterator<Object>>();
+
+	/**
 	 * contains all blocked axioms
 	 */
 	private Set<Object> blocked = new HashSet<>();
@@ -67,6 +72,11 @@ public class CycleComputator<I extends Inference<?>> {
 	 * contains a map for used for unblocking
 	 */
 	private Map<Object, Set<Object>> blockedMap_;
+
+	/**
+	 * contains a map for used for unblocking
+	 */
+	private Map<I, Set<Object>> premisesMap_;
 
 	/**
 	 * contains all visited conclusions
@@ -92,6 +102,7 @@ public class CycleComputator<I extends Inference<?>> {
 	public Set<Collection<I>> getCycles(List<Integer> consideredSCC) throws IOException {
 		this.consideredSCC = consideredSCC;
 		blockedMap_ = new HashMap<>(consideredSCC.size());
+		premisesMap_ = new HashMap<>(consideredSCC.size());
 		for (Object concl : consideredSCC) {
 			inferenceStack_.push(proof.getInferences(concl).iterator());
 			blocked.clear();
@@ -101,7 +112,7 @@ public class CycleComputator<I extends Inference<?>> {
 		}
 		return cycles_;
 	}
-
+	
 	private boolean findCycles(Object start, Object current) throws IOException {
 		conclusionStack_.push(current);
 		blocked.add(current);
@@ -160,25 +171,55 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	private void unblock(Object axiom) {
-		blocked.remove(axiom);
-		Set<Object> blockedSet = blockedMap_.get(axiom);
-		if(blockedSet != null) {
-			for (Object premise : blockedSet) {
-				if(blocked.contains(premise)) {
-					unblock(premise);
+		if(blockProcess(axiom)) {
+			return;
+		}
+
+		for(;;) {
+			Iterator<Object> blockIter = blockedStack_.peek();
+			if(blockIter == null) {
+				return;
+			}
+			for(;;) {
+				if(blockIter.hasNext()) {
+					Object premise = blockIter.next();
+					if(!blocked.contains(premise)) {
+						continue;
+					}
+					if(blockProcess(premise)) {
+						continue;
+					}
+					break;
 				}
+				blockedStack_.pop();
+				break;
 			}
 		}
+	}
+
+	private boolean blockProcess(Object axiom) {
+		blocked.remove(axiom);
+		Set<Object> blockedAxiomSet = blockedMap_.get(axiom);
 		blockedMap_.remove(axiom);
+		if(blockedAxiomSet == null) {
+			return true;
+		}
+		blockedStack_.push(blockedAxiomSet.iterator());
+		return false;
 	}
 
 	private Set<Object> getPremises(I inf) {
-		Set<Object> premises = new HashSet<Object>();
+		Set<Object> premises = premisesMap_.get(inf);
+		if(premises != null) {
+			return premises;
+		}
+		premises = new HashSet<Object>();
 		for(Object premise : inf.getPremises()) {
 			if(consideredSCC.contains(premise)) {
 				premises.add(premise);
 			}
 		}
+		premisesMap_.put(inf, premises);
 		return premises;
 	}
 
