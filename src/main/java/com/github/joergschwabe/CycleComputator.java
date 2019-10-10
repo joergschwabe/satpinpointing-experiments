@@ -163,9 +163,10 @@ public class CycleComputator<I extends Inference<?>> {
 		blocked.remove(axiom);
 		Set<Object> blockedSet = blockedMap_.get(axiom);
 		if(blockedSet != null) {
-			blockedSet.retainAll(blocked);
 			for (Object premise : blockedSet) {
-				unblock(premise);
+				if(blocked.contains(premise)) {
+					unblock(premise);
+				}
 			}
 		}
 		blockedMap_.remove(axiom);
@@ -177,7 +178,6 @@ public class CycleComputator<I extends Inference<?>> {
 			if(consideredSCC.contains(premise)) {
 				premises.add(premise);
 			}
-			premises.retainAll(inf.getPremises());
 		}
 		return premises;
 	}
