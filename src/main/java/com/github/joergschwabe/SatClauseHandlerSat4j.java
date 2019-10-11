@@ -111,7 +111,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		}
 	}
 
-	public void addCycleClauses(Set<Collection<Inference<? extends Integer>>> cycles) throws ContradictionException {
+	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ContradictionException {
 		for (Collection<Inference<? extends Integer>> cycle : cycles) {
 			IVecInt clause = new VecInt();
 			for(Inference<? extends Integer> inf : cycle) {

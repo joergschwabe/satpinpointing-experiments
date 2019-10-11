@@ -121,7 +121,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		}
 	}
 
-	public void addCycleClauses(Set<Collection<Inference<? extends Integer>>> cycles) throws ParserException {
+	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ParserException {
 		for (Collection<Inference<? extends Integer>> cycle : cycles) {
 			String formulaString ="";
 			for(Inference<? extends Integer> inf : cycle) {
