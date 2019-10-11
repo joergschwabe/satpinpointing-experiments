@@ -106,6 +106,8 @@ public class CycleComputator<I extends Inference<?>> {
 
 	private List<Integer> consideredSCC;
 
+	private boolean foundCycle;
+
 	protected CycleComputator(final Proof<? extends I> proof) {
 		this.proof = proof;
 	}
@@ -116,20 +118,23 @@ public class CycleComputator<I extends Inference<?>> {
 		blockedMap_ = new HashMap<>(consideredSCC.size());
 		premisesMap_ = new HashMap<>(consideredSCC.size());
 		for (Object concl : consideredSCC) {
-			blocked.clear();
-			blockedMap_.clear();
+			start(concl);
 			findCycles(concl);
 			visited_.add(concl);			
 		}
 		return cycles_;
 	}
 
-	private void findCycles(Object start){
-		inferenceStack_.push(proof.getInferences(start).iterator());
-		blocked.add(start);
+	private void start(Object concl) {
+		blocked.clear();
+		blockedMap_.clear();
+		inferenceStack_.push(proof.getInferences(concl).iterator());
+		blocked.add(concl);
 		cycleStore.push(false);
-		boolean foundCycle = false;
+		foundCycle = false;
+	}
 
+	private void findCycles(Object start){
 		for(;;) {
 			Iterator<? extends I> infIter = inferenceStack_.peek();
 			if(infIter == null) {
