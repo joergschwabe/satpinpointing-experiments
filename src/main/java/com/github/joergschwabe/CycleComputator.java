@@ -1,29 +1,7 @@
-/*-
-/*-
- * #%L
- * Proof Utility Library
- * $Id:$
- * $HeadURL:$
- * %%
- * Copyright (C) 2014 - 2017 Live Ontologies Project
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
+
 package com.github.joergschwabe;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,19 +33,9 @@ public class CycleComputator<I extends Inference<?>> {
 	private final Deque<Iterator<? extends I>> inferenceStack_ = new LinkedList<Iterator<? extends I>>();
 
 	/**
-	 * the current positions of iterators over conclusions for inferences
-	 */
-	private final Deque<Iterator<? extends Object>> conclusionStack_ = new LinkedList<Iterator<? extends Object>>();
-	
-	/**
 	 * contains the blocked axioms
 	 */
 	private final Deque<Iterator<Object>> blockedStack_ = new LinkedList<Iterator<Object>>();
-	
-	/**
-	 * contains the blocked axioms
-	 */
-	private final Deque<Object> premiseStack_ = new LinkedList<Object>();
 
 	/**
 	 * contains all blocked axioms
@@ -83,11 +51,6 @@ public class CycleComputator<I extends Inference<?>> {
 	 * contains a map for used for unblocking
 	 */
 	private Map<I, Set<Object>> premisesMap_;
-
-	/**
-	 * contains a map for used for unblocking
-	 */
-	private Deque<Boolean> cycleStore = new LinkedList<Boolean>();
 
 	/**
 	 * contains all visited conclusions
@@ -106,97 +69,62 @@ public class CycleComputator<I extends Inference<?>> {
 
 	private List<Integer> consideredSCC;
 
-	private boolean foundCycle;
-
 	protected CycleComputator(final Proof<? extends I> proof) {
 		this.proof = proof;
 	}
 
 	public Set<Set<I>> getCycles(List<Integer> consideredSCC) throws IOException {
-		Collections.sort(consideredSCC);
 		this.consideredSCC = consideredSCC;
 		blockedMap_ = new HashMap<>(consideredSCC.size());
 		premisesMap_ = new HashMap<>(consideredSCC.size());
 		for (Object concl : consideredSCC) {
-			start(concl);
-			findCycles(concl);
+			inferenceStack_.push(proof.getInferences(concl).iterator());
+			blocked.clear();
+			blockedMap_.clear();
+			findCycles(concl, concl);
 			visited_.add(concl);			
 		}
 		return cycles_;
 	}
 
-	private void start(Object concl) {
-		blocked.clear();
-		blockedMap_.clear();
-		inferenceStack_.push(proof.getInferences(concl).iterator());
-		blocked.add(concl);
-		cycleStore.push(false);
-		foundCycle = false;
-	}
+	private boolean findCycles(Object start, Object current) throws IOException {
+		blocked.add(current);
+		boolean foundCycle = false;
+		for (Iterator<? extends I> iterator = inferenceStack_.peek(); iterator.hasNext();) {
+			I nextInf = iterator.next();
 
-	private void findCycles(Object start){
-		for(;;) {
-			Iterator<? extends I> infIter = inferenceStack_.peek();
-			if(infIter == null) {
-				return;
-			}
+			for (Object premise : getPremises(nextInf)) {
 
-			if(infIter.hasNext()) {
-				I nextInf = infIter.next();
-				conclusionStack_.push(getPremises(nextInf).iterator());
-				inferencePath_.push(nextInf);
-			} else {
-				inferenceStack_.pop();
-
-				if(premiseStack_.size()>0) {
-					Object premise = premiseStack_.pop();
-					if(foundCycle) {
-						unblock(premise);
-					} else {
-						addToBlockedMap(premise);
-					}
-				}
-				foundCycle = cycleStore.pop() || foundCycle;
-			}
-
-			Iterator<? extends Object> conclIter = conclusionStack_.peek();
-			if(conclIter == null) {
-				return;
-			}
-
-			for(;;) {
-				if(conclIter.hasNext()) {
-					Object premise = conclIter.next();
-					
-					// check if the premise was already visited
-					if(visited_.contains(premise)) {
-						continue;
-					}
-					
-					if(premise == start) {
-						cycles_.add(new HashSet<I>(inferencePath_));
-						foundCycle=true;
-						continue;
-					}
-					if (!blocked.contains(premise)) {
-						premiseStack_.push(premise);
-						blocked.add(premise);
-						cycleStore.push(foundCycle);
-						foundCycle = false;
-						inferenceStack_.push(proof.getInferences(premise).iterator());
-						break;
-					}
+				// check if the premise was already visited
+				if(visited_.contains(premise)) {
 					continue;
 				}
-				if(conclusionStack_.size()>0) {
-					conclusionStack_.pop();
+
+				inferencePath_.push(nextInf);
+
+				if(premise == start) {
+					cycles_.add(new HashSet<I>(inferencePath_));
+					foundCycle = true;
+				} else {	
+					if (!blocked.contains(premise)) {
+						inferenceStack_.push(proof.getInferences(premise).iterator());
+						boolean gotCycle = findCycles(start, premise);
+						foundCycle = gotCycle || foundCycle;
+					}
 				}
-				if(inferencePath_.size()>0) {
-					inferencePath_.pop();
-				}
-				break;
+				inferencePath_.pop();
 			}
 		}
+
+		inferenceStack_.pop();
+
+		if(foundCycle) {
+			unblock(current);
+		} else {
+			addToBlockedMap(current);
+		}
+		
+		return foundCycle;
 	}
 
 	private void addToBlockedMap(Object current) {
@@ -268,4 +196,3 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 }
-
