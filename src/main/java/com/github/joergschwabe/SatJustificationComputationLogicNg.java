@@ -99,14 +99,12 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<Inference<? extends Integer>>(translatedProof);
 
 				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
-				Set<Set<Inference<? extends Integer>>> cycles = new HashSet<>();
 				for(List<Integer> consideredSCC : sccc.getComponents()) {
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					cycles.addAll(cycleComputator.getCycles(consideredSCC));
+					satClauseHandler_.addCycleClauses(cycleComputator.getCycles(consideredSCC));
 				}
-				satClauseHandler_.addCycleClauses(cycles);
 
 				compute();
 			} catch (Exception e) {
