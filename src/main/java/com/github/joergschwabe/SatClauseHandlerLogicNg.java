@@ -1,6 +1,5 @@
 package com.github.joergschwabe;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +38,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		p = new PropositionalParser(f);
 	}
 
-	public SATSolver getSolver() throws ContradictionException {
+	public SATSolver getSATSolver() throws ContradictionException {
 		return this.solver;
 	}
 
@@ -89,7 +88,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		solver.add(formula);
 	}
 
-	void pushNegClauseToSolver(Set<Integer> axiomSet) throws ParserException {
+	public void pushNegClauseToSolver(Set<Integer> axiomSet) throws ParserException {
 		String formulaString = "";
 		for (Integer axiomId : axiomSet) {
 			formulaString = formulaString + " | ~" + axiomId;
@@ -121,15 +120,13 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		}
 	}
 
-	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ParserException {
-		for (Collection<Inference<? extends Integer>> cycle : cycles) {
-			String formulaString ="";
-			for(Inference<? extends Integer> inf : cycle) {
-				int infId = idProvider.getInferenceId(inf);
-				formulaString += " | ~" + infId;
-			}
-			Formula formula = p.parse(formulaString.substring(3));
-			this.solver.add(formula);
-		}		
+	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ParserException {
+		String formulaString ="";
+		for(Inference<? extends Integer> inf : cycle) {
+			int infId = idProvider.getInferenceId(inf);
+			formulaString += " | ~" + infId;
+		}
+		Formula formula = p.parse(formulaString.substring(3));
+		this.solver.add(formula);
 	}
 }

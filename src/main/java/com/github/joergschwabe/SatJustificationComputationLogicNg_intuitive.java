@@ -106,7 +106,7 @@ public class SatJustificationComputationLogicNg_intuitive<C, I extends Inference
 			Set<Integer> minRepair_int;
 			Set<A> justification;
 
-			SATSolver solver = satClauseHandler_.getSolver();
+			SATSolver solver = satClauseHandler_.getSATSolver();
 
 			while (solver.sat() == Tristate.TRUE) {
 				Assignment model = solver.model();

@@ -99,7 +99,7 @@ public class SatJustificationComputationSat4j_intuitive<C, I extends Inference<?
 			Set<Integer> repair_int;
 			Set<A> justification;
 
-			ISolver solver = satClauseHandler_.getSolver();
+			ISolver solver = satClauseHandler_.getISolver();
 
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();

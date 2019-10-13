@@ -99,7 +99,7 @@ public class SatRepairComputationSat4j<C, I extends Inference<? extends C>, A>
 			Set<Integer> minRepair_int;
 			Set<A> minRepair;
 
-			ISolver solver = satClauseHandler_.getSolver();
+			ISolver solver = satClauseHandler_.getISolver();
 
 			while (solver.isSatisfiable()) {
 				int[] list = solver.model();

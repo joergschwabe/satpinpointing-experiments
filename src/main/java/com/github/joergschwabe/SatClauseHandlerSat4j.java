@@ -1,12 +1,10 @@
 package com.github.joergschwabe;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.logicng.io.parsers.ParserException;
 import org.sat4j.core.VecInt;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.ISolver;
@@ -32,7 +30,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		this.solver = solver;
 	}
 	
-	public ISolver getSolver() throws TimeoutException, ContradictionException {
+	public ISolver getISolver() throws TimeoutException, ContradictionException {
 		return solver;
 	}
 
@@ -81,7 +79,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		}
 	}
 
-	void pushNegClauseToSolver(Set<Integer> axiomSet) throws ContradictionException {
+	public void pushNegClauseToSolver(Set<Integer> axiomSet) throws ContradictionException {
 		IVecInt clause = new VecInt();
 
 		for (Integer axiomId : axiomSet) {
@@ -99,7 +97,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		solver.addClause(clause);
 	}
 
-	public void addConclusionInferencesClauses() throws ParserException, ContradictionException {
+	public void addConclusionInferencesClauses() throws ContradictionException {
 		for (Integer conclusionId : idProvider.getConclusionIds()) {
 			IVecInt clause = new VecInt();
 			clause.push(-conclusionId);
@@ -111,14 +109,12 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		}
 	}
 
-	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ContradictionException {
-		for (Collection<Inference<? extends Integer>> cycle : cycles) {
-			IVecInt clause = new VecInt();
-			for(Inference<? extends Integer> inf : cycle) {
-				int infId = idProvider.getInferenceId(inf);
-				clause.push(-infId);
-			}
-			solver.addClause(clause);			
+	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ContradictionException {
+		IVecInt clause = new VecInt();
+		for(Inference<? extends Integer> inf : cycle) {
+			int infId = idProvider.getInferenceId(inf);
+			clause.push(-infId);
 		}
+		solver.addClause(clause);			
 	}
 }

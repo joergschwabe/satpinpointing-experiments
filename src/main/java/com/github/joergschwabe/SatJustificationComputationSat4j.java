@@ -14,6 +14,7 @@ import org.liveontologies.puli.pinpointing.InterruptMonitor;
 import org.liveontologies.puli.pinpointing.MinimalSubsetEnumerator;
 import org.liveontologies.puli.pinpointing.MinimalSubsetsFromProofs;
 import org.liveontologies.puli.pinpointing.PriorityComparator;
+import org.logicng.io.parsers.ParserException;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.ISolver;
@@ -52,7 +53,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandlerSat4j<I, A> satClauseHandler_;
+		private SatClauseHandler<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -92,14 +93,14 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<Inference<? extends Integer>>(translatedProof);
+				CycleComputator<I,A> cycleComputator = new CycleComputator<I, A>(translatedProof, satClauseHandler_);
 
 				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
 				for(List<Integer> consideredSCC : sccc.getComponents()) {
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					satClauseHandler_.addCycleClauses(cycleComputator.getCycles(consideredSCC));
+					cycleComputator.addAllCycles(consideredSCC);
 				}
 				
 				compute();
@@ -108,8 +109,8 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 			}
 		}
 
-		private void compute() throws ContradictionException, TimeoutException {
-			ISolver solver = satClauseHandler_.getSolver();
+		private void compute() throws ContradictionException, TimeoutException, ParserException {
+			ISolver solver = satClauseHandler_.getISolver();
 
 			Set<Integer> axiomSet;
 			Set<A> justification;
@@ -144,7 +145,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 			try {
 				satClauseHandler_.addInfImplicationToSolver(inference);
 				idProvider_.addConclusionInference(inference);
-			} catch (ContradictionException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

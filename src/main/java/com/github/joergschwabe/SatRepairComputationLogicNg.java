@@ -100,7 +100,7 @@ public class SatRepairComputationLogicNg<C, I extends Inference<? extends C>, A>
 		}
 
 		private void compute() throws ContradictionException, ParserException, TimeoutException {
-			SATSolver solver = satClauseHandler_.getSolver();
+			SATSolver solver = satClauseHandler_.getSATSolver();
 			
 			Set<Integer> repair_int;
 			Set<A> minRepair;

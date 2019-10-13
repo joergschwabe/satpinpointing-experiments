@@ -13,24 +13,27 @@ import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.Proof;
+import org.logicng.io.parsers.ParserException;
+import org.sat4j.specs.ContradictionException;
 
 /**
  * @author Jörg Schwabe
  *
  * @param <I>
  *            the type of the inferences returned by the proof
+ * @param <A>
  */
-public class CycleComputator<I extends Inference<?>> {
+public class CycleComputator<I extends Inference<?>, A> {
 
 	/**
 	 * the set of inferences from which the proofs are formed
 	 */
-	private final Proof<? extends I> proof;
+	private final Proof<Inference<? extends Integer>> proof;
 
 	/**
 	 * the current positions of iterators over inferences for conclusions
 	 */
-	private final Deque<Iterator<? extends I>> inferenceStack_ = new LinkedList<Iterator<? extends I>>();
+	private final Deque<Iterator<? extends Inference<? extends Integer>>> inferenceStack_ = new LinkedList<Iterator<? extends Inference<? extends Integer>>>();
 
 	/**
 	 * contains the blocked axioms
@@ -50,7 +53,7 @@ public class CycleComputator<I extends Inference<?>> {
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private Map<I, Set<Object>> premisesMap_;
+	private Map<Inference<? extends Integer>, Set<Object>> premisesMap_;
 
 	/**
 	 * contains all visited conclusions
@@ -60,20 +63,19 @@ public class CycleComputator<I extends Inference<?>> {
 	/**
 	 * the inferences of considered path
 	 */
-	private final Deque<I> inferencePath_ = new LinkedList<I>();
-
-	/**
-	 * contains all computed cycles
-	 */
-	private Set<Set<I>> cycles_ = new HashSet<>();
+	private final Set<Inference<? extends Integer>> inferencePath_ = new HashSet<>();
 
 	private List<Integer> consideredSCC;
 
-	protected CycleComputator(final Proof<? extends I> proof) {
+	private SatClauseHandler<I, A> satClauseHandler;
+
+	public CycleComputator(Proof<Inference<? extends Integer>> proof,
+			SatClauseHandler<I, A> satClauseHandler_) {
 		this.proof = proof;
+		this.satClauseHandler = satClauseHandler_;
 	}
 
-	public Set<Set<I>> getCycles(List<Integer> consideredSCC) throws IOException {
+	public void addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
 		this.consideredSCC = consideredSCC;
 		blockedMap_ = new HashMap<>(consideredSCC.size());
 		premisesMap_ = new HashMap<>(consideredSCC.size());
@@ -84,14 +86,14 @@ public class CycleComputator<I extends Inference<?>> {
 			findCycles(concl, concl);
 			visited_.add(concl);			
 		}
-		return cycles_;
 	}
 
-	private boolean findCycles(Object start, Object current) throws IOException {
+	private boolean findCycles(Object start, Object current) throws IOException, ParserException, ContradictionException {
 		blocked.add(current);
 		boolean foundCycle = false;
-		for (Iterator<? extends I> iterator = inferenceStack_.peek(); iterator.hasNext();) {
-			I nextInf = iterator.next();
+		for (Iterator<? extends Inference<? extends Integer>> iterator = inferenceStack_.peek(); iterator.hasNext();) {
+			Inference<? extends Integer> nextInf = iterator.next();
+			inferencePath_.add(nextInf);
 
 			for (Object premise : getPremises(nextInf)) {
 
@@ -100,10 +102,8 @@ public class CycleComputator<I extends Inference<?>> {
 					continue;
 				}
 
-				inferencePath_.push(nextInf);
-
 				if(premise == start) {
-					cycles_.add(new HashSet<I>(inferencePath_));
+					satClauseHandler.addCycleClause(inferencePath_);
 					foundCycle = true;
 				} else {	
 					if (!blocked.contains(premise)) {
@@ -112,8 +112,8 @@ public class CycleComputator<I extends Inference<?>> {
 						foundCycle = gotCycle || foundCycle;
 					}
 				}
-				inferencePath_.pop();
 			}
+			inferencePath_.remove(nextInf);
 		}
 
 		inferenceStack_.pop();
@@ -128,7 +128,7 @@ public class CycleComputator<I extends Inference<?>> {
 	}
 
 	private void addToBlockedMap(Object current) {
-		for (I nextInf : proof.getInferences(current)) {
+		for (Inference<? extends Integer> nextInf : proof.getInferences(current)) {
 			for (Object premise : getPremises(nextInf)) {
 				Set<Object> blockedSet = blockedMap_.get(premise);
 				if(blockedSet == null) {
@@ -180,18 +180,18 @@ public class CycleComputator<I extends Inference<?>> {
 		return false;
 	}
 
-	private Set<Object> getPremises(I inf) {
-		Set<Object> premises = premisesMap_.get(inf);
+	private Set<Object> getPremises(Inference<? extends Integer> nextInf) {
+		Set<Object> premises = premisesMap_.get(nextInf);
 		if(premises != null) {
 			return premises;
 		}
 		premises = new HashSet<Object>();
-		for(Object premise : inf.getPremises()) {
+		for(Object premise : nextInf.getPremises()) {
 			if(consideredSCC.contains(premise)) {
 				premises.add(premise);
 			}
 		}
-		premisesMap_.put(inf, premises);
+		premisesMap_.put(nextInf, premises);
 		return premises;
 	}
 

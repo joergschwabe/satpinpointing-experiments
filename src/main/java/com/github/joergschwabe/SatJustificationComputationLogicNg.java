@@ -56,7 +56,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 
 		private final Object query;
-		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
+		private SatClauseHandler<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -96,14 +96,14 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<Inference<? extends Integer>> cycleComputator = new CycleComputator<Inference<? extends Integer>>(translatedProof);
+				CycleComputator<I,A> cycleComputator = new CycleComputator<I,A>(translatedProof,satClauseHandler_);
 
 				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
 				for(List<Integer> consideredSCC : sccc.getComponents()) {
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					satClauseHandler_.addCycleClauses(cycleComputator.getCycles(consideredSCC));
+					cycleComputator.addAllCycles(consideredSCC);
 				}
 
 				compute();
@@ -113,7 +113,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 		}
 
 		private void compute() throws ContradictionException, ParserException {
-			SATSolver solver = satClauseHandler_.getSolver();
+			SATSolver solver = satClauseHandler_.getSATSolver();
 			
 			Set<Integer> axiomSet;
 			Set<A> justification;

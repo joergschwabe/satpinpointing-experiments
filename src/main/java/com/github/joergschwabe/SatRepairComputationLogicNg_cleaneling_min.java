@@ -98,7 +98,7 @@ public class SatRepairComputationLogicNg_cleaneling_min<C, I extends Inference<?
 		}
 
 		private void compute() throws ContradictionException, ParserException {
-			SATSolver solver = satClauseHandler_.getSolver();
+			SATSolver solver = satClauseHandler_.getSATSolver();
 			
 			Set<Integer> repair_int;
 			Set<A> minRepair;
