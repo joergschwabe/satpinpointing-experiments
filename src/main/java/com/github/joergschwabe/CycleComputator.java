@@ -36,11 +36,6 @@ public class CycleComputator<I extends Inference<?>, A> {
 	private final Deque<Iterator<? extends Inference<? extends Integer>>> inferenceStack_ = new LinkedList<Iterator<? extends Inference<? extends Integer>>>();
 
 	/**
-	 * contains the blocked axioms
-	 */
-	private final Deque<Iterator<Object>> blockedStack_ = new LinkedList<Iterator<Object>>();
-
-	/**
 	 * contains all blocked axioms
 	 */
 	private Set<Object> blocked = new HashSet<>();
@@ -132,52 +127,25 @@ public class CycleComputator<I extends Inference<?>, A> {
 			for (Object premise : getPremises(nextInf)) {
 				Set<Object> blockedSet = blockedMap_.get(premise);
 				if(blockedSet == null) {
-					Set<Object> newSet = new HashSet<Object>();
-					newSet.add(current);
-					blockedMap_.put(premise, newSet);
-				} else {
-					blockedSet.add(premise);
+					blockedSet = new HashSet<Object>();
+					blockedMap_.put(premise, blockedSet);
 				}
+				blockedSet.add(premise);
 			}
 		}
 	}
 
 	private void unblock(Object axiom) {
-		if(blockProcess(axiom)) {
-			return;
-		}
-
-		for(;;) {
-			Iterator<Object> blockIter = blockedStack_.peek();
-			if(blockIter == null) {
-				return;
-			}
-			for(;;) {
-				if(blockIter.hasNext()) {
-					Object premise = blockIter.next();
-					if(!blocked.contains(premise)) {
-						continue;
-					}
-					if(blockProcess(premise)) {
-						continue;
-					}
-					break;
-				}
-				blockedStack_.pop();
-				break;
-			}
-		}
-	}
-
-	private boolean blockProcess(Object axiom) {
 		blocked.remove(axiom);
-		Set<Object> blockedAxiomSet = blockedMap_.get(axiom);
-		blockedMap_.remove(axiom);
-		if(blockedAxiomSet == null) {
-			return true;
+		Set<Object> blockedSet = blockedMap_.get(axiom);
+		if(blockedSet != null) {
+			for (Object premise : blockedSet) {
+				if(blocked.contains(premise)) {
+					unblock(premise);
+				}
+			}
+			blockedMap_.remove(axiom);
 		}
-		blockedStack_.push(blockedAxiomSet.iterator());
-		return false;
 	}
 
 	private Set<Object> getPremises(Inference<? extends Integer> nextInf) {
