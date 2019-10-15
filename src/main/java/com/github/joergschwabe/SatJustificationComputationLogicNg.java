@@ -103,7 +103,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					satClauseHandler_.addCycleClauses(cycleComputator.addAllCycles(consideredSCC));
+					satClauseHandler_.addCycleClauses(cycleComputator.getAllCycles(consideredSCC));
 				}
 
 				compute();

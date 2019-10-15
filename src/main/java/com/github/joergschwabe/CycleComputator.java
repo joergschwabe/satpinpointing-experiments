@@ -68,7 +68,7 @@ public class CycleComputator {
 		this.proof = proof;
 	}
 
-	public Set<Set<Inference<? extends Integer>>> addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
+	public Set<Set<Inference<? extends Integer>>> getAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
 		this.consideredSCC = consideredSCC;
 		for (Object concl : consideredSCC) {
 			blocked.clear();

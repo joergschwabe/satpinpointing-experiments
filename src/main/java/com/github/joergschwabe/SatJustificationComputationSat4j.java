@@ -100,7 +100,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					satClauseHandler_.addCycleClauses(cycleComputator.addAllCycles(consideredSCC));
+					satClauseHandler_.addCycleClauses(cycleComputator.getAllCycles(consideredSCC));
 				}
 				
 				compute();
