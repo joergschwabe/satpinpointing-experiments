@@ -19,161 +19,153 @@ import org.sat4j.specs.ContradictionException;
 /**
  * @author Jörg Schwabe
  *
- * @param <I>
- *            the type of the inferences returned by the proof
- * @param <A>
+ * @param <I> the type of the inferences returned by the proof
+ *
+ * @param <A> the type of the axioms
  */
 public class CycleComputator<I extends Inference<?>, A> {
 
 	/**
 	 * the set of inferences from which the proofs are formed
 	 */
-	private Proof<Inference<? extends Integer>> proof;
+	private final Proof<Inference<? extends Integer>> proof;
 
 	/**
 	 * the current positions of iterators over inferences for conclusions
 	 */
-	private Deque<Iterator<? extends Inference<? extends Integer>>> inferenceStack;
+	private final Deque<Iterator<? extends Inference<? extends Integer>>> inferenceStack_ = new LinkedList<Iterator<? extends Inference<? extends Integer>>>();
 
 	/**
 	 * contains all blocked axioms
 	 */
-	private Set<Object> blocked;
+	private Set<Object> blocked = new HashSet<Object>();
 
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private Map<Object, Set<Object>> blockedMap;
+	private Map<Object, Set<Object>> blockedMap_;
 
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private Map<Inference<? extends Integer>, Set<Object>> premisesMap;
+	private Map<Inference<? extends Integer>, Set<Object>> premisesMap_;
 
 	/**
 	 * contains all visited conclusions
 	 */
-	private Set<Object> visited;
+	private final Set<Object> visited_ = new HashSet<Object>();
 
 	/**
 	 * the inferences of considered path
 	 */
-	private Set<Inference<? extends Integer>> inferencePath;
+	private final Set<Inference<? extends Integer>> inferencePath_ = new HashSet<Inference<? extends Integer>>();
 
-	/**
-	 * actual considered stronly connected component
-	 */
 	private List<Integer> consideredSCC;
 
-	/**
-	 * satClauseHandler for add cycle clauses
-	 */
-	private SatClauseHandler<I, A> satClauseHandler;
+	private final SatClauseHandler<I, A> satClauseHandler_;
 
-	public CycleComputator(Proof<Inference<? extends Integer>> proof,
-			SatClauseHandler<I, A> satClauseHandler_) {
+	public CycleComputator(final Proof<Inference<? extends Integer>> proof, SatClauseHandler<I, A> satClauseHandler_) {
 		this.proof = proof;
-		this.satClauseHandler = satClauseHandler_;
+		this.satClauseHandler_ = satClauseHandler_;
 	}
 
 	public void addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
 		initialize(consideredSCC);
 		for (Object concl : consideredSCC) {
-			inferenceStack.push(proof.getInferences(concl).iterator());
 			blocked.clear();
-			blockedMap.clear();
+			blockedMap_.clear();
+			visited_.clear();
+
 			findCycles(concl, concl);
-			visited.add(concl);			
+
+			visited_.add(concl);
 		}
 	}
 
 	private void initialize(List<Integer> consideredSCC) {
 		this.consideredSCC = consideredSCC;
-		inferenceStack = new LinkedList<Iterator<? extends Inference<? extends Integer>>>();
-		blocked = new HashSet<Object>();
-		blockedMap = new HashMap<Object, Set<Object>>(consideredSCC.size());
-		premisesMap = new HashMap<Inference<? extends Integer>, Set<Object>>(consideredSCC.size());
-		visited = new HashSet<Object>();
-		inferencePath = new HashSet<Inference<? extends Integer>>();
+		blockedMap_ = new HashMap<Object, Set<Object>>(consideredSCC.size());
+		premisesMap_ = new HashMap<Inference<? extends Integer>, Set<Object>>(consideredSCC.size());
 	}
 
-	private boolean findCycles(Object start, Object current) throws IOException, ParserException, ContradictionException {
+	private boolean findCycles(Object start, Object current)
+			throws IOException, ParserException, ContradictionException {
 		blocked.add(current);
+		inferenceStack_.push(proof.getInferences(current).iterator());
 		boolean foundCycle = false;
-		for (Iterator<? extends Inference<? extends Integer>> iterator = inferenceStack.peek(); iterator.hasNext();) {
+		for (Iterator<? extends Inference<? extends Integer>> iterator = inferenceStack_.peek(); iterator.hasNext();) {
 			Inference<? extends Integer> nextInf = iterator.next();
-			inferencePath.add(nextInf);
+			inferencePath_.add(nextInf);
 
 			for (Object premise : getPremises(nextInf)) {
 
 				// check if the premise was already visited
-				if(visited.contains(premise)) {
+				if (visited_.contains(premise)) {
 					continue;
 				}
 
-				if(premise == start) {
-					satClauseHandler.addCycleClause(inferencePath);
+				if (premise == start) {
+					satClauseHandler_.addCycleClause(inferencePath_);
 					foundCycle = true;
-				} else {	
+				} else {
 					if (!blocked.contains(premise)) {
-						inferenceStack.push(proof.getInferences(premise).iterator());
 						boolean gotCycle = findCycles(start, premise);
 						foundCycle = gotCycle || foundCycle;
 					}
 				}
 			}
-			inferencePath.remove(nextInf);
+			inferencePath_.remove(nextInf);
 		}
 
-		inferenceStack.pop();
+		inferenceStack_.pop();
 
-		if(foundCycle) {
+		if (foundCycle) {
 			unblock(current);
 		} else {
 			addToBlockedMap(current);
 		}
-		
+
 		return foundCycle;
 	}
 
 	private void addToBlockedMap(Object current) {
 		for (Inference<? extends Integer> nextInf : proof.getInferences(current)) {
 			for (Object premise : getPremises(nextInf)) {
-				Set<Object> blockedSet = blockedMap.get(premise);
-				if(blockedSet == null) {
+				Set<Object> blockedSet = blockedMap_.get(premise);
+				if (blockedSet == null) {
 					blockedSet = new HashSet<Object>();
-					blockedMap.put(premise, blockedSet);
+					blockedMap_.put(premise, blockedSet);
 				}
-				blockedSet.add(premise);
+				blockedSet.add(current);
 			}
 		}
 	}
 
 	private void unblock(Object axiom) {
 		blocked.remove(axiom);
-		Set<Object> blockedSet = blockedMap.get(axiom);
-		if(blockedSet != null) {
+		Set<Object> blockedSet = blockedMap_.get(axiom);
+		if (blockedSet != null) {
 			for (Object premise : blockedSet) {
-				if(blocked.contains(premise)) {
+				if (blocked.contains(premise)) {
 					unblock(premise);
 				}
 			}
-			blockedMap.remove(axiom);
+			blockedMap_.remove(axiom);
 		}
 	}
 
 	private Set<Object> getPremises(Inference<? extends Integer> nextInf) {
-		Set<Object> premises = premisesMap.get(nextInf);
-		if(premises != null) {
+		Set<Object> premises = premisesMap_.get(nextInf);
+		if (premises != null) {
 			return premises;
 		}
 		premises = new HashSet<Object>();
-		for(Object premise : nextInf.getPremises()) {
-			if(consideredSCC.contains(premise)) {
+		for (Object premise : nextInf.getPremises()) {
+			if (consideredSCC.contains(premise)) {
 				premises.add(premise);
 			}
 		}
-		premisesMap.put(nextInf, premises);
+		premisesMap_.put(nextInf, premises);
 		return premises;
 	}
 

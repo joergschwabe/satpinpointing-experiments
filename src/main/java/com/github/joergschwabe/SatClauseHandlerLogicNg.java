@@ -29,7 +29,8 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 	private PropositionalParser p;
 	private SATSolver solver;
 
-	public SatClauseHandlerLogicNg(IdProvider<A, I> idProvider,	InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId, SATSolver solver) {
+	public SatClauseHandlerLogicNg(IdProvider<A, I> idProvider,
+			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, int queryId, SATSolver solver) {
 		super(idProvider, infDeriv, queryId);
 		this.idProvider = idProvider;
 		this.queryId = queryId;
@@ -74,7 +75,7 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 	}
 
 	public void addInfImplicationToSolver(Inference<? extends Integer> inference) throws ParserException {
-		if(inference.getPremises().isEmpty()) {
+		if (inference.getPremises().isEmpty()) {
 			return;
 		}
 
@@ -83,8 +84,8 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 			formulaString = formulaString + " & " + premise;
 		}
 
-		formulaString = " | ("+formulaString.substring(3)+")";
-		Formula formula = p.parse("~"+idProvider.getInferenceId(inference) + formulaString);
+		formulaString = " | (" + formulaString.substring(3) + ")";
+		Formula formula = p.parse("~" + idProvider.getInferenceId(inference) + formulaString);
 		solver.add(formula);
 	}
 
@@ -108,13 +109,13 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 	}
 
 	public void addConclusionInferencesClauses() throws ParserException {
-		String formulaString ="";
+		String formulaString = "";
 		for (Integer conclusionId : idProvider.getConclusionIds()) {
 			formulaString = "~" + conclusionId;
-			for(Integer inferenceId : idProvider.getInferenceIds(conclusionId)) {
+			for (Integer inferenceId : idProvider.getInferenceIds(conclusionId)) {
 				formulaString += " | " + inferenceId;
 			}
-			
+
 			Formula formula = p.parse(formulaString);
 			this.solver.add(formula);
 		}

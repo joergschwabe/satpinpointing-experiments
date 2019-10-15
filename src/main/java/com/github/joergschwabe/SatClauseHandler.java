@@ -107,7 +107,7 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 
 	public void addConclusionInferencesClauses() throws ParserException, ContradictionException {}
 
-	public void addCycleClause(Set<Inference<? extends Integer>> inferencePath_) throws ParserException, ContradictionException {}
+	public void addCycleClause(Set<Inference<? extends Integer>> set) throws ParserException, ContradictionException {}
 
 	public SATSolver getSATSolver() throws ContradictionException {
 		return null;

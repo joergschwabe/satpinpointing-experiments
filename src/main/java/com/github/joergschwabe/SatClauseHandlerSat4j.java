@@ -23,13 +23,14 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 	private int queryId;
 	private ISolver solver;
 
-	public SatClauseHandlerSat4j(IdProvider<A, I> idProvider, InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId, ISolver solver) {
+	public SatClauseHandlerSat4j(IdProvider<A, I> idProvider,
+			InferenceDerivabilityChecker<Object, Inference<?>> infDeriv, Integer queryId, ISolver solver) {
 		super(idProvider, infDeriv, queryId);
 		this.idProvider = idProvider;
 		this.queryId = queryId;
 		this.solver = solver;
 	}
-	
+
 	public ISolver getISolver() throws TimeoutException, ContradictionException {
 		return solver;
 	}
@@ -64,14 +65,14 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 	}
 
 	public void addInfImplicationToSolver(Inference<? extends Integer> inference) throws ContradictionException {
-		if(inference.getPremises().isEmpty()) {
+		if (inference.getPremises().isEmpty()) {
 			return;
 		}
 
 		Integer inferenceId = idProvider.getInferenceId(inference);
 
 		// FA -> F1
-		for (Integer premise : inference.getPremises()) {			
+		for (Integer premise : inference.getPremises()) {
 			IVecInt clause = new VecInt();
 			clause.push(-inferenceId);
 			clause.push(premise);
@@ -101,7 +102,7 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		for (Integer conclusionId : idProvider.getConclusionIds()) {
 			IVecInt clause = new VecInt();
 			clause.push(-conclusionId);
-			for(Integer inferenceId : idProvider.getInferenceIds(conclusionId)) {
+			for (Integer inferenceId : idProvider.getInferenceIds(conclusionId)) {
 				clause.push(inferenceId);
 			}
 
