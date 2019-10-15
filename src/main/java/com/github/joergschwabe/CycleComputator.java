@@ -43,12 +43,12 @@ public class CycleComputator<I extends Inference<?>, A> {
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private Map<Object, Set<Object>> blockedMap_;
+	private Map<Object, Set<Object>> blockedMap_ = new HashMap<Object, Set<Object>>();
 
 	/**
 	 * contains a map for used for unblocking
 	 */
-	private Map<Inference<? extends Integer>, Set<Object>> premisesMap_;
+	private Map<Inference<? extends Integer>, Set<Object>> premisesMap_ = new HashMap<Inference<? extends Integer>, Set<Object>>();
 
 	/**
 	 * contains all visited conclusions
@@ -70,7 +70,7 @@ public class CycleComputator<I extends Inference<?>, A> {
 	}
 
 	public void addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
-		initialize(consideredSCC);
+		this.consideredSCC = consideredSCC;
 		for (Object concl : consideredSCC) {
 			blocked.clear();
 			blockedMap_.clear();
@@ -80,12 +80,6 @@ public class CycleComputator<I extends Inference<?>, A> {
 
 			visited_.add(concl);
 		}
-	}
-
-	private void initialize(List<Integer> consideredSCC) {
-		this.consideredSCC = consideredSCC;
-		blockedMap_ = new HashMap<Object, Set<Object>>(consideredSCC.size());
-		premisesMap_ = new HashMap<Inference<? extends Integer>, Set<Object>>(consideredSCC.size());
 	}
 
 	private boolean findCycles(Object start, Object current)
