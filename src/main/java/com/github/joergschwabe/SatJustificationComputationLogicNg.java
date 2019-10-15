@@ -56,7 +56,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 
 		private final Object query;
-		private SatClauseHandler<I, A> satClauseHandler_;
+		private SatClauseHandlerLogicNg<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -96,14 +96,14 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<I,A> cycleComputator = new CycleComputator<I,A>(translatedProof,satClauseHandler_);
+				CycleComputator cycleComputator = new CycleComputator(translatedProof);
 
 				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
 				for(List<Integer> consideredSCC : sccc.getComponents()) {
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					cycleComputator.addAllCycles(consideredSCC);
+					satClauseHandler_.addCycleClauses(cycleComputator.addAllCycles(consideredSCC));
 				}
 
 				compute();

@@ -23,7 +23,7 @@ import org.sat4j.specs.ContradictionException;
  *
  * @param <A> the type of the axioms
  */
-public class CycleComputator<I extends Inference<?>, A> {
+public class CycleComputator {
 
 	/**
 	 * the set of inferences from which the proofs are formed
@@ -62,14 +62,13 @@ public class CycleComputator<I extends Inference<?>, A> {
 
 	private List<Integer> consideredSCC;
 
-	private final SatClauseHandler<I, A> satClauseHandler_;
+	private Set<Set<Inference<? extends Integer>>> cycles = new HashSet<Set<Inference<? extends Integer>>>();
 
-	public CycleComputator(final Proof<Inference<? extends Integer>> proof, SatClauseHandler<I, A> satClauseHandler_) {
+	public CycleComputator(final Proof<Inference<? extends Integer>> proof) {
 		this.proof = proof;
-		this.satClauseHandler_ = satClauseHandler_;
 	}
 
-	public void addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
+	public Set<Set<Inference<? extends Integer>>> addAllCycles(List<Integer> consideredSCC) throws IOException, ParserException, ContradictionException {
 		this.consideredSCC = consideredSCC;
 		for (Object concl : consideredSCC) {
 			blocked.clear();
@@ -80,6 +79,7 @@ public class CycleComputator<I extends Inference<?>, A> {
 
 			visited_.add(concl);
 		}
+		return cycles;
 	}
 
 	private boolean findCycles(Object start, Object current)
@@ -99,7 +99,9 @@ public class CycleComputator<I extends Inference<?>, A> {
 				}
 
 				if (premise == start) {
-					satClauseHandler_.addCycleClause(inferencePath_);
+					Set<Inference<? extends Integer>> cycle = new HashSet<Inference<? extends Integer>>();
+					cycle.addAll(inferencePath_);
+					cycles.add(cycle);
 					foundCycle = true;
 				} else {
 					if (!blocked.contains(premise)) {

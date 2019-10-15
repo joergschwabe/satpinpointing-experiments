@@ -53,7 +53,7 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 	private class Enumerator implements MinimalSubsetEnumerator<A>, Producer<Inference<? extends Integer>> {
 
 		private final Object query;
-		private SatClauseHandler<I, A> satClauseHandler_;
+		private SatClauseHandlerSat4j<I, A> satClauseHandler_;
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
@@ -93,14 +93,14 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
-				CycleComputator<I,A> cycleComputator = new CycleComputator<I, A>(translatedProof, satClauseHandler_);
+				CycleComputator cycleComputator = new CycleComputator(translatedProof);
 
 				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
 				for(List<Integer> consideredSCC : sccc.getComponents()) {
 					if(consideredSCC.size() == 1) {
 						continue;
 					}
-					cycleComputator.addAllCycles(consideredSCC);
+					satClauseHandler_.addCycleClauses(cycleComputator.addAllCycles(consideredSCC));
 				}
 				
 				compute();

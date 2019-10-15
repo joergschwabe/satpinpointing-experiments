@@ -110,12 +110,14 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		}
 	}
 
-	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ContradictionException {
-		IVecInt clause = new VecInt();
-		for(Inference<? extends Integer> inf : cycle) {
-			int infId = idProvider.getInferenceId(inf);
-			clause.push(-infId);
+	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ContradictionException {
+		for (Set<Inference<? extends Integer>> cycle : cycles) {
+			IVecInt clause = new VecInt();
+			for (Inference<? extends Integer> inf : cycle) {
+				int infId = idProvider.getInferenceId(inf);
+				clause.push(-infId);
+			}
+			solver.addClause(clause);
 		}
-		solver.addClause(clause);			
 	}
 }

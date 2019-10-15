@@ -5,12 +5,6 @@ import java.util.Set;
 
 import org.liveontologies.puli.Inference;
 import org.liveontologies.puli.InferenceDerivabilityChecker;
-import org.logicng.datastructures.Assignment;
-import org.logicng.io.parsers.ParserException;
-import org.logicng.solvers.SATSolver;
-import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.ISolver;
-import org.sat4j.specs.TimeoutException;
 
 /**
  * 
@@ -102,31 +96,4 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		
 		return justification;
 	}
-
-	public void translateQuery() throws ParserException, ContradictionException {}
-
-	public void addConclusionInferencesClauses() throws ParserException, ContradictionException {}
-
-	public void addCycleClause(Set<Inference<? extends Integer>> set) throws ParserException, ContradictionException {}
-
-	public SATSolver getSATSolver() throws ContradictionException {
-		return null;
-	}
-
-	public ISolver getISolver() throws TimeoutException, ContradictionException {
-		return null;
-	}
-
-	public Set<Integer> getPositiveOntologieAxioms(Assignment model) throws ContradictionException {
-		return null;
-	}
-
-	public void pushNegClauseToSolver(Set<Integer> axiomSet) throws ParserException, ContradictionException {}
-
-	public void addInfImplicationToSolver(Inference<? extends Integer> inference) throws ParserException, ContradictionException {}
-
-	public Set<Integer> getPositiveOntologieAxioms(int[] list) throws ContradictionException {
-		return null;
-	}
-	
 }

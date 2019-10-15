@@ -121,13 +121,15 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		}
 	}
 
-	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ParserException {
-		String formulaString ="";
-		for(Inference<? extends Integer> inf : cycle) {
-			int infId = idProvider.getInferenceId(inf);
-			formulaString += " | ~" + infId;
+	public void addCycleClauses(Set<Set<Inference<? extends Integer>>> cycles) throws ParserException {
+		for (Set<Inference<? extends Integer>> cycle : cycles) {
+			String formulaString = "";
+			for (Inference<? extends Integer> inf : cycle) {
+				int infId = idProvider.getInferenceId(inf);
+				formulaString += " | ~" + infId;
+			}
+			Formula formula = p.parse(formulaString.substring(3));
+			this.solver.add(formula);
 		}
-		Formula formula = p.parse(formulaString.substring(3));
-		this.solver.add(formula);
 	}
 }
