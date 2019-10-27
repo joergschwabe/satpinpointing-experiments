@@ -1,7 +1,7 @@
 package com.github.joergschwabe;
 
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -60,6 +60,7 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
+		private CycleComputator cycleComputator;
 		
 		Enumerator(final Object query) {
 			this.query = query;
@@ -91,20 +92,12 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 
 			Proofs.unfoldRecursively(translatedProof, queryId_, this);
 
+			cycleComputator = new CycleComputator(translatedProof, queryId_);
+
 			try {
 				satClauseHandler_.translateQuery();
 
 				satClauseHandler_.addConclusionInferencesClauses();
-
-				CycleComputator cycleComputator = new CycleComputator(translatedProof);
-
-				StronglyConnectedComponents<Integer> sccc = StronglyConnectedComponentsComputation.computeComponents(translatedProof, queryId_);
-				for(List<Integer> consideredSCC : sccc.getComponents()) {
-					if(consideredSCC.size() == 1) {
-						continue;
-					}
-					satClauseHandler_.addCycleClauses(cycleComputator.getAllCycles(consideredSCC));
-				}
 
 				compute();
 			} catch (Exception e) {
@@ -112,34 +105,52 @@ public class SatJustificationComputationLogicNg<C, I extends Inference<? extends
 			}
 		}
 
-		private void compute() throws ContradictionException, ParserException {
-			SATSolver solver = satClauseHandler_.getSATSolver();
-			
+		private void compute() throws ContradictionException, ParserException, IOException {
 			Set<Integer> axiomSet;
+			Set<Integer> conclusionSet;
+			Set<Inference<? extends Integer>> inferenceSet;
+			Set<Integer> justification_int;
 			Set<A> justification;
+
+			SATSolver solver = satClauseHandler_.getSATSolver();
 
 			while (solver.sat() == Tristate.TRUE) {
 				Assignment model = solver.model();
 
 				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(model);
 
-				axiomSet = satClauseHandler_.computeJustification(axiomSet);
+				if(satClauseHandler_.isQueryDerivable(axiomSet)) {
+					if(axiomSet.isEmpty()) {
+						listener_.newMinimalSubset(new HashSet<A>());
+						break;
+					}
 
-				if(axiomSet.isEmpty()) {
-					listener_.newMinimalSubset(new HashSet<A>());
-					break;
+					justification_int = satClauseHandler_.computeJustification(axiomSet);
+
+					if(justification_int.isEmpty()) {
+						listener_.newMinimalSubset(new HashSet<A>());
+						break;
+					}
+
+					satClauseHandler_.pushNegClauseToSolver(justification_int);
+					
+					justification = satClauseHandler_.translateToAxioms(justification_int);
+
+					listener_.newMinimalSubset(justification);
+				} else {
+					conclusionSet = satClauseHandler_.getConclusionAxioms(model);
+
+					inferenceSet = satClauseHandler_.getPositiveInferences(model);
+
+					Set<Inference<? extends Integer>> cycle = cycleComputator.getCycle(conclusionSet, inferenceSet);
+					
+					satClauseHandler_.addCycleClause(cycle);
 				}
-
-				satClauseHandler_.pushNegClauseToSolver(axiomSet);
-
-				justification = satClauseHandler_.translateToAxioms(axiomSet);
-
-				listener_.newMinimalSubset(justification);
 
 				if (isInterrupted()) {
 					break;
 				}
-			}
+			}			
 		}
 
 		@Override

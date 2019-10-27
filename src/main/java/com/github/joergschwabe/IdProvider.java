@@ -55,6 +55,10 @@ public class IdProvider<A, I> {
 		return result;
 	}
 
+	Inference<? extends Integer> getInferenceFromId(Integer id) { 
+		return inferenceIds_.inverse().get(id);
+	}
+
 	void addConclusionInference(Inference<? extends Integer> inference) {
 		Integer conclusionId = inference.getConclusion();
 		Integer inferenceId = getInferenceId(inference);
@@ -70,5 +74,9 @@ public class IdProvider<A, I> {
 	Set<Integer> getInferenceIds(Object conclusion) { 
 		HashSet<Integer> inferenceIds = inferenceConclusionIds_.get(conclusion);
 		return inferenceIds != null ? inferenceIds : new HashSet<Integer>();
+	}
+
+	public Set<Integer> getInferenceIds() {
+		return inferenceIds_.values();
 	}
 }

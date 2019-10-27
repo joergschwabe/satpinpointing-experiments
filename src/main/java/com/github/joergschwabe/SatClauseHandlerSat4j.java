@@ -47,6 +47,30 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 		return axiomSet;
 	}
 
+	public Set<Integer> getPositiveConclusions(int[] list) throws ContradictionException {
+		Set<Integer> conclusionSet = new HashSet<>();
+		Set<Integer> conclusionIds = idProvider.getConclusionIds();
+
+		for (Integer modelId : list) {
+			if (modelId > 0 && conclusionIds.contains(modelId)) {
+				conclusionSet.add(modelId);
+			}
+		}
+		return conclusionSet;
+	}
+
+	public Set<Inference<? extends Integer>> getPositiveInferences(int[] list) throws ContradictionException {
+		Set<Inference<? extends Integer>> inferenceSet = new HashSet<>();
+		Set<Integer> inferenceIds = idProvider.getInferenceIds();
+
+		for (Integer modelId : list) {
+			if (modelId > 0 && inferenceIds.contains(modelId)) {
+				inferenceSet.add(idProvider.getInferenceFromId(modelId));
+			}
+		}
+		return inferenceSet;
+	}
+
 	public void translateQuery() throws ContradictionException {
 		IVecInt clause = new VecInt();
 		clause.push(queryId);
@@ -119,5 +143,14 @@ public class SatClauseHandlerSat4j<I extends Inference<?>, A> extends SatClauseH
 			}
 			solver.addClause(clause);
 		}
+	}
+	
+	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ContradictionException {
+		IVecInt clause = new VecInt();
+		for (Inference<? extends Integer> inf : cycle) {
+			int infId = idProvider.getInferenceId(inf);
+			clause.push(-infId);
+		}
+		solver.addClause(clause);
 	}
 }

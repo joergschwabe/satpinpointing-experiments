@@ -61,14 +61,14 @@ public class SatClauseHandler<I extends Inference<?>, A> {
 		for (Integer axiomId : axiomSetAll) {
 			infDeriv.block(axiomId);
 		}
-		boolean returnValue = false;
+		boolean isDerivable = false;
 		if (infDeriv.isDerivable(queryId)) {
-			returnValue = true;
+			isDerivable = true;
 		}
 		for (Integer axiomId : axiomSetAll) {
 			infDeriv.unblock(axiomId);
 		}
-		return returnValue;
+		return isDerivable;
 	}
 
 	Set<Integer> computeJustification(Set<Integer> axiomSet) {

@@ -64,6 +64,38 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 		return axiomSet;
 	}
 
+	public Set<Integer> getConclusionAxioms(Assignment model) throws ContradictionException {
+		Set<Integer> conclusionSet = new HashSet<>();
+
+		List<Variable> posLiterals = model.positiveLiterals();
+
+		Set<Integer> conclusionIds = idProvider.getConclusionIds();
+		for (Variable var : posLiterals) {
+			int varInt = Integer.parseInt(var.toString());
+			if (conclusionIds.contains(varInt)) {
+				conclusionSet.add(varInt);
+			}
+		}
+
+		return conclusionSet;
+	}
+
+	public Set<Inference<? extends Integer>> getPositiveInferences(Assignment model) {
+		Set<Inference<? extends Integer>> inferenceSet = new HashSet<>();
+		Set<Integer> inferenceIds = idProvider.getInferenceIds();
+
+		List<Variable> posLiterals = model.positiveLiterals();
+
+		for (Variable var : posLiterals) {
+			int varInt = Integer.parseInt(var.toString());
+			if (inferenceIds.contains(varInt)) {
+				inferenceSet.add(idProvider.getInferenceFromId(varInt));
+			}
+		}
+
+		return inferenceSet;
+	}
+	
 	public void addInfToSolver(Inference<? extends Integer> inference) throws ParserException {
 		String formulaString = "~" + inference.getConclusion();
 		for (Integer premise : inference.getPremises()) {
@@ -132,4 +164,16 @@ public class SatClauseHandlerLogicNg<I extends Inference<?>, A> extends SatClaus
 			this.solver.add(formula);
 		}
 	}
+
+	public void addCycleClause(Set<Inference<? extends Integer>> cycle) throws ParserException {
+		String formulaString = "";
+		for (Inference<? extends Integer> inf : cycle) {
+			int infId = idProvider.getInferenceId(inf);
+			formulaString += " | ~" + infId;
+		}
+		Formula formula = p.parse(formulaString.substring(3));
+		this.solver.add(formula);
+	}
+
+
 }
