@@ -1,6 +1,8 @@
 package com.github.joergschwabe;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.liveontologies.puli.Inference;
@@ -12,7 +14,7 @@ public class IdProvider<A, I> {
 
 	private final BiMap<Object, Integer> conclusionIds_ = HashBiMap.create();
 	private final BiMap<Inference<? extends Integer>, Integer> inferenceIds_ = HashBiMap.create();
-	private final BiMap<Integer, HashSet<Integer>> inferenceConclusionIds_ = HashBiMap.create();
+	private final Map<Integer, HashSet<Integer>> inferenceConclusionIds_ = new HashMap<>();
 	private final BiMap<A, Integer> axiomIds_ = HashBiMap.create();
 	private int nextId_ = 1;
 
@@ -21,6 +23,7 @@ public class IdProvider<A, I> {
 		if (result == null) {
 			result = nextId_++;
 			conclusionIds_.put(conclusion, result);
+			inferenceConclusionIds_.put(result, new HashSet<Integer>());
 		}
 		return result;
 	}
@@ -62,18 +65,11 @@ public class IdProvider<A, I> {
 	void addConclusionInference(Inference<? extends Integer> inference) {
 		Integer conclusionId = inference.getConclusion();
 		Integer inferenceId = getInferenceId(inference);
-		if(inferenceConclusionIds_.keySet().contains(conclusionId)) {
-			inferenceConclusionIds_.get(conclusionId).add(inferenceId);
-		} else {
-			HashSet<Integer> inferenceSet = new HashSet<Integer>();
-			inferenceSet.add(inferenceId);
-			inferenceConclusionIds_.put(conclusionId, inferenceSet);			
-		}
+		inferenceConclusionIds_.get(conclusionId).add(inferenceId);
 	}
 
-	Set<Integer> getInferenceIds(Object conclusion) { 
-		HashSet<Integer> inferenceIds = inferenceConclusionIds_.get(conclusion);
-		return inferenceIds != null ? inferenceIds : new HashSet<Integer>();
+	Set<Integer> getInferenceIds(Integer conclusion) { 
+		return inferenceConclusionIds_.get(conclusion);
 	}
 
 	public Set<Integer> getInferenceIds() {

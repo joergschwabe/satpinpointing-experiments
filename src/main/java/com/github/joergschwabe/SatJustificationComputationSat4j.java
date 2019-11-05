@@ -95,7 +95,11 @@ public class SatJustificationComputationSat4j<C, I extends Inference<? extends C
 				satClauseHandler_.translateQuery();
 
 				satClauseHandler_.addConclusionInferencesClauses();
-				
+			} catch (ContradictionException e) {
+				return;
+			}
+
+			try {
 				compute();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
