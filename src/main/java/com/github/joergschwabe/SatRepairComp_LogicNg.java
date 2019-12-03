@@ -59,6 +59,8 @@ public class SatRepairComp_LogicNg<C, I extends Inference<? extends C>, A>
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
+		private long timeSolver;
+		private long timeRep;
 		
 		Enumerator(final Object query) {
 			this.query = query;
@@ -93,7 +95,11 @@ public class SatRepairComp_LogicNg<C, I extends Inference<? extends C>, A>
 			try {
 				satClauseHandler_.translateQuery();
 
+				long timeStart = System.currentTimeMillis();
 				compute();
+				long timeEnd = System.currentTimeMillis();
+				double timeSum = timeEnd-timeStart;
+				System.out.println("timeSolver: " + (timeSolver/timeSum) + ", timeRep: " + (timeRep/timeSum));
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -105,8 +111,14 @@ public class SatRepairComp_LogicNg<C, I extends Inference<? extends C>, A>
 			Set<Integer> repair_int;
 			Set<A> minRepair;
 
-			while (solver.sat() == Tristate.TRUE) {
+			while (true) {
+				long timeStart = System.currentTimeMillis();
+				if(!(solver.sat() == Tristate.TRUE)) {
+					break;
+				};
 				Assignment model = solver.model();
+				long timeEnd = System.currentTimeMillis();
+				timeSolver+=timeEnd-timeStart;
 
 				repair_int = satClauseHandler_.getPositiveOntologieAxioms(model);
 
@@ -121,6 +133,8 @@ public class SatRepairComp_LogicNg<C, I extends Inference<? extends C>, A>
 				if (isInterrupted()) {
 					break;
 				}
+				timeEnd = System.currentTimeMillis();
+				timeRep += timeEnd-timeStart;
 			}
 		}
 

@@ -61,6 +61,9 @@ public class SatJustificationComp_LogicNg<C, I extends Inference<? extends C>, A
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
 		private CycleComputator cycleComputator;
+		private long timeSolver;
+		private long timeJust;
+		private long timeCycle;
 		
 		Enumerator(final Object query) {
 			this.query = query;
@@ -99,7 +102,11 @@ public class SatJustificationComp_LogicNg<C, I extends Inference<? extends C>, A
 
 				satClauseHandler_.addConclusionInferencesClauses();
 
+				long timeStart = System.currentTimeMillis();
 				compute();
+				long timeEnd = System.currentTimeMillis();
+				double timeSum = timeEnd-timeStart;
+				System.out.println("timeSolver: " + (timeSolver/timeSum) + ", timeJust: " + (timeJust/timeSum) + ", timeCycles: " + (timeCycle/timeSum));
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -114,12 +121,19 @@ public class SatJustificationComp_LogicNg<C, I extends Inference<? extends C>, A
 
 			SATSolver solver = satClauseHandler_.getSATSolver();
 
-			while (solver.sat() == Tristate.TRUE) {
+			while (true) {
+				long timeStart = System.currentTimeMillis();
+				if(!(solver.sat() == Tristate.TRUE)) {
+					break;
+				};
 				Assignment model = solver.model();
+				long timeEnd = System.currentTimeMillis();
+				timeSolver+=timeEnd-timeStart;
 
 				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(model);
 
 				if(satClauseHandler_.isQueryDerivable(axiomSet)) {
+					timeStart = System.currentTimeMillis();
 					if(axiomSet.isEmpty()) {
 						listener_.newMinimalSubset(new HashSet<A>());
 						break;
@@ -137,7 +151,10 @@ public class SatJustificationComp_LogicNg<C, I extends Inference<? extends C>, A
 					justification = satClauseHandler_.translateToAxioms(justification_int);
 
 					listener_.newMinimalSubset(justification);
+					timeEnd = System.currentTimeMillis();
+					timeJust += timeEnd-timeStart;
 				} else {
+					timeStart = System.currentTimeMillis();
 					conclusionSet = satClauseHandler_.getConclusionAxioms(model);
 
 					inferenceSet = satClauseHandler_.getPositiveInferences(model);
@@ -145,6 +162,8 @@ public class SatJustificationComp_LogicNg<C, I extends Inference<? extends C>, A
 					Set<Inference<? extends Integer>> cycle = cycleComputator.getCycle(conclusionSet, inferenceSet);
 					
 					satClauseHandler_.addCycleClause(cycle);
+					timeEnd = System.currentTimeMillis();
+					timeCycle += timeEnd-timeStart;
 				}
 
 				if (isInterrupted()) {
