@@ -54,8 +54,6 @@ public class SatRepairComp_Sat4j<C, I extends Inference<? extends C>, A>
 		private IntegerProofTranslator<C, I, A> proofTranslator_;
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
-		private long timeSolver;
-		private long timeRep;
 		
 		Enumerator(final Object query) {
 			this.query = query;
@@ -90,11 +88,7 @@ public class SatRepairComp_Sat4j<C, I extends Inference<? extends C>, A>
 			try {
 				satClauseHandler_.translateQuery();
 
-				long timeStart = System.currentTimeMillis();
 				compute();
-				long timeEnd = System.currentTimeMillis();
-				double timeSum = timeEnd-timeStart;
-				System.out.println("timeSolver: " + (timeSolver/timeSum) + ", timeRep: " + (timeRep/timeSum));
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
@@ -107,14 +101,8 @@ public class SatRepairComp_Sat4j<C, I extends Inference<? extends C>, A>
 
 			ISolver solver = satClauseHandler_.getISolver();
 			
-			while (true) {
-				long timeStart = System.currentTimeMillis();
-				if(!solver.isSatisfiable()) {
-					break;
-				};
+			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
-				long timeEnd = System.currentTimeMillis();
-				timeSolver+=timeEnd-timeStart;
 
 				repair_int = satClauseHandler_.getPositiveOntologieAxioms(list);
 
@@ -129,8 +117,6 @@ public class SatRepairComp_Sat4j<C, I extends Inference<? extends C>, A>
 				if (isInterrupted()) {
 					break;
 				}
-				timeEnd = System.currentTimeMillis();
-				timeRep += timeEnd-timeStart;
 			}
 
 			

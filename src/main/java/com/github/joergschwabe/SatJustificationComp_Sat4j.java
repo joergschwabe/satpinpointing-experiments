@@ -58,12 +58,6 @@ public class SatJustificationComp_Sat4j<C, I extends Inference<? extends C>, A>
 		private Listener<A> listener_;
 		private IdProvider<A, I> idProvider_;
 		private CycleComputator cycleComputator;
-		private int counter;
-		private int counterJ;
-		private int counterC;
-		private long timeSolver;
-		private long timeJust;
-		private long timeCycle;
 		
 		Enumerator(final Object query) {
 			this.query = query;
@@ -108,11 +102,7 @@ public class SatJustificationComp_Sat4j<C, I extends Inference<? extends C>, A>
 			}
 
 			try {
-				long timeStart = System.currentTimeMillis();
 				compute();
-				long timeEnd = System.currentTimeMillis();
-				double timeSum = timeEnd-timeStart;
-				System.out.println("timeSolver: " + (timeSolver/timeSum) + ", timeJust: " + (timeJust/timeSum) + ", timeCycles: " + (timeCycle/timeSum));
 
 			} catch (Exception e) {
 				throw new RuntimeException(e);
@@ -128,19 +118,12 @@ public class SatJustificationComp_Sat4j<C, I extends Inference<? extends C>, A>
 			Set<Integer> justification_int;
 			Set<A> justification;
 			
-			while (true) {
-				long timeStart = System.currentTimeMillis();
-				if(!solver.isSatisfiable()) {
-					break;
-				};
+			while (solver.isSatisfiable()) {
 				int[] list = solver.model();
-				long timeEnd = System.currentTimeMillis();
-				timeSolver+=timeEnd-timeStart;
 				
 				axiomSet = satClauseHandler_.getPositiveOntologieAxioms(list);
 
 				if(satClauseHandler_.isQueryDerivable(axiomSet)) {
-					timeStart = System.currentTimeMillis();
 					if(axiomSet.isEmpty()) {
 						listener_.newMinimalSubset(new HashSet<A>());
 						break;
@@ -161,22 +144,14 @@ public class SatJustificationComp_Sat4j<C, I extends Inference<? extends C>, A>
 					justification = satClauseHandler_.translateToAxioms(justification_int);
 
 					listener_.newMinimalSubset(justification);
-					timeEnd = System.currentTimeMillis();
-					timeJust += timeEnd-timeStart;
-					counterJ++;
 				} else {
-					timeStart = System.currentTimeMillis();
 					conclusionSet = satClauseHandler_.getPositiveConclusions(list);
 
 					inferenceSet = satClauseHandler_.getPositiveInferences(list);
 
 					Set<Inference<? extends Integer>> cycle = cycleComputator.getCycle(conclusionSet, inferenceSet);
-					counter++;
 
 					satClauseHandler_.addCycleClause(cycle);
-					timeEnd = System.currentTimeMillis();
-					timeCycle += timeEnd-timeStart;
-					counterC++;
 				}
 
 				if (isInterrupted()) {
