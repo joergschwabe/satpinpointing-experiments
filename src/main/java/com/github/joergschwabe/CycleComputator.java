@@ -97,6 +97,7 @@ public class CycleComputator {
 	private Set<Inference<? extends Integer>> findCycle()
 			throws IOException, ParserException, ContradictionException {
 		for(;;) {
+
 			Iterator<? extends Integer> conclIter = conclusionStack.peek();
 			if(conclIter == null) {
 				return null;
@@ -111,25 +112,27 @@ public class CycleComputator {
 				}
 
 				addObject(premise);
-					
+
 				continue;
 			}
 			conclusionStack.pop();
+			visited.pop();
+			conclusionPath.remove(conclusionPath.size()-1);
 			inferencePath.remove(inferencePath.size()-1);
 		}
 
 	}
 
-	private void addObject(Integer object) {
+	private void addObject(Integer object) {		
 		Deque<Inference<? extends Integer>> infDeq = new LinkedList<Inference<? extends Integer>>(this.proof.getInferences(object));
 		infDeq.retainAll(inferenceSet);
 		if(infDeq.isEmpty()) {
 			return;
 		}
 		Inference<? extends Integer> inference = infDeq.pop();
+		conclusionStack.push(getPremises(inference).iterator());
 		visited.push(object);
 		conclusionPath.add(object);
-		conclusionStack.push(getPremises(inference).iterator());
 		inferencePath.add(inference);
 	}
 
@@ -139,4 +142,5 @@ public class CycleComputator {
 		return premises;
 	}
 	
+
 }
