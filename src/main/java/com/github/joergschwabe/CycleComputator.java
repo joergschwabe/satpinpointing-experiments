@@ -29,11 +29,6 @@ public class CycleComputator {
 	private final Proof<Inference<? extends Integer>> proof;
 
 	/**
-	 * the current positions of iterators over inferences for conclusions
-	 */
-	private final Deque<Iterator<? extends Inference<? extends Integer>>> inferenceStack = new LinkedList<Iterator<? extends Inference<? extends Integer>>>();
-
-	/**
 	 * the current positions of iterators over conclusions
 	 */
 	private Deque<Iterator<Integer>> conclusionStack = new LinkedList<Iterator<Integer>>();
@@ -94,7 +89,6 @@ public class CycleComputator {
 
 	private void clear() {
 		conclusionStack.clear();
-		inferenceStack.clear();
 		inferencePath.clear();
 		visited.clear();
 		conclusionPath.clear();
@@ -103,21 +97,6 @@ public class CycleComputator {
 	private Set<Inference<? extends Integer>> findCycle()
 			throws IOException, ParserException, ContradictionException {
 		for(;;) {
-			Iterator<? extends Inference<? extends Integer>> infIter = inferenceStack.peek();
-			if(infIter == null) {
-				return null;
-			}
-
-			if(infIter.hasNext()) {
-				Inference<? extends Integer> nextInf = infIter.next();
-				conclusionStack.push(getPremises(nextInf).iterator());
-				inferencePath.add(nextInf);
-			} else {
-				visited.pop();
-				inferenceStack.pop();
-				conclusionPath.remove(conclusionPath.size()-1);
-			}
-
 			Iterator<? extends Integer> conclIter = conclusionStack.peek();
 			if(conclIter == null) {
 				return null;
@@ -132,6 +111,7 @@ public class CycleComputator {
 				}
 
 				addObject(premise);
+					
 				continue;
 			}
 			conclusionStack.pop();
@@ -141,9 +121,16 @@ public class CycleComputator {
 	}
 
 	private void addObject(Integer object) {
+		Deque<Inference<? extends Integer>> infDeq = new LinkedList<Inference<? extends Integer>>(this.proof.getInferences(object));
+		infDeq.retainAll(inferenceSet);
+		if(infDeq.isEmpty()) {
+			return;
+		}
+		Inference<? extends Integer> inference = infDeq.pop();
 		visited.push(object);
 		conclusionPath.add(object);
-		inferenceStack.push(getInferences(object).iterator());
+		conclusionStack.push(getPremises(inference).iterator());
+		inferencePath.add(inference);
 	}
 
 	private Set<Integer> getPremises(Inference<? extends Integer> nextInf) {
@@ -152,10 +139,4 @@ public class CycleComputator {
 		return premises;
 	}
 	
-	private Deque<Inference<? extends Integer>> getInferences(Integer concl) {
-		Deque<Inference<? extends Integer>> infDeq = new LinkedList<Inference<? extends Integer>>(this.proof.getInferences(concl));
-		infDeq.retainAll(inferenceSet);
-		return infDeq;
-	}
-
 }
